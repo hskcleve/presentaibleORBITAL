@@ -11,3 +11,164 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.frontPageWelcome {
+  margin-top: 275px;
+  margin-left: 120px;
+}
+
+.frontPageWelcome2 {
+  margin-top: 10px;
+  margin-left: 250px;
+}
+
+.pagefiller {
+  max-width: 1920px;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 1080px;
+  border: 0px solid steelblue;
+  padding: 0px;
+  border-radius: 0px;
+  /*background-image: url(https://images.unsplash.com/photo-1508796079212-a4b83cbf734d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)  
+  */
+  background-image: url(https://i.imgur.com/ZGJrVUJ.jpg)
+}
+
+.navbar {
+  display:inline-flexbox;
+  max-width: 1920px;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 30px;
+  padding: 4px;
+  justify-content: space-between;
+  align-items:center;
+  background:rgb(155, 137, 111);
+}
+
+.header {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  /*background: rgb(226, 170, 170);*/
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btnForSubmissions{
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.someHighlightBox {
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.leftSideBarForSomeHighlightBox {
+  border-left: 5px solid green;
+}
+
+.item-h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-form {
+  margin-bottom: 40px;
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+
+.form-control-check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control-check label {
+  flex: 1;
+}
+
+.form-control-check input {
+  flex: 2;
+  height: 20px;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+}
