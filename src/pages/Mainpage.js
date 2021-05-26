@@ -1,20 +1,19 @@
-import React from 'react'
-import Register from '../components/Register'
-import { AuthProvider } from "../contexts/AuthContext"
+import React from "react";
+import Register from "../components/Register";
+import { AuthProvider } from "../contexts/AuthContext";
 
 const Mainpage = () => {
-    return (
+  return (
     <AuthProvider>
-    <div className='pagefiller'>
+      <div className="pagefiller">
+        <Register />
+        <h1>MaoXin tried to clone and commit</h1>
+      </div>
+    </AuthProvider>
+  );
+};
 
-    <Register />
-
-    </div>
-    </AuthProvider>    
-    )
-}
-
-export default Mainpage
+export default Mainpage;
 
 /*
 <h1 className='frontPageWelcome'>
