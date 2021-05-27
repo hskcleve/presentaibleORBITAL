@@ -38,24 +38,25 @@ const Navbar = () => {
                 </nav>
             </div>
 
-            <Switch>
-                    <Route path='/Firstpage'>
-                        <Firstpage />
-                    </Route>
-                    <Route path="/Secondpage">
-                        <Secondpage />
-                    </Route>
-                    <Route path="/Thirdpage">
-                        <Thirdpage />
-                    </Route>
-                    <Route path="/">
-                        <Mainpage />
-                    </Route>
-                </Switch>
-        </Router>
-        
-    );
-    
-}
+      <Switch>
+        <Route path="/about">
+          <AboutPage />
+        </Route>
+        <Route path="/dashboard">
+          <DashboardPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+        <Route exact path="/">
+          <Mainpage />
+        </Route>
+        <Route path="/login">
+          <LoginPage></LoginPage>
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
-export default Navbar
+export default Navbar;
