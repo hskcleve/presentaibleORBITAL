@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Thirdpage = () => {
+const SignupPage = () => {
   return (
-    console.log("thirdpage reached"),
+    console.log("SignupPage reached"),
     (
       <div className="pagefiller">
         <h2 className="header">Register an Account</h2>
@@ -28,6 +29,9 @@ const Thirdpage = () => {
               <label>Password</label>
               <input type="password" placeholder=""></input>
             </div>
+            <span>
+              Already have an account ? <Link to="/login">Login</Link>
+            </span>
           </form>
         </h3>
       </div>
@@ -35,4 +39,4 @@ const Thirdpage = () => {
   );
 };
 
-export default Thirdpage;
+export default SignupPage;

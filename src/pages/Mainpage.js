@@ -7,7 +7,7 @@ const Mainpage = () => {
     <AuthProvider>
       <div className="pagefiller">
         <Register />
-        <h1>MaoXin tried to clone and commit</h1>
+        <h1>Try git hub changes and merge(?)</h1>
       </div>
     </AuthProvider>
   );

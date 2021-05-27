@@ -1,63 +1,59 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
-import Mainpage from '../pages/Mainpage'
-import Firstpage from '../pages/Firstpage'
-import Secondpage from '../pages/Secondpage'
-import Thirdpage from '../pages/Thirdpage'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Mainpage from "../pages/Mainpage";
+import AboutPage from "../pages/about";
+import DashboardPage from "../pages/dashboard";
+import SignupPage from "../pages/signup";
+import LoginPage from "../pages/login";
 
 const Navbar = () => {
-    const AIstyling={color:'white'}
+  const AIstyling = { color: "white" };
 
-    return (
-        
-        <Router >
-            <div className='navbar' >
-                <nav>
-                    <ul>
-                        <h2 className='header'>
-                            <h1 className='header'>
-                                Present<h3 style={AIstyling}>AI</h3>ble
-                            </h1>
-                            <Link to = "/"  className='btn'>
-                                Main
-                                </Link>
-                            <Link to = "/Firstpage" className='btn'>
-                                About
-                                </Link>
-                            <Link to = "/Secondpage" className='btn'>
-                                Dashboard
-                                </Link>
-                            <Link to = "/Thirdpage" className='btn'>
-                                Signup
-                                </Link>
-                        </h2>
-                    </ul>
-                </nav>
-            </div>
+  return (
+    <Router>
+      <div className="navbar">
+        <nav>
+          <ul>
+            <h2 className="header">
+              <h1 className="header">
+                Present<h3 style={AIstyling}>AI</h3>ble
+              </h1>
+              <Link to="/" className="btn">
+                Main
+              </Link>
+              <Link to="/about" className="btn">
+                About
+              </Link>
+              <Link to="/dashboard" className="btn">
+                Dashboard
+              </Link>
+              <Link to="/signup" className="btn">
+                Signup
+              </Link>
+            </h2>
+          </ul>
+        </nav>
+      </div>
 
-            <Switch>
-                    <Route path='/Firstpage'>
-                        <Firstpage />
-                    </Route>
-                    <Route path="/Secondpage">
-                        <Secondpage />
-                    </Route>
-                    <Route path="/Thirdpage">
-                        <Thirdpage />
-                    </Route>
-                    <Route path="/">
-                        <Mainpage />
-                    </Route>
-                </Switch>
-        </Router>
-        
-    );
-    
-}
+      <Switch>
+        <Route path="/about">
+          <AboutPage />
+        </Route>
+        <Route path="/dashboard">
+          <DashboardPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+        <Route exact path="/">
+          <Mainpage />
+        </Route>
+        <Route path="/login">
+          <LoginPage></LoginPage>
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
-export default Navbar
+export default Navbar;
