@@ -1,27 +1,29 @@
-import React from 'react'
-import Register from '../components/Register'
+import { useAuth } from '../contexts/AuthContext'
 import { AuthProvider } from "../contexts/AuthContext"
 
 const Mainpage = () => {
+
+    
+    const nameD = 'email here but how tf to get'
+
     return (
-    <AuthProvider>
-    <div className='pagefiller'>
+        console.log('Mainpage reached'),
+        <div className='pagefiller'>
+                
+            <h1 className='frontPageWelcome'>
+            Welcome Back,
+            </h1>
 
-    <Register />
+            <h2 className='frontPageWelcome2'>
+            {nameD}.
+            </h2>
 
-    </div>
-    </AuthProvider>    
+        </div>
+        
     )
 }
 
 export default Mainpage
 
-/*
-<h1 className='frontPageWelcome'>
-Welcome Back,
-</h1>
 
-<h2 className='frontPageWelcome2'>
-John Doe.
-</h2>
-*/
+

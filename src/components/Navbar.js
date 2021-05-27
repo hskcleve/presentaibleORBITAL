@@ -5,24 +5,22 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import Logo from './Logo'
 import Mainpage from '../pages/Mainpage'
 import Firstpage from '../pages/Firstpage'
 import Secondpage from '../pages/Secondpage'
 import Thirdpage from '../pages/Thirdpage'
 
 const Navbar = () => {
-    const AIstyling={color:'white'}
-
+    
     return (
         
         <Router >
-            <div className='navbar' >
+            <div className='navbar'>
                 <nav>
                     <ul>
                         <h2 className='header'>
-                            <h1 className='header'>
-                                Present<h3 style={AIstyling}>AI</h3>ble
-                            </h1>
+                            <Logo />
                             <Link to = "/"  className='btn'>
                                 Main
                                 </Link>
@@ -33,7 +31,7 @@ const Navbar = () => {
                                 Dashboard
                                 </Link>
                             <Link to = "/Thirdpage" className='btn'>
-                                Signup
+                                TemplatePage
                                 </Link>
                         </h2>
                     </ul>

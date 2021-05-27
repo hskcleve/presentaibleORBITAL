@@ -5,10 +5,19 @@ const Thirdpage = () => {
         console.log('thirdpage reached'),
         <div className='pagefiller'>
             <h2 className='header'>
-                Register an Account
+                Thirdpage is a template page.
             </h2>
 
-            <h3 className='container'>
+            
+
+        </div>
+    )
+}
+
+export default Thirdpage
+
+/*
+<h3 className='container'>
 
             <form className='add-form'>
                 <div className='form-control'>
@@ -30,10 +39,4 @@ const Thirdpage = () => {
             </form>
 
             </h3>
-
-
-        </div>
-    )
-}
-
-export default Thirdpage
+*/

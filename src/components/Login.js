@@ -6,11 +6,11 @@ import { useHistory } from 'react-router-dom'
 
 
 
-const Register = () => {
+const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+
+    const { login } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -18,27 +18,22 @@ const Register = () => {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        if (passwordRef.current.value !==
-            passwordConfirmRef.current.value) {
-                return setError('Passwords do not match')
-            }
-
             try{
                 setError('')
                 setLoading(true)
-                await signup(emailRef.current.value, passwordRef.current.value)
+                await login(emailRef.current.value, passwordRef.current.value)
                 history.push('/loggedin')
             } catch {
-                setError('Failed to create an account')
+                setError('Failed to log in')
             }
 
-     
+            setLoading(false)
     }
 
     return (
         
         <div className='containerForSignupLogin' style={{textAlign: 'center', maxWidth: 350}}>
-            <h1 className='header'>Sign Up</h1>
+            <h1 className='header'>Log In</h1>
             {error && <Alert variant='danger'>{error}</Alert>}
             <div style={{textAlign:'center', marginTop:50}}>
             <Form onSubmit={handleSubmit}>
@@ -50,12 +45,7 @@ const Register = () => {
                     <div>Password </div>
                     <Form.Control type='password' ref={passwordRef}/>
                 </Form.Group>
-                <Form.Group id='password-confirm'>
-                    <div>Password Confirmation </div>
-                    <Form.Control type='password' ref={passwordConfirmRef}/>
-                </Form.Group>
-                
-                <Button disabled={loading} className='btn' type='submit'>Submit</Button>
+                <Button disabled={loading} className='btn' type='submit'>Log In</Button>
             </Form>
             </div>
            
@@ -64,4 +54,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Login
