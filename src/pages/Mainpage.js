@@ -1,8 +1,7 @@
 import { useAuth } from "../contexts/AuthContext";
 import { AuthProvider } from "../contexts/AuthContext";
 
-const Mainpage = () => {
-  const nameD = `email here from ${useAuth} but how tf to call`;
+const Mainpage = ({username}) => {
 
   return (
     console.log("Mainpage reached"),
@@ -10,7 +9,7 @@ const Mainpage = () => {
       <div className="pagefiller">
         <h1 className="frontPageWelcome">Welcome Back,</h1>
 
-        <h2 className="frontPageWelcome2">{nameD}.</h2>
+        <h2 className="frontPageWelcome2">{username}.</h2>
       </div>
     )
   );

@@ -1,9 +1,9 @@
 import Register from '../components/Register'
-import Login from '../components/Login'
 import { AuthProvider } from "../contexts/AuthContext"
 import Logo from '../components/Logo'
+import { Link } from 'react-router-dom'
 
-const SignupLoginPage = () => {
+const SignupPage = () => {
     return (
         
             <AuthProvider>
@@ -11,10 +11,12 @@ const SignupLoginPage = () => {
             <div className='landingPage'>
                 <h1 className='header'><Logo/></h1>
             
-          <div style={{}}>
+            <div style={{}}>
             <Register />
-            
-            <Login />
+            </div>
+
+            <div style={{textAlign:'center'}}>
+            Already have an account? <Link to="/login"> Log In. </Link>
             </div>
 
             </div>
@@ -23,4 +25,4 @@ const SignupLoginPage = () => {
     )
 }
 
-export default SignupLoginPage
+export default SignupPage

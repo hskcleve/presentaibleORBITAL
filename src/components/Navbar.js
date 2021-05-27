@@ -33,7 +33,7 @@ const Navbar = () => {
 
       <Switch>
         <Route path="/loggedin">
-          <Mainpage />
+          <Mainpage username='John Doe'/>
         </Route>
         <Route path="/about">
           <AboutPage />
@@ -42,7 +42,7 @@ const Navbar = () => {
           <DashboardPage />
         </Route>
         <Route exact path="/">
-          <Mainpage />
+          <Mainpage username='John Doe'/>
         </Route>
         <Route path="/Thirdpage">
           <EmptyPage />
