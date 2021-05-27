@@ -1,29 +1,19 @@
-import { useAuth } from '../contexts/AuthContext'
-import { AuthProvider } from "../contexts/AuthContext"
+import { useAuth } from "../contexts/AuthContext";
+import { AuthProvider } from "../contexts/AuthContext";
 
 const Mainpage = () => {
+  const nameD = `email here from ${useAuth} but how tf to call`;
 
-    
-    const nameD = 'email here from {useAuth} but how tf to call'
+  return (
+    console.log("Mainpage reached"),
+    (
+      <div className="pagefiller">
+        <h1 className="frontPageWelcome">Welcome Back,</h1>
 
-    return (
-        console.log('Mainpage reached'),
-        <div className='pagefiller'>
-                
-            <h1 className='frontPageWelcome'>
-            Welcome Back,
-            </h1>
-
-            <h2 className='frontPageWelcome2'>
-            {nameD}.
-            </h2>
-
-        </div>
-        
+        <h2 className="frontPageWelcome2">{nameD}.</h2>
+      </div>
     )
-}
+  );
+};
 
-export default Mainpage
-
-
-
+export default Mainpage;

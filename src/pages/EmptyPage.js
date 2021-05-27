@@ -1,20 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const Thirdpage = () => {
-    return (
-        console.log('thirdpage reached'),
-        <div className='pagefiller'>
-            <h2 className='header'>
-                Thirdpage is a template page.
-            </h2>
-
-            
-
-        </div>
+const EmptyPage = () => {
+  return (
+    console.log("thirdpage reached"),
+    (
+      <div className="pagefiller">
+        <h2 className="header">Thirdpage is a template page.</h2>
+      </div>
     )
-}
+  );
+};
 
-export default Thirdpage
+export default EmptyPage;
 
 /*
 <h3 className='container'>
