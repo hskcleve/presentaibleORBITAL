@@ -4,7 +4,7 @@ import { AuthProvider } from "../contexts/AuthContext"
 const Mainpage = () => {
 
     
-    const nameD = 'email here but how tf to get'
+    const nameD = 'email here from {useAuth} but how tf to call'
 
     return (
         console.log('Mainpage reached'),

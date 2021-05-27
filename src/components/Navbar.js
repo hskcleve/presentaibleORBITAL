@@ -39,20 +39,20 @@ const Navbar = () => {
             </div>
 
       <Switch>
-        <Route path="/about">
-          <AboutPage />
+          <Route path ="/loggedin">
+              <Mainpage />
+          </Route>
+        <Route path="/Firstpage">
+          <Firstpage />
         </Route>
-        <Route path="/dashboard">
-          <DashboardPage />
-        </Route>
-        <Route path="/signup">
-          <SignupPage />
+        <Route path="/Secondpage">
+          <Secondpage/>
         </Route>
         <Route exact path="/">
           <Mainpage />
         </Route>
-        <Route path="/login">
-          <LoginPage></LoginPage>
+        <Route path="/Thirdpage">
+          <Thirdpage />
         </Route>
       </Switch>
     </Router>
