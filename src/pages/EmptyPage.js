@@ -1,10 +1,12 @@
 import React from "react";
+import Posts from "../components/Posts";
 
 const EmptyPage = () => {
   return (
     console.log("thirdpage reached"),
     (
       <div className="pagefiller">
+        <Posts></Posts>
         <h2 className="header">Thirdpage is a template page.</h2>
       </div>
     )
