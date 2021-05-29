@@ -1,5 +1,6 @@
 import SignupPage from '../pages/SignupPage'
 import LoginPage from '../pages/LoginPage'
+import TestPage from '../pages/TestPage'
 import Navbar from './Navbar';
 import {
   BrowserRouter as Router,
@@ -13,6 +14,9 @@ const App = () => {
     return (
         <Router >   
             <Switch>
+                <Route exact path="/TestPage">
+                  <TestPage />
+                </Route>
                 <Route exact path="/signup">
                   <SignupPage />
                 </Route>
