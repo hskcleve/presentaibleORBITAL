@@ -1,18 +1,33 @@
 import React from "react";
 import { Card, CardColumns } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
 import Post from "./Post";
+import firebase from "firebase";
+import { Button } from "react-bootstrap";
+import vidOne from "./tempImages/vidOne.jpg";
+import vidTwo from "./tempImages/vidTwo.jpg";
 
 const Posts = () => {
-  const { currentUser } = useAuth();
+  const { currentUser } = firebase.auth();
   console.log(currentUser);
   return (
     <CardColumns>
-      <Card>
-        <Post content={"this is just some random text 01"} comments={[]}></Post>
+      <Card style={{ fontSize: 24 }}>
         <Post
-          content={"I am running out of ideas of what to type here"}
-          comments={["hello maoxin", "hi cleve"]}
+          key="1"
+          id={"1"}
+          vidUrl={vidOne}
+          content={"Marketing Presentation"}
+          comments={["No comments yet"]}
+        ></Post>
+        <Post
+          key="2"
+          id={"2"}
+          vidUrl={vidTwo}
+          content={"Client demo video"}
+          comments={[
+            "The video quality is good",
+            "In slide 3, the picture used is distracting",
+          ]}
         ></Post>
       </Card>
     </CardColumns>
