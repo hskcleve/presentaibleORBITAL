@@ -3,6 +3,8 @@ import { Card, CardColumns } from "react-bootstrap";
 import Post from "./Post";
 import firebase from "firebase";
 import { Button } from "react-bootstrap";
+import vidOne from "./tempImages/vidOne.jpg";
+import vidTwo from "./tempImages/vidTwo.jpg";
 
 const Posts = () => {
   const { currentUser } = firebase.auth();
@@ -12,15 +14,21 @@ const Posts = () => {
       <Card>
         <Post
           key="1"
-          content={"this is just some random text 01"}
-          comments={[""]}
+          id={"1"}
+          vidUrl={vidOne}
+          content={"Marketing Presentation"}
+          comments={["No comments yet"]}
         ></Post>
         <Post
           key="2"
-          content={"I am running out of ideas of what to type here"}
-          comments={["hello maoxin", "hi cleve"]}
+          id={"2"}
+          vidUrl={vidTwo}
+          content={"Client demo video"}
+          comments={[
+            "The video quality is good",
+            "In slide 3, the picture used is distracting",
+          ]}
         ></Post>
-        <Button variant="info">Poke</Button>
       </Card>
     </CardColumns>
   );

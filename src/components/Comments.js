@@ -9,7 +9,11 @@ const Comments = (props) => {
   function loadComments(loadcomments) {
     console.log(loadcomments);
     return loadcomments.map((comment) => (
-      <Card bg={"primary"} text={"white"}>
+      <Card
+        style={{ width: "70rem", textAlign: "left" }}
+        bg={"primary"}
+        text={"white"}
+      >
         <Card.Title></Card.Title>
         <Card.Body>{comment}</Card.Body>
       </Card>
@@ -32,7 +36,6 @@ const Comments = (props) => {
     <React.Fragment>
       {loadComments(comments)}
       <div>
-        <h2>{"  "}Leave a comment</h2>
         <form onSubmit={handleNewComment}>
           <label>
             <input

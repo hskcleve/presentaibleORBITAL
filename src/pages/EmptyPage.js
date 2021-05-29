@@ -7,7 +7,6 @@ const EmptyPage = () => {
     (
       <div className="pagefiller">
         <Posts></Posts>
-        <h2 className="header">Thirdpage is a template page.</h2>
       </div>
     )
   );

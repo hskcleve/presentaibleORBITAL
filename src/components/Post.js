@@ -9,17 +9,17 @@ const Post = (props) => {
       border="danger"
       bg="info"
       text="white"
-      style={{ width: "70rem", textAlign: "center" }}
+      style={{ margin: "10px", width: "30rem", textAlign: "center" }}
     >
-      <Card.Img
-        variant="top"
-        src="https://wompampsupport.azureedge.net/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F013%2F564%2Fdoge.jpg"
-      />
+      <Card.Title>{"   "}</Card.Title>
+      <Card.Img variant="top" src={props.vidUrl} width="300" height="190" m-5 />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>
+          <strong>Presentation {props.id}</strong>
+        </Card.Title>
         <Card.Text>{props.content}</Card.Text>
         <Button variant="warning" onClick={postCardClicked}>
-          Leave Feedback
+          Check tutor feedback
         </Button>
       </Card.Body>
       {displayComments(props.comments)}
@@ -35,7 +35,7 @@ function postCardClicked() {
 function displayComments(commentArray) {
   //commentArray = ["what a great speach", "you remind me of MLK"];
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ margin: "10px", width: "30rem", textAlign: "left" }}>
       <Card.Title>
         <strong>
           <h2>Comment Section</h2>
