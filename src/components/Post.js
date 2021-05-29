@@ -1,9 +1,16 @@
 import React from "react";
 import { Card, Button, ListGroup } from "react-bootstrap";
+import Comments from "./Comments";
 
 const Post = (props) => {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card
+      className="postcard"
+      border="danger"
+      bg="info"
+      text="white"
+      style={{ width: "70rem", textAlign: "center" }}
+    >
       <Card.Img
         variant="top"
         src="https://wompampsupport.azureedge.net/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Foriginal%2F000%2F013%2F564%2Fdoge.jpg"
@@ -36,9 +43,7 @@ function displayComments(commentArray) {
       </Card.Title>
       <ListGroup variant="flush">
         {commentArray.length !== 0 ? (
-          commentArray.map((comment) => (
-            <ListGroup.Item>{comment}</ListGroup.Item>
-          ))
+          <Comments comments={commentArray}></Comments>
         ) : (
           <ListGroup.Item>{"No comment yet :("}</ListGroup.Item>
         )}

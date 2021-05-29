@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const { currentUser } = useAuth;
+  const currentUser = firebase.auth().currentUser;
   return (
     <Route
       {...rest}
