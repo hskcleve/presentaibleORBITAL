@@ -15,7 +15,7 @@ const Post = (props) => {
       <Card.Img variant="top" src={props.vidUrl} width="300" height="190" m-5 />
       <Card.Body>
         <Card.Title>
-          <strong>Presentation {props.id}</strong>
+          <strong>Submission {props.id}</strong>
         </Card.Title>
         <Card.Text>{props.content}</Card.Text>
         <Button variant="warning" onClick={postCardClicked}>
@@ -35,10 +35,17 @@ function postCardClicked() {
 function displayComments(commentArray) {
   //commentArray = ["what a great speach", "you remind me of MLK"];
   return (
-    <Card style={{ margin: "10px", width: "30rem", textAlign: "left" }}>
+    <Card
+      style={{
+        fontSize: 17,
+        margin: "10px",
+        width: "30rem",
+        textAlign: "left",
+      }}
+    >
       <Card.Title>
         <strong>
-          <h2>Comment Section</h2>
+          <h5>Comment Section</h5>
         </strong>
       </Card.Title>
       <ListGroup variant="flush">

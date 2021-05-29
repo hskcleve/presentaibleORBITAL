@@ -39,7 +39,7 @@ const Comments = (props) => {
         <form onSubmit={handleNewComment}>
           <label>
             <input
-              style={{ margin: "0 1rem", fontSize: 20 }}
+              style={{ margin: "0 1rem", fontSize: 17 }}
               type="text"
               value={newCommentText}
               // how do you know it's event.target.value? it just is.

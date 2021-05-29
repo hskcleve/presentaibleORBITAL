@@ -23,9 +23,6 @@ const Navbar = () => {
               <Link to="/dashboard" className="btn">
                 Dashboard
               </Link>
-              <Link to="/Thirdpage" className="btn">
-                TemplatePage
-              </Link>
             </h2>
           </ul>
         </nav>
@@ -33,7 +30,7 @@ const Navbar = () => {
 
       <Switch>
         <Route path="/loggedin">
-          <Mainpage username='John Doe'/>
+          <Mainpage username="John Doe" />
         </Route>
         <Route path="/about">
           <AboutPage />
@@ -42,10 +39,7 @@ const Navbar = () => {
           <DashboardPage />
         </Route>
         <Route exact path="/">
-          <Mainpage username='John Doe'/>
-        </Route>
-        <Route path="/Thirdpage">
-          <EmptyPage />
+          <Mainpage username="John Doe" />
         </Route>
       </Switch>
     </Router>

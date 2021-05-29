@@ -35,6 +35,17 @@ body {
   border-radius: 5px;
 }
 
+.containerForSubmission {
+  max-width: 90rem;
+  min-width: 100px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
 .containerForSignupLogin {
   max-width: 500px;
   min-width: 100px;

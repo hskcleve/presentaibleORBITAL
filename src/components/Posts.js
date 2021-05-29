@@ -11,7 +11,7 @@ const Posts = () => {
   console.log(currentUser);
   return (
     <CardColumns>
-      <Card>
+      <Card style={{ fontSize: 24 }}>
         <Post
           key="1"
           id={"1"}
