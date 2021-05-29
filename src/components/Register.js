@@ -27,11 +27,11 @@ const Register = () => {
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
-        displayNameRef.current.value,
-        schoolRef.current.value
+        displayNameRef.current.value
       );
       history.push("/loggedin");
-    } catch {
+    } catch (error) {
+      console.error(error);
       setError("Failed to create an account");
     }
   }

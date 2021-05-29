@@ -13,21 +13,20 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signup(email, password, displayName) {
+    console.log("signup called");
     return auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        console.log("getting user cred");
         const user = userCredential.user;
         user
           .updateProfile({
             displayName: displayName,
           })
-          .then(
-            console
-              .log("name updated")
-              .catch(console.log("failed to update profile"))
-          )
-          .catch("failed to register user");
-      });
+          .then(console.log("name updated"))
+          .catch((error) => console.log("failed to update profile", error));
+      })
+      .catch(console.log("failed to register user"));
   }
 
   function login(email, password) {

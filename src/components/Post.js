@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Form, ListGroup } from "react-bootstrap";
+import { Card, Button, ListGroup } from "react-bootstrap";
 
 const Post = (props) => {
   return (
@@ -35,7 +35,7 @@ function displayComments(commentArray) {
         </strong>
       </Card.Title>
       <ListGroup variant="flush">
-        {commentArray.length != 0 ? (
+        {commentArray.length !== 0 ? (
           commentArray.map((comment) => (
             <ListGroup.Item>{comment}</ListGroup.Item>
           ))

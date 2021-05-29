@@ -4,7 +4,8 @@ import { useAuth } from "../contexts/AuthContext";
 import Post from "./Post";
 
 const Posts = () => {
-  //const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
+  console.log(currentUser);
   return (
     <CardColumns>
       <Card>
