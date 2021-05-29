@@ -3,16 +3,19 @@ import { useRef, useState } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+
 const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
+  const { addUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const displayNameRef = useRef();
   const schoolRef = useRef();
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +32,13 @@ const Register = () => {
         passwordRef.current.value,
         displayNameRef.current.value
       );
+      addUser(
+        emailRef.current.value,
+        displayNameRef.current.value,
+        schoolRef.current.value,
+      );
       history.push("/loggedin");
+
     } catch (error) {
       console.error(error);
       setError("Failed to create an account");
@@ -52,6 +61,10 @@ const Register = () => {
           <Form.Group id="email">
             <div>Email </div>
             <Form.Control type="email" ref={emailRef} required />
+          </Form.Group>
+          <Form.Group id="school">
+            <div>School </div>
+            <Form.Control type="text" ref={schoolRef} required />
           </Form.Group>
           <Form.Group id="password">
             <div>Password </div>

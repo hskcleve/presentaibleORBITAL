@@ -89,6 +89,8 @@ class TestPage extends React.Component {
                     })
                 }
                 <div className='container'>
+                    <h2 style={{textAlign:'center'}}>Refresh for every addition</h2>
+                    <h3 style={{textAlign: 'center'}}>remove addition from firestore as user not authenticated via signup</h3>
                 <form onSubmit={this.handleSubmit}>
                     <div className='form-control'>
                         <label>Name</label>
@@ -113,7 +115,6 @@ class TestPage extends React.Component {
                     </div>
                     <input type='submit' value='Add User'/>
                 </form>
-                <button onClick={this.addNewUser}>Add New User</button>
                 </div>
             </div>
         )

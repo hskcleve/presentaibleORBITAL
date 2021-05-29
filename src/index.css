@@ -24,6 +24,13 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
 .container {
   max-width: 500px;
   min-width: 100px;
@@ -102,7 +109,6 @@ body {
   min-height: 30px;
   padding: 4px;
   justify-content: space-between;
-  align-items: center;
   background: rgb(155, 137, 111);
 }
 

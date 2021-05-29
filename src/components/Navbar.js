@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Mainpage from "../pages/Mainpage";
 import AboutPage from "../pages/About";
 import DashboardPage from "../pages/Dashboard";
-import EmptyPage from "../pages/EmptyPage";
+import TestPage from "../pages/TestPage";
 
 const Navbar = () => {
   return (
@@ -30,7 +30,7 @@ const Navbar = () => {
 
       <Switch>
         <Route path="/loggedin">
-          <Mainpage username="John Doe" />
+          <Mainpage/>
         </Route>
         <Route path="/about">
           <AboutPage />
@@ -38,8 +38,11 @@ const Navbar = () => {
         <Route path="/dashboard">
           <DashboardPage />
         </Route>
+        <Route path="/testPage">
+          <TestPage />
+        </Route>
         <Route exact path="/">
-          <Mainpage username="John Doe" />
+          <Mainpage/>
         </Route>
       </Switch>
     </Router>

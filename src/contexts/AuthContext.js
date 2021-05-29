@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import { db,auth } from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -29,13 +29,20 @@ export function AuthProvider({ children }) {
       .catch(console.log("failed to register user"));
   }
 
+  function addUser(email, displayName, school) {
+    db.collection('users').add({
+      name: displayName,
+      email: email,
+      school: school,
+      submissions: ['This is submission1', 'This is submission2'],
+    })
+  }
+
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
-  function retrieveEmail() {
-    return currentUser;
-  }
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -50,7 +57,7 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
-    retrieveEmail,
+    addUser,
   };
 
   return (
