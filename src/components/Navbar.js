@@ -5,6 +5,7 @@ import Mainpage from "../pages/Mainpage";
 import AboutPage from "../pages/About";
 import DashboardPage from "../pages/Dashboard";
 import TestPage from "../pages/TestPage";
+import SubmissionsPage from "../pages/SubmissionsPage";
 
 const Navbar = () => {
   return (
@@ -17,11 +18,14 @@ const Navbar = () => {
               <Link to="/" className="btn">
                 Main
               </Link>
-              <Link to="/about" className="btn">
-                About
-              </Link>
               <Link to="/dashboard" className="btn">
                 Dashboard
+              </Link>
+              <Link to ="/submissions" className="btn">
+                My Submissions
+              </Link>
+              <Link to="/about" className="btn">
+                About
               </Link>
             </h2>
           </ul>
@@ -40,6 +44,9 @@ const Navbar = () => {
         </Route>
         <Route path="/testPage">
           <TestPage />
+        </Route>
+        <Route path="/submissions">
+          <SubmissionsPage />
         </Route>
         <Route exact path="/">
           <Mainpage/>
