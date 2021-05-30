@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, InputGroup, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useState } from "react";
 
 const Comments = (props) => {

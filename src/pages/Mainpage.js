@@ -1,23 +1,101 @@
 import firebase from "firebase";
-import React from "react";
-import { useHistory } from "react-router-dom";
+import {React, useState} from "react";
+import { db } from '../firebase'
+import { FaTimes } from 'react-icons/fa'
 
 const Mainpage = () => {
+
   const user = firebase.auth().currentUser;
-  const history = useHistory();
-  const onClick = () => {
-    history.push("testPage");
+  const [submissions, setSubmissions] = useState([]);
+  const [currentSubmission, setCurrentSubmission] = useState('');
+  const [docID, setDocID] = useState('');
+
+  const updateDocID = () => {
+    console.log('Doc ID updated!')
+    db.collection('users')
+    .get()
+    .then( snapshot => {
+        snapshot.forEach( doc => {
+            const data = doc.data()
+            data.name === user.displayName ? setDocID(doc.id) : console.log('discarded ID')
+        })
+      })
+  }
+  
+  const getUserSubmissions = () => {
+    db.collection('users')
+    .get()
+    .then( snapshot => {
+        snapshot.forEach( doc => {
+            const data = doc.data()
+            data.name === user.displayName ? setSubmissions(data.submissions): console.log('discard')
+        })
+    })
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    db.collection('users')
+    .get()
+    .then( snapshot => {
+        snapshot.forEach( doc => {
+            const data = doc.data()
+            data.name === user.displayName ? setDocID(doc.id) : console.log('discarded ID')
+        })
+        db.collection('users').doc(docID).update({
+          submissions:
+          firebase.firestore.FieldValue.arrayUnion(currentSubmission)
+        })
+    })
+    setCurrentSubmission("")
+  }
+
+  const handleSubmissionAdd = (event) => {
+    console.log('handleSubmissionAdd called')
+    setCurrentSubmission(event.target.value)
+    console.log(currentSubmission)
   }
 
   return (
+    updateDocID(),
     console.log("Mainpage reached ", user.displayName),
     (
       <div className="pagefiller">
-        <h1 className="frontPageWelcome">Welcome Back,</h1>
-        <h1 className="frontPageWelcome2">{user.displayName}.</h1>
-        <div className="center">
-        <button className='btn' onClick={onClick}>See all users</button>
+      <button className='btn' onClick={getUserSubmissions}>Refresh Submissions</button>
+      <h1 className="frontPageWelcome">Welcome Back,</h1>
+      <h1 className="frontPageWelcome2">{user.displayName}.</h1>
+
+        <div className="center"> 
+        
+        <div className='container'>
+        <h3>{user.displayName}'s Submissions:</h3>
+          {submissions.map(
+            submission => 
+            <div className='submission'>
+              {submission}
+            <FaTimes style={{ color: 'antiquewhite', cursor: 'pointer'}} onClick={()=>db.collection('users').doc(docID).update({
+              submissions:
+              firebase.firestore.FieldValue.arrayRemove(submission)
+            })} />
+            </div>
+            )}
+          <form onSubmit={onSubmit}>
+          <div className='form-control'>
+            <label>Add a new submission:</label>
+              <input type='text' 
+                      placeholder='Upload a new script'
+                      value={currentSubmission} 
+                      onChange={handleSubmissionAdd}/>
+          </div>
+          <div className='center'>
+              <input className='btn' type='submit' value='Add Submission'/> 
+          </div>
+        </form>
         </div>
+        </div>
+
+        
+
       </div>
     )
   );
