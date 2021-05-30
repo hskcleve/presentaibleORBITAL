@@ -1,7 +1,6 @@
 import firebase from "firebase";
 import {React, useState} from "react";
 import { db } from '../firebase'
-import { FaTimes } from 'react-icons/fa'
 
 const SubmissionsPage = () => {
     const user = firebase.auth().currentUser;
@@ -56,6 +55,10 @@ const SubmissionsPage = () => {
         console.log(currentSubmission)
     }
 
+    const openSubmission = ({submission}) => {
+        console.log({submission})
+    }
+
     return (
         updateDocID(),
         <div className="pagefiller">
@@ -64,11 +67,14 @@ const SubmissionsPage = () => {
                 <div className='container'>
                     <h3>My Submissions:</h3>
                     {submissions.map( submission => 
-                        <div className='submission'>
+                        <div className='submission' style={{fontSize:12}}>
                             {submission}
-                            <FaTimes style={{ color: 'antiquewhite', cursor: 'pointer'}} onClick={()=>db.collection('users').doc(docID).update({
-                            submissions: firebase.firestore.FieldValue.arrayRemove(submission)
-                            })} />
+                            <div style={{textAlign:'center'}}> 
+                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>openSubmission({submission})}>Open</button>
+                            <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}}onClick={()=>db.collection('users').doc(docID).update({
+                                submissions: firebase.firestore.FieldValue.arrayRemove(submission)
+                                })}>Delete</button>
+                            </div>
                         </div>
                     )}
                     <form onSubmit={onSubmit}>
