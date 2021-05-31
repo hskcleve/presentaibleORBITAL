@@ -4,69 +4,65 @@ import { db } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import SubmitSubmission from '../components/SubmitSubmission';
 
-const SubmissionsPage = () => {
+const ExplorePage = () => {
     const user = firebase.auth().currentUser;
     const [submissions, setSubmissions] = useState([]);
     const history = useHistory();
+    const [school, setSchool] = useState('');
 
-    const getUserSubmissions = () => {
-        db.collection('submissions').where("author", "==", user.displayName)
+    const getSchool = () => {
+        db.collection('users').where("name", "==", user.displayName)
+        .get()
+        .then( querySnapshot => {
+            querySnapshot.forEach( (doc) => {
+                const data = doc.data();
+                setSchool(data.school);
+            })
+        })
+        console.log("school set to: " + school);
+    }
+
+    const getSchoolSubmissions = () => {
+        db.collection('submissions')
+        .where("school", "==", school)
         .get()
         .then( querySnapshot => {
             const arr = [];
             querySnapshot.forEach( (doc) => {
                 const data = doc.data();
                 const content = data.content;
+                const author = data.author;
                 const UID = data.UID;
-                arr.push([UID, content]);
+                arr.push([author, content, UID]);
             })
             setSubmissions(arr)
         })
     }
 
     const onOpen = ({submission}) => {
-        history.push("/viewpost/" + submission[0]);
-    }
-
-    const onDelete = ({submission}) => {
-        db.collection('submissions').where("author", "==", user.displayName)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach( (doc) => {
-                const data = doc.data();
-                const UID = data.UID;
-                if (UID === submission[0]) {
-                const docID = doc.id;
-                db.collection('submissions').doc(docID).delete();
-                }
-            })
-        })
-        
+        history.push("/viewpost/" + submission[2]);
     }
 
     return (
-        getUserSubmissions(),
+        getSchool(),
+        getSchoolSubmissions(),
         <div className="pagefiller">
             <div> 
                 <div className='container'>
-                    <h3>My Submissions:</h3>
+                    <h3>Submissions filtered for: {school}</h3>
                     {submissions.map( submission => 
                         <div className='submission' style={{fontSize:12}}>
-                            {submission[1]}
+                            <h2>{submission[0]}</h2>
+                            <h3>{submission[1]}</h3>
                             <div style={{textAlign:'center'}}> 
                             <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>Open</button>
-                            <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}} onClick={()=>{onDelete({submission})}}>Delete</button>
                             </div> 
                         </div>
                     )}
-                    <SubmitSubmission />
                 </div>
-                <div className='center'>
-                    <button className='btn' onClick={()=>{getUserSubmissions()}}>Refresh Submissions</button>
-                    </div>
             </div>
         </div>
     )
 }
 
-export default SubmissionsPage
+export default ExplorePage

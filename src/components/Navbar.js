@@ -6,6 +6,8 @@ import AboutPage from "../pages/About";
 import DashboardPage from "../pages/Dashboard";
 import TestPage from "../pages/TestPage";
 import SubmissionsPage from "../pages/SubmissionsPage";
+import ViewPostPage from "../pages/ViewPostPage";
+import ExplorePage from "../pages/ExplorePage";
 
 const Navbar = () => {
   return (
@@ -21,8 +23,11 @@ const Navbar = () => {
               <Link to="/dashboard" className="btn">
                 Dashboard
               </Link>
+              <Link to = "/explore" className='btn'>
+                Explore
+              </Link>
               <Link to ="/submissions" className="btn">
-                My Submissions
+                Submissions
               </Link>
               <Link to="/about" className="btn">
                 About
@@ -33,6 +38,9 @@ const Navbar = () => {
       </div>
 
       <Switch>
+        <Route path="/explore">
+          <ExplorePage/>
+        </Route>
         <Route path="/loggedin">
           <Mainpage/>
         </Route>
@@ -50,6 +58,9 @@ const Navbar = () => {
         </Route>
         <Route exact path="/">
           <Mainpage/>
+        </Route>
+        <Route path="/viewpost/">
+          <ViewPostPage />
         </Route>
       </Switch>
     </Router>
