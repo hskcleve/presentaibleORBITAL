@@ -33,8 +33,7 @@ export function AuthProvider({ children }) {
     db.collection('users').add({
       name: displayName,
       email: email,
-      school: school,
-      submissions: ['This is submission1', 'This is submission2'],
+      school: school
     })
   }
 

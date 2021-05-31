@@ -1,66 +1,68 @@
 import firebase from "firebase";
 import {React, useState} from "react";
-import { db } from '../firebase'
+import { db } from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 const SubmissionsPage = () => {
     const user = firebase.auth().currentUser;
     const [submissions, setSubmissions] = useState([]);
     const [currentSubmission, setCurrentSubmission] = useState('');
-    const [docID, setDocID] = useState('');
-
-    const updateDocID = () => {
-        console.log('Doc ID updated!')
-        db.collection('users')
-        .get()
-        .then( snapshot => {
-            snapshot.forEach( doc => {
-                const data = doc.data()
-                data.name === user.displayName ? setDocID(doc.id) : console.log('discarded ID')
-            })
-        })
-    }
+    const history = useHistory();
 
     const getUserSubmissions = () => {
-        db.collection('users')
+        db.collection('submissions').where("author", "==", user.displayName)
         .get()
-        .then( snapshot => {
-            snapshot.forEach( doc => {
-                const data = doc.data()
-                data.name === user.displayName ? setSubmissions(data.submissions): console.log('discard')
+        .then( querySnapshot => {
+            const arr = [];
+            querySnapshot.forEach( (doc) => {
+                const data = doc.data();
+                const content = data.content;
+                const UID = data.UID;
+                arr.push([UID, content]);
             })
+            setSubmissions(arr)
         })
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
-        db.collection('users')
-        .get()
-        .then( snapshot => {
-            snapshot.forEach( doc => {
-                const data = doc.data()
-                data.name === user.displayName ? setDocID(doc.id) : console.log('discarded ID')
-            })
-            db.collection('users').doc(docID).update({
-              submissions:
-              firebase.firestore.FieldValue.arrayUnion(currentSubmission)
-            })
-        })
+        db.collection('submissions').add({
+            author: user.displayName,
+            UID: Math.floor(Math.random() * (1000000-1+1)) + 1,
+            content: currentSubmission
+        });
         setCurrentSubmission("");
-        
     }
-    
+  
     const handleSubmissionAdd = (event) => {
         console.log('handleSubmissionAdd called')
         setCurrentSubmission(event.target.value)
         console.log(currentSubmission)
     }
 
-    const openSubmission = ({submission}) => {
-        console.log({submission})
+    const onOpen = ({submission}) => {
+        history.push("/" + submission[0]);
+        const id = window.location.pathname.substring(1, window.location.pathname.length);
+        console.log('the UID is ' + id); 
+    }
+
+    const onDelete = ({submission}) => {
+        db.collection('submissions').where("author", "==", user.displayName)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach( (doc) => {
+                const data = doc.data();
+                const UID = data.UID;
+                if (UID === submission[0]) {
+                const docID = doc.id;
+                db.collection('submissions').doc(docID).delete();
+                }
+            })
+        })
+        
     }
 
     return (
-        updateDocID(),
         <div className="pagefiller">
             <button className='btn' onClick={getUserSubmissions}>Refresh Submissions</button>
             <div> 
@@ -68,13 +70,11 @@ const SubmissionsPage = () => {
                     <h3>My Submissions:</h3>
                     {submissions.map( submission => 
                         <div className='submission' style={{fontSize:12}}>
-                            {submission}
+                            {submission[1]}
                             <div style={{textAlign:'center'}}> 
-                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>openSubmission({submission})}>Open</button>
-                            <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}}onClick={()=>db.collection('users').doc(docID).update({
-                                submissions: firebase.firestore.FieldValue.arrayRemove(submission)
-                                })}>Delete</button>
-                            </div>
+                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>Open</button>
+                            <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}} onClick={()=>{onDelete({submission})}}>Delete</button>
+                            </div> 
                         </div>
                     )}
                     <form onSubmit={onSubmit}>
