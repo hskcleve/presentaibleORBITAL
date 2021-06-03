@@ -20,6 +20,9 @@ const App = () => {
         <Route exact path="/loggedin">
           <Navbar />
         </Route>
+        <Route exact path="/registered">
+          <LoginPage />
+        </Route>
         <Route path="/">
           <LoginPage />
         </Route>

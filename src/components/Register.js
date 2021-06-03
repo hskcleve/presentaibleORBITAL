@@ -37,7 +37,7 @@ const Register = () => {
         displayNameRef.current.value,
         schoolRef.current.value,
       );
-      history.push("/loggedin");
+      history.push("/registered");
 
     } catch (error) {
       console.error(error);

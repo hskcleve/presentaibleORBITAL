@@ -1,4 +1,4 @@
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import { useState, useEffect } from 'react';
 import MP3Logo from '../components/tempImages/mp3.png';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ const ViewPostPage = () => {
     const [postContent, setPostContent] = useState('');
     const [postAuthor, setPostAuthor] = useState('');
     const [postComments, setPostComments] = useState([]);
+
 
     useEffect(() => {
         loadPost();

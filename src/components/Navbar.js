@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Logo from "./Logo";
 import Mainpage from "../pages/Mainpage";
@@ -8,8 +8,17 @@ import TestPage from "../pages/TestPage";
 import SubmissionsPage from "../pages/SubmissionsPage";
 import ViewPostPage from "../pages/ViewPostPage";
 import ExplorePage from "../pages/ExplorePage";
+import firebase from "firebase";
 
 const Navbar = () => {
+  const [username, setUsername] = useState('');
+  const user = firebase.auth().currentUser;
+
+  useEffect(() => {
+    setUsername(user.displayName);
+    console.log(username);
+  }, [])
+
   return (
     <Router>
       <div className="navbar">
@@ -42,7 +51,7 @@ const Navbar = () => {
           <ExplorePage/>
         </Route>
         <Route path="/loggedin">
-          <Mainpage/>
+          <Mainpage userName={username}/>
         </Route>
         <Route path="/about">
           <AboutPage />
@@ -57,7 +66,7 @@ const Navbar = () => {
           <SubmissionsPage />
         </Route>
         <Route exact path="/">
-          <Mainpage/>
+          <Mainpage userName={username}/>
         </Route>
         <Route path="/viewpost/">
           <ViewPostPage />

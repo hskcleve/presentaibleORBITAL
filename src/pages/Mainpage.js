@@ -1,16 +1,13 @@
-import firebase from "firebase";
 import {React} from "react";
 
-const Mainpage = () => {
-
-  const user = firebase.auth().currentUser;
+const Mainpage = ({userName}) => {
 
   return (
-    console.log("Mainpage reached ", user.displayName),
+    console.log("Mainpage reached ", userName),
     (
       <div className="pagefiller">
       <h1 className="frontPageWelcome">Welcome Back,</h1>
-      <h1 className="frontPageWelcome2">{user.displayName}.</h1>
+      <h1 className="frontPageWelcome2">{userName}.</h1>
       </div>
     )
   );
