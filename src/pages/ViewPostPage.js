@@ -1,7 +1,6 @@
-import { db, storage } from '../firebase';
+import { db, storageRef } from '../firebase';
 import { useState, useEffect } from 'react';
-import MP3Logo from '../components/tempImages/mp3.png';
-import { Link } from 'react-router-dom';
+import PlayAudioFromURL from "../components/PlayAudioFromURL";
 import SubmitComment from "../components/SubmitComment";
 
 const ViewPostPage = () => {
@@ -9,12 +8,29 @@ const ViewPostPage = () => {
     const [postContent, setPostContent] = useState('');
     const [postAuthor, setPostAuthor] = useState('');
     const [postComments, setPostComments] = useState([]);
+    const [filename, setFilename] = useState('');
+    const [downloadURL, setDownloadURL] = useState();
 
 
     useEffect(() => {
         loadPost();
         loadComments();
     },[]); // empty dependency array to ensure post will not be reloaded!
+
+    useEffect(() => {
+        loadAttachments();
+    }, [filename]);
+
+    const loadAttachments = () => {
+        loadPost();
+        console.log('loadAttachments called!');
+        const path = "" + PostUID + "/" + filename;
+        const pathReference = storageRef.child(path);
+        pathReference.getDownloadURL().then( (url) => {
+            setDownloadURL(url);
+        });
+        console.log('the download URL has been set as ' + downloadURL);
+    }
 
     const loadPost = () => {
         console.log('loadPost called!');
@@ -25,6 +41,8 @@ const ViewPostPage = () => {
                 const data = doc.data();
                 setPostContent(data.content);
                 setPostAuthor(data.author);
+                setFilename(data.attachedFileName);
+                console.log('filename set to ' + filename)
                 })
             })
         }
@@ -42,22 +60,19 @@ const ViewPostPage = () => {
             setPostComments(tempCommentArray);
         })
     }
-    
+
     return (
-        <div className='pagefiller'>
+        <div>
+            <div className='containerWide'>
             <h1>Submission #{PostUID}</h1>
             <h2>Author: {postAuthor}</h2>
-            <div className='center'> 
-                <Link>Download</Link>
-                <img src={MP3Logo} alt="placeholder for now"></img>
-                <Link>Play</Link>
-                <img src={MP3Logo} alt="placeholder for now"></img>
+            <PlayAudioFromURL downloadURL={downloadURL} />
             </div>
             <div className='container'>{postContent}</div>
 
             <div className='container'>
             <h3>Comments</h3>     
-            <button className='btn' style={{fontSize:9}} onClick={()=>{loadComments()}}>click to refresh comments</button>
+            <button className='btn' style={{fontSize:12}} onClick={()=>{loadComments()}}>refresh comments</button>
             {postComments.map( comments => 
                         <div className='submission' style={{fontSize:12}}>
                             <h3>Comment by: {comments[0]}</h3>

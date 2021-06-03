@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import { React, useState, useEffect } from "react";
-import { db } from '../firebase';
+import { db, storageRef } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import SubmitSubmission from '../components/SubmitSubmission';
 
@@ -40,34 +40,47 @@ const SubmissionsPage = () => {
             querySnapshot.forEach( (doc) => {
                 const data = doc.data();
                 const UID = data.UID;
+                const richMedia = data.attachedFileName;
                 if (UID === submission[0]) {
                 const docID = doc.id;
+                const attachedFileRef = storageRef.child("" + UID + "/" + richMedia);
                 db.collection('submissions').doc(docID).delete();
+                attachedFileRef.delete().then( () => {
+                    console.log('file deleted from cloud storage');
+                }).catch((error) => console.log("failed to delete", error))
                 }
             })
         })
-        
+        db.collection('comments').where("UID", "==", submission[0])
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach( (doc) => {
+                const docID = doc.id;
+                db.collection('comments').doc(docID).delete();
+            })
+        })
     }
 
     return (
-        <div className="pagefiller">
+        <div>
             <div> 
+            <div className='center'>
+                    <button className='btn' onClick={()=>{getUserSubmissions()}}>Refresh Submissions</button>
+                    </div>
                 <div className='container'>
                     <h3>My Submissions:</h3>
                     {submissions.map( submission => 
                         <div className='submission' style={{fontSize:12}}>
                             {submission[1].split(' ').slice(0,20).join(" ") + " ..."}
                             <div style={{textAlign:'center'}}> 
-                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>Open</button>
-                            <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}} onClick={()=>{onDelete({submission})}}>Delete</button>
+                            <button className='btn' style={{fontSize:10}} onClick={()=>{onOpen({submission})}}>Open</button>
+                            <button className='btn' style={{fontSize:10}} onClick={()=>{onDelete({submission})}}>Delete</button>
                             </div> 
                         </div>
                     )}
                     <SubmitSubmission />
                 </div>
-                <div className='center'>
-                    <button className='btn' onClick={()=>{getUserSubmissions()}}>Refresh Submissions</button>
-                    </div>
+                
             </div>
         </div>
     )

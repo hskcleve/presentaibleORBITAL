@@ -15,8 +15,8 @@ const SignupPage = () => {
             <Register />
             </div>
 
-            <div style={{textAlign:'center'}}>
-            Already have an account? <Link to="/login"> Log In. </Link>
+            <div style={{textAlign:'center', color:'white'}}>
+            Already have an account? <Link to="/login" style={{color:'white'}}> Log In. </Link>
             </div>
 
             </div>

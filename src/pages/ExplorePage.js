@@ -53,7 +53,7 @@ const ExplorePage = () => {
     }
 
     return (
-        <div className="pagefiller">
+        <div>
             <div> 
                 <div className='container'>
                     <h3>Submissions filtered for: {school}</h3>
@@ -61,8 +61,8 @@ const ExplorePage = () => {
                         <div className='submission' style={{fontSize:12}}>
                             <h2>Author: {submission[0]}</h2>
                             <div>{submission[1].split(' ').slice(0,20).join(" ") + " ..."}</div>
-                            <div style={{textAlign:'center'}}> 
-                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>see more</button>
+                            <div style={{textAlign:'right'}}> 
+                            <button className='btn' style={{fontSize:10, backgroundColor:'transparent'}} onClick={()=>{onOpen({submission})}}>see more</button>
                             </div> 
                         </div>
                     )}

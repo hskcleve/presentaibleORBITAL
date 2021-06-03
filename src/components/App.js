@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 const App = () => {
   return (
+    <div className='pagefiller'>
     <Router>
       <Switch>
         <Route exact path="/TestPage">
@@ -28,6 +29,7 @@ const App = () => {
         </Route>
       </Switch>
     </Router>
+    </div>
   );
 };
 

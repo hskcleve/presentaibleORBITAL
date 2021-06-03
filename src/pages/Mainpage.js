@@ -5,9 +5,9 @@ const Mainpage = ({userName}) => {
   return (
     console.log("Mainpage reached ", userName),
     (
-      <div className="pagefiller">
-      <h1 className="frontPageWelcome">Welcome Back,</h1>
-      <h1 className="frontPageWelcome2">{userName}.</h1>
+      <div>
+      <h1 className="frontPageWelcome" style={{color:'GhostWhite'}}>Welcome Back,</h1>
+      <h1 className="frontPageWelcome2" style={{color:'Beige'}}>{userName}.</h1>
       </div>
     )
   );

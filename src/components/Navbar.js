@@ -36,7 +36,7 @@ const Navbar = () => {
                 Explore
               </Link>
               <Link to ="/submissions" className="btn">
-                Submissions
+                My Submissions
               </Link>
               <Link to="/about" className="btn">
                 About

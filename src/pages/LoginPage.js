@@ -15,8 +15,8 @@ const LoginPage = () => {
             <Login />
             </div>
 
-            <div style={{textAlign:'center'}}>
-            New to PresentAIble? <Link to="/signup"> Sign up. </Link>
+            <div style={{textAlign:'center', color:'white'}}>
+            New to PresentAIble? <Link to="/signup" style={{color:'white'}}> Sign up. </Link>
             </div>
 
             </div>

@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     console.log("AboutPage reached"),
     (
-      <div className="pagefiller">
+      <div>
         <h1 className="header">Presentations. Made Simple.</h1>
         <h3 className="container">
           Key Features
