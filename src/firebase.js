@@ -4,12 +4,12 @@ import "firebase/firestore"
 
 const app = firebase.initializeApp({
     apiKey: 'AIzaSyD0mnZlosl4Ah_Wj1dDMrNdWWuitnJ2c6s',
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    authDomain: 'auth-production-30b35.firebaseapp.com',
     projectId: 'auth-production-30b35',
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+    storageBucket: 'auth-production-30b35.appspot.com',
+    messagingSenderId: '563968072455',
+    appId: '1:563968072455:web:5b7f2b12a411fa8b2f03a2',
+    measurementId: 'G-JLBV0X4VS0',
 })
 
 export const auth = app.auth()

@@ -1,14 +1,19 @@
 import firebase from "firebase";
-import {React, useState} from "react";
+import {React, useState, useEffect } from "react";
 import { db } from '../firebase';
 import { useHistory } from 'react-router-dom';
-import SubmitSubmission from '../components/SubmitSubmission';
 
 const ExplorePage = () => {
     const user = firebase.auth().currentUser;
     const [submissions, setSubmissions] = useState([]);
     const history = useHistory();
     const [school, setSchool] = useState('');
+
+    useEffect(() => {
+        getSchool();
+        console.log("school set to: " + school);
+    }, []) // uses an empty dependency array because it is constant. If dependency array removed useEffect is called 
+    // continuously, causing multiple API calls to get school non stop. 
 
     const getSchool = () => {
         db.collection('users').where("name", "==", user.displayName)
@@ -19,7 +24,6 @@ const ExplorePage = () => {
                 setSchool(data.school);
             })
         })
-        console.log("school set to: " + school);
     }
 
     const getSchoolSubmissions = () => {
@@ -44,7 +48,6 @@ const ExplorePage = () => {
     }
 
     return (
-        getSchool(),
         getSchoolSubmissions(),
         <div className="pagefiller">
             <div> 
