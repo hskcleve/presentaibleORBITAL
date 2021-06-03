@@ -1,11 +1,15 @@
 import firebase from "firebase";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { db } from '../firebase';
 
 const SubmitSubmission = () => {
     const user = firebase.auth().currentUser;
     const [currentSubmission, setCurrentSubmission] = useState('');
     const [school, setSchool] = useState('');
+
+    useEffect(() => {
+        getSchool();
+    }, [])
 
     const getSchool = () => {
         db.collection('users').where("name", "==", user.displayName)
@@ -16,7 +20,6 @@ const SubmitSubmission = () => {
                 setSchool(data.school);
             })
         })
-        console.log("school set to: " + school);
     }
 
     const onSubmit = (event) => {
@@ -26,9 +29,10 @@ const SubmitSubmission = () => {
             author: user.displayName,
             UID: Math.floor(Math.random() * (1000000-1+1)) + 1,
             content: currentSubmission,
-            school: 'NUS' //school hardcoded for now.
+            school: school,
         });
         setCurrentSubmission("");
+        console.log("submission submitted with school set to: " + school);
     }
   
     const handleSubmissionAdd = (event) => {
