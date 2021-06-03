@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MP3Logo from '../components/tempImages/mp3.png';
 import { Link } from 'react-router-dom';
 import SubmitComment from "../components/SubmitComment";
@@ -10,8 +10,13 @@ const ViewPostPage = () => {
     const [postAuthor, setPostAuthor] = useState('');
     const [postComments, setPostComments] = useState([]);
 
+    useEffect(() => {
+        loadPost();
+        loadComments();
+    },[]); // empty dependency array to ensure post will not be reloaded!
 
     const loadPost = () => {
+        console.log('loadPost called!');
         db.collection('submissions').where("UID", "==", PostUID)
         .get()
         .then(querySnapshot => {
@@ -24,6 +29,7 @@ const ViewPostPage = () => {
         }
 
     const loadComments = () => {
+        console.log('loadComments called!');
         db.collection('comments').where("UID", "==", PostUID)
         .get()
         .then(querySnapshot => {
@@ -37,8 +43,6 @@ const ViewPostPage = () => {
     }
     
     return (
-        loadPost(),
-        loadComments(),
         <div className='pagefiller'>
             <h1>Submission #{PostUID}</h1>
             <h2>Author: {postAuthor}</h2>
@@ -51,7 +55,8 @@ const ViewPostPage = () => {
             <div className='container'>{postContent}</div>
 
             <div className='container'>
-                <h3>Comments</h3>
+            <h3>Comments</h3>     
+            <button className='btn' style={{fontSize:9}} onClick={()=>{loadComments()}}>click to refresh comments</button>
             {postComments.map( comments => 
                         <div className='submission' style={{fontSize:12}}>
                             <h3>Comment by: {comments[0]}</h3>

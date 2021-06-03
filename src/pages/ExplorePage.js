@@ -15,6 +15,11 @@ const ExplorePage = () => {
     }, []) // uses an empty dependency array because it is constant. If dependency array removed useEffect is called 
     // continuously, causing multiple API calls to get school non stop. 
 
+    useEffect(() => {
+        getSchoolSubmissions();
+        console.log('getSchoolSubmissions called!, school is: ' + school);
+    }, [school]) // similaryly here, useEffect is called whenever school is changed; ie from the getSchool call.
+
     const getSchool = () => {
         db.collection('users').where("name", "==", user.displayName)
         .get()
@@ -48,17 +53,16 @@ const ExplorePage = () => {
     }
 
     return (
-        getSchoolSubmissions(),
         <div className="pagefiller">
             <div> 
                 <div className='container'>
                     <h3>Submissions filtered for: {school}</h3>
                     {submissions.map( submission => 
                         <div className='submission' style={{fontSize:12}}>
-                            <h2>{submission[0]}</h2>
-                            <h3>{submission[1]}</h3>
+                            <h2>Author: {submission[0]}</h2>
+                            <div>{submission[1].split(' ').slice(0,20).join(" ") + " ..."}</div>
                             <div style={{textAlign:'center'}}> 
-                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>Open</button>
+                            <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>see more</button>
                             </div> 
                         </div>
                     )}

@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import {React, useState} from "react";
+import { React, useState, useEffect } from "react";
 import { db } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import SubmitSubmission from '../components/SubmitSubmission';
@@ -9,7 +9,12 @@ const SubmissionsPage = () => {
     const [submissions, setSubmissions] = useState([]);
     const history = useHistory();
 
+    useEffect(() => {
+        getUserSubmissions();
+    },[]);
+
     const getUserSubmissions = () => {
+        console.log('getUserSubmissions called!');
         db.collection('submissions').where("author", "==", user.displayName)
         .get()
         .then( querySnapshot => {
@@ -45,14 +50,13 @@ const SubmissionsPage = () => {
     }
 
     return (
-        getUserSubmissions(),
         <div className="pagefiller">
             <div> 
                 <div className='container'>
                     <h3>My Submissions:</h3>
                     {submissions.map( submission => 
                         <div className='submission' style={{fontSize:12}}>
-                            {submission[1]}
+                            {submission[1].split(' ').slice(0,20).join(" ") + " ..."}
                             <div style={{textAlign:'center'}}> 
                             <button className='btn' style={{fontSize:10, backgroundColor:'steelblue'}} onClick={()=>{onOpen({submission})}}>Open</button>
                             <button className='btn' style={{fontSize:10, backgroundColor: 'steelblue'}} onClick={()=>{onDelete({submission})}}>Delete</button>
