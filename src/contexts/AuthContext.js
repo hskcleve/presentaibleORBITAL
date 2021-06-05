@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import { db,auth } from "../firebase";
+import { db, auth } from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -26,22 +26,21 @@ export function AuthProvider({ children }) {
           .then(console.log("name updated"))
           .catch((error) => console.log("failed to update profile", error));
       })
-      .catch(console.log("failed to register user"));
+      .catch((error) => console.log("failed to register user" + error));
   }
 
-  function addUser(email, displayName, school) {
-    db.collection('users').add({
+  function addUser(email, displayName, school, role) {
+    db.collection("users").add({
       name: displayName,
       email: email,
-      school: school
-    })
+      school: school,
+      role: role,
+    });
   }
 
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
-
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {

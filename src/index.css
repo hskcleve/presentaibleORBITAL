@@ -47,7 +47,7 @@ body {
   border: 0px solid steelblue;
   padding: 30px;
   border-radius: 5px;
-  background:rgba(202, 202, 202, 0.644)
+  background: rgba(202, 202, 202, 0.644);
 }
 .containerWide {
   max-width: 1920px;
@@ -57,7 +57,7 @@ body {
   min-height: 0px;
   padding: 30px;
   border-radius: 5px;
-  background:rgba(202, 202, 202, 0.644)
+  background: rgba(202, 202, 202, 0.644);
 }
 
 .containerForSubmission {
@@ -67,7 +67,7 @@ body {
   overflow: auto;
   min-height: 300px;
   border: 0px solid steelblue;
-  background:rgba(202, 202, 202, 0.644);
+  background: rgba(202, 202, 202, 0.644);
   padding: 30px;
   border-radius: 5px;
 }
@@ -75,11 +75,11 @@ body {
 .containerForSignupLogin {
   max-width: 500px;
   min-width: 100px;
-  margin: 30px auto;
+  margin: 10px auto;
   overflow: auto;
   min-height: 300px;
   border: 0px solid steelblue;
-  background:rgba(202, 202, 202, 0.644);
+  background: rgba(202, 202, 202, 0.644);
   padding: 30px;
   border-radius: 5px;
 }
@@ -236,4 +236,7 @@ body {
 footer {
   margin-top: 30px;
   text-align: center;
+}
+
+.role-switch {
 }

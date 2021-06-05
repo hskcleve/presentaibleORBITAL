@@ -1,8 +1,7 @@
-import { useAuth } from "../contexts/AuthContext";
 import { useRef, useState } from "react";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const emailRef = useRef();
@@ -15,10 +14,11 @@ const Register = () => {
   const history = useHistory();
   const displayNameRef = useRef();
   const schoolRef = useRef();
-
+  const roleRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(roleRef.current.value + " maoxin");
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -36,9 +36,9 @@ const Register = () => {
         emailRef.current.value,
         displayNameRef.current.value,
         schoolRef.current.value,
+        roleRef.current.value
       );
-      history.push("/registered");
-
+      history.push("/login");
     } catch (error) {
       console.error(error);
       setError("Failed to create an account");
@@ -48,31 +48,42 @@ const Register = () => {
   return (
     <div
       className="containerForSignupLogin"
-      style={{ textAlign: "center", maxWidth: 350 }}
+      style={{ textAlign: "center", maxWidth: 500 }}
     >
       <h1 className="header">Sign Up</h1>
       {error && <Alert variant="danger">{error}</Alert>}
-      <div style={{ textAlign: "center", marginTop: 50 }}>
+      <div style={{ textAlign: "left" }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group id="displayName">
-            <div>Name </div>
-            <Form.Control type="text" ref={displayNameRef} required />
+            <Form.Label>Name </Form.Label>
+            <Form.Control size="sm" type="text" ref={displayNameRef} required />
           </Form.Group>
           <Form.Group id="email">
-            <div>Email </div>
-            <Form.Control type="email" ref={emailRef} required />
+            <Form.Label>Email </Form.Label>
+            <Form.Control size="sm" type="email" ref={emailRef} required />
           </Form.Group>
           <Form.Group id="school">
-            <div>School </div>
-            <Form.Control type="text" ref={schoolRef} required />
+            <Form.Label>School</Form.Label>
+            <Form.Control ref={schoolRef} size="sm" as="select" custom>
+              <option>National University of Singapore</option>
+              <option>National Technical University</option>
+              <option>Singapore Management University</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group id="role">
+            <Form.Label>Account Type</Form.Label>
+            <Form.Control ref={roleRef} size="sm" as="select" custom>
+              <option>Student</option>
+              <option>Tutor</option>
+            </Form.Control>
           </Form.Group>
           <Form.Group id="password">
-            <div>Password </div>
-            <Form.Control type="password" ref={passwordRef} />
+            <Form.Label>Password </Form.Label>
+            <Form.Control size="sm" type="password" ref={passwordRef} />
           </Form.Group>
           <Form.Group id="password-confirm">
-            <div>Password Confirmation </div>
-            <Form.Control type="password" ref={passwordConfirmRef} />
+            <Form.Label>Password Confirmation </Form.Label>
+            <Form.Control size="sm" type="password" ref={passwordConfirmRef} />
           </Form.Group>
 
           <Button disabled={loading} className="btn" type="submit">
