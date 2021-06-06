@@ -4,7 +4,6 @@ import Logo from "./Logo";
 import firebase from "firebase";
 
 const Navbar = () => {
-  const user = firebase.auth().currentUser;
   const history = useHistory();
   const logout = firebase.auth();
 
@@ -47,7 +46,7 @@ const Navbar = () => {
             About
                 </button></div>
           <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
+            style={{ backgroundColor: 'transparent', textDecorationLine:'underline'}}
             onClick={() => { handleLogout() }}>
             Log out
                 </button>
