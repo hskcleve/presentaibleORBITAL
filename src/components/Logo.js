@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Logo = () => {
-    const AIstyling={color:'white'}
+const Logo = ({fontSize, marginTop}) => {
+    const AIstyling={color:'GhostWhite'}
     return (
-        <div className='header'>
+        <div className='header' style={{fontSize:fontSize, marginTop:marginTop}}>
         Present<h3 style={AIstyling}>AI</h3>ble
         </div>
     )

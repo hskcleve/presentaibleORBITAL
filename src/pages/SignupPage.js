@@ -9,7 +9,7 @@ const SignupPage = () => {
             <AuthProvider>
           
             <div className='landingPage'>
-                <h1 className='header'><Logo/></h1>
+                <h1 className='header'><Logo fontSize={65} marginTop={50}/></h1>
             
             <div style={{}}>
             <Register />

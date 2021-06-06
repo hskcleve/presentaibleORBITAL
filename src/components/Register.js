@@ -18,7 +18,7 @@ const Register = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(roleRef.current.value + " maoxin");
+    console.log(roleRef.current.value);
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -52,43 +52,44 @@ const Register = () => {
     >
       <h1 className="header">Sign Up</h1>
       {error && <Alert variant="danger">{error}</Alert>}
-      <div style={{ textAlign: "left" }}>
+      <div style={{ textAlign: "left" ,marginTop:30}}>
         <Form onSubmit={handleSubmit}>
           <Form.Group id="displayName">
-            <Form.Label>Name </Form.Label>
-            <Form.Control size="sm" type="text" ref={displayNameRef} required />
+            <div style={{marginTop:20}}>Name </div>
+            <Form.Control type="text" ref={displayNameRef} required />
           </Form.Group>
           <Form.Group id="email">
-            <Form.Label>Email </Form.Label>
-            <Form.Control size="sm" type="email" ref={emailRef} required />
+          <div style={{marginTop:20}}>Email </div>
+            <Form.Control type="email" ref={emailRef} required />
           </Form.Group>
           <Form.Group id="school">
-            <Form.Label>School</Form.Label>
-            <Form.Control ref={schoolRef} size="sm" as="select" custom>
+          <div style={{marginTop:20}}>School </div>
+            <Form.Control ref={schoolRef} as="select">
               <option>National University of Singapore</option>
               <option>National Technical University</option>
               <option>Singapore Management University</option>
             </Form.Control>
           </Form.Group>
           <Form.Group id="role">
-            <Form.Label>Account Type</Form.Label>
-            <Form.Control ref={roleRef} size="sm" as="select" custom>
+          <div style={{marginTop:20}}>Account Type </div>
+            <Form.Control ref={roleRef} as="select">
               <option>Student</option>
               <option>Tutor</option>
             </Form.Control>
           </Form.Group>
           <Form.Group id="password">
-            <Form.Label>Password </Form.Label>
-            <Form.Control size="sm" type="password" ref={passwordRef} />
+          <div style={{marginTop:20}}>Password </div>
+            <Form.Control  type="password" ref={passwordRef} />
           </Form.Group>
           <Form.Group id="password-confirm">
-            <Form.Label>Password Confirmation </Form.Label>
-            <Form.Control size="sm" type="password" ref={passwordConfirmRef} />
+          <div style={{marginTop:20}}>Password Confirmation </div>
+            <Form.Control type="password" ref={passwordConfirmRef} />
           </Form.Group>
-
+          <div style={{textAlign:'center', marginTop:20}}>
           <Button disabled={loading} className="btn" type="submit">
             Submit
           </Button>
+          </div>
         </Form>
       </div>
     </div>

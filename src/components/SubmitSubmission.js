@@ -67,17 +67,19 @@ const SubmitSubmission = () => {
     }
 
     return (
-        <div>
+        <div style={{marginTop:30}}>
             <form onSubmit={onSubmit}>
-                <div className='form-control'>
-                    <label>Add a new submission:</label>
-                    <input type='text'
-                        placeholder='Upload a new script'
+                    Add a new submission:
+                    <textarea id="script" name="script"
+                        type='text'
+                        placeholder=' Upload a new script!'
                         value={currentSubmission}
-                        onChange={handleSubmissionAdd} />
+                        onChange={handleSubmissionAdd} 
+                        style={{minHeight:250, maxHeight:250, minWidth:435, maxWidth:435,
+                        fontFamily: "Helvetica Neue", fontSize:15}}/>
+                        <br></br>
                     <input type = "file"
                         onChange={handleFileAttachment} />
-                </div>
                 <div className='center'>
                     <input className='btn' type='submit' value='Add Submission' />
                 </div>

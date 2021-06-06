@@ -24,13 +24,17 @@ const SubmitComment = () => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <div className='form-control'>
-                    <label>Add a comment:</label>
-                    <input type='text'
-                        placeholder='...'
+                    Add a comment:
+                    <br></br>
+                    <textarea id="comment" name="comment"
+                        type='text'
+                        placeholder=' ...'
                         value={comment}
-                        onChange={handleCommentAdd} />
-                </div>
+                        onChange={handleCommentAdd} 
+                        style={{minHeight:120, maxHeight:120, minWidth:435, maxWidth:435,
+                            fontFamily: "Helvetica Neue", fontSize:15}}
+                            />
+            
                 <div className='center'>
                     <input className='btn' type='submit' value='Add Comment' />
 
