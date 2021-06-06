@@ -8,12 +8,14 @@ import DashboardPage from "../pages/Dashboard";
 import SubmissionsPage from "../pages/SubmissionsPage";
 import ViewPostPage from "../pages/ViewPostPage";
 import ExplorePage from "../pages/ExplorePage";
+import { AuthProvider } from "../contexts/AuthContext"
 
 const App = () => {
 
   return (
     <div className='pagefiller'>
     <Router>
+      <AuthProvider>
       <Switch>
         <Route exact path="/signup">
             <SignupPage />
@@ -35,6 +37,7 @@ const App = () => {
             <LoginPage />
           </Route>
         </Switch>
+        </AuthProvider>
       </Router>
     </div>
   );

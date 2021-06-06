@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const SignupPage = () => {
     return (
         
-            <AuthProvider>
+           
           
             <div className='landingPage'>
                 <h1 className='header'><Logo fontSize={65} marginTop={50}/></h1>
@@ -20,7 +20,7 @@ const SignupPage = () => {
             </div>
 
             </div>
-            </AuthProvider>    
+            
             
     )
 }

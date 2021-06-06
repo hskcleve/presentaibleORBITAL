@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { db, auth } from "../firebase";
+import firebase from "firebase/app";
 
 const AuthContext = React.createContext();
 
@@ -37,7 +38,12 @@ export function AuthProvider({ children }) {
       role: role,
     });
   }
-
+/*
+  function login(email, password) {
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
+    return auth.signInWithEmailAndPassword(email, password);
+    })
+  }*/
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
