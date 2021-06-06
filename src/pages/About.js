@@ -1,9 +1,10 @@
-import React from "react";
+import Navbar from '../components/Navbar';
 
 const AboutPage = () => {
+  console.log("AboutPage reached");
   return (
-    console.log("AboutPage reached"),
-    (
+    <>
+    <Navbar />
       <div>
         <h1 className="header">Presentations. Made Simple.</h1>
         <h3 className="container">
@@ -13,8 +14,8 @@ const AboutPage = () => {
           <li>Script/Presentation Autograder</li>
         </h3>
       </div>
-    )
-  );
-};
+  </>
+  )
+}
 
 export default AboutPage;

@@ -1,7 +1,8 @@
 import firebase from "firebase";
-import {React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { db } from '../firebase';
 import { useHistory } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const ExplorePage = () => {
     const user = firebase.auth().currentUser;
@@ -18,7 +19,7 @@ const ExplorePage = () => {
     useEffect(() => {
         getSchoolSubmissions();
         console.log('getSchoolSubmissions called!, school is: ' + school);
-    }, [school]) // similaryly here, useEffect is called whenever school is changed; ie from the getSchool call.
+    }, [school]) // similarly here, useEffect is called whenever school is changed; ie from the getSchool call.
 
     const getSchool = () => {
         db.collection('users').where("name", "==", user.displayName)
@@ -54,6 +55,7 @@ const ExplorePage = () => {
 
     return (
         <div>
+            <Navbar />
             <div> 
             <h3 className='containerWide'>Submissions filtered for: {school}</h3>
                 <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', minHeight:500, maxWidth:1920}}>

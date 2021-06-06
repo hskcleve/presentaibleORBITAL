@@ -2,6 +2,7 @@ import { db, storageRef } from '../firebase';
 import { useState, useEffect } from 'react';
 import PlayAudioFromURL from "../components/PlayAudioFromURL";
 import SubmitComment from "../components/SubmitComment";
+import Navbar from "../components/Navbar";
 
 const ViewPostPage = () => {
     const PostUID = Number(window.location.pathname.substring(10, window.location.pathname.length));
@@ -63,6 +64,7 @@ const ViewPostPage = () => {
 
     return (
         <div>
+            <Navbar />
             <div className='containerWide'>
             <h1>Submission #{PostUID}</h1>
             <h2>Author: {postAuthor}</h2>

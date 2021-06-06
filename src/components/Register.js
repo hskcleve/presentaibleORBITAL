@@ -65,9 +65,9 @@ const Register = () => {
           <Form.Group id="school">
           <div style={{marginTop:20}}>School </div>
             <Form.Control ref={schoolRef} as="select">
-              <option>National University of Singapore</option>
-              <option>National Technical University</option>
-              <option>Singapore Management University</option>
+              <option>NUS</option>
+              <option>NTU</option>
+              <option>SMU</option>
             </Form.Control>
           </Form.Group>
           <Form.Group id="role">

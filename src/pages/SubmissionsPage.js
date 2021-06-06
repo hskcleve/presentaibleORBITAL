@@ -3,6 +3,7 @@ import { React, useState, useEffect } from "react";
 import { db, storageRef } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import SubmitSubmission from '../components/SubmitSubmission';
+import Navbar from '../components/Navbar';
 
 const SubmissionsPage = () => {
     const user = firebase.auth().currentUser;
@@ -63,13 +64,14 @@ const SubmissionsPage = () => {
 
     return (
         <div>
+            <Navbar />
             <div style={{textAlign:'center'}}>
                 <h1 >My Submissions</h1>
                 <button className='btn'
                 style={{backgroundColor:'transparent', textDecorationLine:'underline'}} onClick={() => { getUserSubmissions() }}>Refresh Submissions</button>
             </div>
 
-            <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', minHeight:500, maxWidth:1920, justifyContent:'space-evenly'}}>
+            <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', maxWidth:1920, justifyContent:'space-evenly'}}>
                 {submissions.map(submission =>
                     <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:180}}>
                         <h3>Submission #{submission[0]}</h3>

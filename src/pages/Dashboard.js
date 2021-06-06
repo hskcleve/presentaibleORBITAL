@@ -1,10 +1,11 @@
-import React from "react";
+import Navbar from "../components/Navbar";
 import Posts from "../components/Posts";
 
 const DashboardPage = () => {
   return (
     console.log("DashboardPage reached"),
-    (
+    <>
+    <Navbar />
       <div>
         <h1 className="header">My Dashboard</h1>
 
@@ -13,7 +14,7 @@ const DashboardPage = () => {
           <Posts></Posts>
         </h1>
       </div>
-    )
+    </>
   );
 };
 
