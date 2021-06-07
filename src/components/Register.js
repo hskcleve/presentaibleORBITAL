@@ -30,10 +30,6 @@ const Register = () => {
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
-        displayNameRef.current.value
-      );
-      addUser(
-        emailRef.current.value,
         displayNameRef.current.value,
         schoolRef.current.value,
         roleRef.current.value
@@ -52,18 +48,18 @@ const Register = () => {
     >
       <h1 className="header">Sign Up</h1>
       {error && <Alert variant="danger">{error}</Alert>}
-      <div style={{ textAlign: "left" ,marginTop:30}}>
+      <div style={{ textAlign: "left", marginTop: 30 }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group id="displayName">
-            <div style={{marginTop:20}}>Name </div>
+            <div style={{ marginTop: 20 }}>Name </div>
             <Form.Control type="text" ref={displayNameRef} required />
           </Form.Group>
           <Form.Group id="email">
-          <div style={{marginTop:20}}>Email </div>
+            <div style={{ marginTop: 20 }}>Email </div>
             <Form.Control type="email" ref={emailRef} required />
           </Form.Group>
           <Form.Group id="school">
-          <div style={{marginTop:20}}>School </div>
+            <div style={{ marginTop: 20 }}>School </div>
             <Form.Control ref={schoolRef} as="select">
               <option>NUS</option>
               <option>NTU</option>
@@ -71,24 +67,24 @@ const Register = () => {
             </Form.Control>
           </Form.Group>
           <Form.Group id="role">
-          <div style={{marginTop:20}}>Account Type </div>
+            <div style={{ marginTop: 20 }}>Account Type </div>
             <Form.Control ref={roleRef} as="select">
               <option>Student</option>
               <option>Tutor</option>
             </Form.Control>
           </Form.Group>
           <Form.Group id="password">
-          <div style={{marginTop:20}}>Password </div>
-            <Form.Control  type="password" ref={passwordRef} />
+            <div style={{ marginTop: 20 }}>Password </div>
+            <Form.Control type="password" ref={passwordRef} />
           </Form.Group>
           <Form.Group id="password-confirm">
-          <div style={{marginTop:20}}>Password Confirmation </div>
+            <div style={{ marginTop: 20 }}>Password Confirmation </div>
             <Form.Control type="password" ref={passwordConfirmRef} />
           </Form.Group>
-          <div style={{textAlign:'center', marginTop:20}}>
-          <Button disabled={loading} className="btn" type="submit">
-            Submit
-          </Button>
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <Button disabled={loading} className="btn" type="submit">
+              Submit
+            </Button>
           </div>
         </Form>
       </div>
