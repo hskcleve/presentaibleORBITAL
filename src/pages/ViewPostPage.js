@@ -5,12 +5,13 @@ import SubmitComment from "../components/SubmitComment";
 import Navbar from "../components/Navbar";
 
 const ViewPostPage = () => {
-    const PostUID = Number(window.location.pathname.substring(10, window.location.pathname.length));
+    const PostUID = String(window.location.pathname.substring(10, window.location.pathname.length));
     const [postContent, setPostContent] = useState('');
     const [postAuthor, setPostAuthor] = useState('');
     const [postComments, setPostComments] = useState([]);
     const [filename, setFilename] = useState('');
     const [downloadURL, setDownloadURL] = useState();
+    const [postTitle, setPostTitle] = useState('');
 
 
     useEffect(() => {
@@ -35,22 +36,21 @@ const ViewPostPage = () => {
 
     const loadPost = () => {
         console.log('loadPost called!');
-        db.collection('submissions').where("UID", "==", PostUID)
+        db.collection('submissions').doc(PostUID)
         .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach( (doc) => {
+        .then((doc) => {
                 const data = doc.data();
                 setPostContent(data.content);
                 setPostAuthor(data.author);
                 setFilename(data.attachedFileName);
+                setPostTitle(data.title);
                 console.log('filename set to ' + filename)
                 })
-            })
-        }
-
+    }
+    
     const loadComments = () => {
         console.log('loadComments called!');
-        db.collection('comments').where("UID", "==", PostUID)
+        db.collection('comments').where("PostUID", "==", PostUID)
         .get()
         .then(querySnapshot => {
             const tempCommentArray = [];
@@ -66,8 +66,9 @@ const ViewPostPage = () => {
         <div>
             <Navbar />
             <div className='containerWide'>
-            <h1>Submission #{PostUID}</h1>
-            <h2>Author: {postAuthor}</h2>
+            <h1>{postTitle}</h1>
+            <h3>by {postAuthor}</h3>
+            <h6>PostUID: {PostUID}</h6>
             <PlayAudioFromURL downloadURL={downloadURL} />
             </div>
             <div className='container'>{postContent}</div>

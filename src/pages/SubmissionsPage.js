@@ -7,24 +7,25 @@ import Navbar from '../components/Navbar';
 
 const SubmissionsPage = () => {
     const user = firebase.auth().currentUser;
-    const [submissions, setSubmissions] = useState([]);
+    const userUID = user.uid;
     const history = useHistory();
+    const [submissions, setSubmissions] = useState([])
 
     useEffect(() => {
-        getUserSubmissions();
+        getUserSubmissions()
     }, []);
 
     const getUserSubmissions = () => {
-        console.log('getUserSubmissions called!');
-        db.collection('submissions').where("author", "==", user.displayName)
+        db.collection('submissions').where("userUID", "==", userUID)
             .get()
             .then(querySnapshot => {
                 const arr = [];
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     const content = data.content;
-                    const UID = data.UID;
-                    arr.push([UID, content]);
+                    const postUID = doc.id;
+                    const postTitle = data.title;
+                    arr.push([postUID, content, postTitle]);
                 })
                 setSubmissions(arr)
             })
@@ -35,24 +36,18 @@ const SubmissionsPage = () => {
     }
 
     const onDelete = ({ submission }) => {
-        db.collection('submissions').where("author", "==", user.displayName)
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const UID = data.UID;
-                    const richMedia = data.attachedFileName;
-                    if (UID === submission[0]) {
-                        const docID = doc.id;
-                        const attachedFileRef = storageRef.child("" + UID + "/" + richMedia);
-                        db.collection('submissions').doc(docID).delete();
-                        attachedFileRef.delete().then(() => {
-                            console.log('file deleted from cloud storage');
-                        }).catch((error) => console.log("failed to delete", error))
-                    }
-                })
-            })
-        db.collection('comments').where("UID", "==", submission[0])
+        db.collection('submissions').doc(submission[0]).get().then((doc)=>{
+            const data = doc.data();
+            const richMedia = data.attachedFileName;
+            const attachedFileRef = storageRef.child("" + submission[0] + "/" + richMedia);
+            attachedFileRef.delete().then(() => {
+                console.log('file deleted from cloud storage');
+            }).catch((error) => console.log("failed to delete", error))
+        }).catch((error)=>console.log("failed to delete", error))
+
+        db.collection('submissions').doc(submission[0]).delete();
+
+        db.collection('comments').where("PostUID", "==", submission[0])
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach((doc) => {
@@ -60,6 +55,10 @@ const SubmissionsPage = () => {
                     db.collection('comments').doc(docID).delete();
                 })
             })
+
+        db.collection('users').doc(userUID).update({
+            posts: firebase.firestore.FieldValue.arrayRemove(submission[0])
+        })
     }
 
     return (
@@ -73,16 +72,17 @@ const SubmissionsPage = () => {
 
             <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', maxWidth:1920, justifyContent:'space-evenly'}}>
                 {submissions.map(submission =>
-                    <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:180}}>
-                        <h3>Submission #{submission[0]}</h3>
-                        <br></br>
-                        {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}
-                        <div style={{ textAlign: 'center'}}>
-                            <button className='btn' style={{ fontSize: 10 }} onClick={() => { onOpen({ submission }) }}>Open</button>
-                            <button className='btn' style={{ fontSize: 10 }} onClick={() => { onDelete({ submission }) }}>Delete</button>
+                        <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:210}}>
+                            <h2>{submission[2]}</h2>
+                            <h5>PostUID: {submission[0]}</h5>
+                            <br></br>
+                            {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}
+                            <div style={{ textAlign: 'center'}}>
+                                <button className='btn' style={{ fontSize: 10 }} onClick={() => { onOpen({ submission }) }}>Open</button>
+                                <button className='btn' style={{ fontSize: 10 }} onClick={() => { onDelete({ submission }) }}>Delete</button>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
             </div>
                     <div className='container'><SubmitSubmission /></div>
         </div>
@@ -90,3 +90,7 @@ const SubmissionsPage = () => {
 }
 
 export default SubmissionsPage
+
+/*
+
+*/

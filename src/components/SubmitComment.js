@@ -5,12 +5,12 @@ import firebase from "firebase";
 const SubmitComment = () => {
     const user = firebase.auth().currentUser;
     const [comment, setComment] = useState('');
-    const commentUID = Number(window.location.pathname.substring(10, window.location.pathname.length));
+    const commentUID = String(window.location.pathname.substring(10, window.location.pathname.length));
 
     const onSubmit = (event) => {
         event.preventDefault();
         db.collection('comments').add({
-            UID: commentUID,
+            PostUID: commentUID,
             author: user.displayName,
             content: comment,
         });

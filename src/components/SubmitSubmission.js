@@ -7,7 +7,8 @@ const SubmitSubmission = () => {
     const [currentSubmission, setCurrentSubmission] = useState('');
     const [school, setSchool] = useState('');
     const [file, setFile] = useState();
-    const UniqueIdentifier = Math.floor(Math.random() * (1000000-1+1)) + 1;
+    const userUID = user.uid;
+    const [postUID, setPostUID] = useState('');
 
     useEffect(() => {
         getSchool();
@@ -15,47 +16,53 @@ const SubmitSubmission = () => {
 
     const getSchool = () => {
         console.log('getSchool called!');
-        db.collection('users').where("name", "==", user.displayName)
-        .get()
-        .then( querySnapshot => {
-            querySnapshot.forEach( (doc) => {
-                const data = doc.data();
-                setSchool(data.school);
-            })
-        })
+        db.collection("users").doc(userUID).get().then((doc)=>{
+          const data = doc.data();
+          setSchool(data.school);
+          console.log('getSchool has set school to ' + school);
+        }).catch((error) => {console.log("error in getSchool", error);})
     }
 
     const onSubmit = (event) => {
+      setPostUID("");
+      getSchool();
         event.preventDefault();
         if(!currentSubmission) {
             alert('Cannot submit empty script!')
             return
         }
-        getSchool();
         if (file!=undefined){
             db.collection('submissions').add({
+                title: currentSubmissionTitle,
                 author: user.displayName,
-                UID: UniqueIdentifier,
+                userUID: userUID,
                 content: currentSubmission,
                 school: school,
                 attachedFileName: file.name,
+            }).then((docRef) => {
+                db.collection('users').doc(userUID).update({
+                  posts: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+                })
+                const fileRef = storageRef.child("" + docRef.id + "/" + file.name);
+                fileRef.put(file).then( () => {
+                    console.log("" + file.name + " has been uploaded.");
+                }).catch((error) => console.log("failed to upload", error));
             });
         } else {
             db.collection('submissions').add({
+                title: currentSubmissionTitle,
                 author: user.displayName,
-                UID: UniqueIdentifier,
+                userUID: userUID,
                 content: currentSubmission,
                 school: school,
+            }).then((docRef) => {
+              db.collection('users').doc(userUID).update({
+                posts: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+              })
             });
         }
         setCurrentSubmission("");
-        if (file!=undefined){
-            const fileRef = storageRef.child("" + UniqueIdentifier + "/" + file.name);
-            fileRef.put(file).then( () => {
-                console.log("" + file.name + " has been uploaded.");
-            }).catch((error) => console.log("failed to upload", error));
-        }
-        console.log("submission submitted with school set to: " + school);
+        setCurrentSubmissionTitle("");
     }
   
     const handleSubmissionAdd = (event) => {
@@ -66,10 +73,24 @@ const SubmitSubmission = () => {
         setFile(event.target.files[0]);
     }
 
+    const [currentSubmissionTitle, setCurrentSubmissionTitle] = useState('');
+
+    const handleTitleChange = (event) => {
+      setCurrentSubmissionTitle(event.target.value);
+    }
+
     return (
         <div style={{marginTop:30}}>
             <form onSubmit={onSubmit}>
-                    Add a new submission:
+                    <h2>Add a new submission:</h2>
+                    <input type='text'
+                            placeholder='Title...'
+                            value={currentSubmissionTitle}
+                            onChange={handleTitleChange}
+                            style={{minHeight:30, maxHeight:30, minWidth:435, maxWidth:435,
+                              fontFamily: "Helvetica Neue", fontSize:15}}
+                            />
+                            <br></br>
                     <textarea id="script" name="script"
                         type='text'
                         placeholder=' Upload a new script!'
