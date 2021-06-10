@@ -19,22 +19,26 @@ const CreateClass = () => {
         name: moduleName,
         password: passRef.current.value,
         students: [],
-        tutor: currentUser.uid,
+        tutorId: currentUser.uid,
+        tutorName: currentUser.displayName,
       })
       .then((docu) => {
         console.log("a class is created at " + docu.path);
-        updateUserClassesField(moduleName);
+        updateUserClassesField(moduleName, docu.path);
       })
       .catch((error) => console.log(error));
   }
 
-  function updateUserClassesField(className) {
+  function updateUserClassesField(className, path) {
+    const docuPath = path.split("/");
+    console.log(docuPath[1]);
     db.collection("users")
       .doc(currentUser.uid)
       .update({
         classes: firebase.firestore.FieldValue.arrayUnion({
           className: className,
           tutorName: currentUser.displayName,
+          classId: docuPath[1],
         }),
       });
   }
@@ -55,7 +59,7 @@ const CreateClass = () => {
 
   return (
     <>
-      <Button onClick={handleShow}>Create Class(In progress) </Button>
+      <Button onClick={handleShow}>Create Class</Button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>

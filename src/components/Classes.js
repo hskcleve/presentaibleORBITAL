@@ -16,6 +16,7 @@ const Classes = () => {
         <div>
           <h4>{classData.className}</h4>
           <h5>{classData.tutorName}</h5>
+          <h5>Class Id : {classData.classId}</h5>
           <h5>{classData.maoxin}</h5>
         </div>
       ));

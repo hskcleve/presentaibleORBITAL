@@ -1,5 +1,6 @@
 import Classes from "../components/Classes";
 import CreateClass from "../components/CreateClass";
+import JoinClass from "../components/JoinClass";
 import Navbar from "../components/Navbar";
 import Posts from "../components/Posts";
 
@@ -14,9 +15,9 @@ const DashboardPage = () => {
 
           <h1 className="containerForSubmission">
             <h3>My Submissions</h3>
-            <Posts></Posts>
             <Classes></Classes>
             <CreateClass></CreateClass>
+            <JoinClass></JoinClass>
           </h1>
         </div>
       </>
