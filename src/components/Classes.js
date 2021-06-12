@@ -1,11 +1,13 @@
 import firebase from "firebase";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
+import { Card } from "react-bootstrap";
 
 const Classes = () => {
   const { currentUser } = firebase.auth();
   const uid = currentUser.uid;
   const [userDoc, setUserDoc] = useState({});
+  const classes = userDoc.classes;
 
   //should assign each classData to a viewClass component
   const loadClasses = () => {
@@ -14,10 +16,11 @@ const Classes = () => {
     } else {
       return classes.map((classData) => (
         <div>
-          <h4>{classData.className}</h4>
-          <h5>{classData.tutorName}</h5>
-          <h5>Class Id : {classData.classId}</h5>
+          <h4>Module code: {classData.className}</h4>
+          <h5>Tutor: {classData.tutorName}</h5>
+          <h5>Class ID: {classData.classId}</h5>
           <h5>{classData.maoxin}</h5>
+          <h5>Number of Students: {classData.students}</h5>
         </div>
       ));
     }
@@ -31,12 +34,12 @@ const Classes = () => {
       .then((doc) => setUserDoc(doc.data()));
   }, []);
   //contains the array of class objects(json) from users/uid
-  const classes = userDoc.classes;
+
   console.log(classes);
 
   return (
     <>
-      <h2>{loadClasses()}</h2>
+      <Card>{loadClasses()}</Card>
     </>
   );
 };

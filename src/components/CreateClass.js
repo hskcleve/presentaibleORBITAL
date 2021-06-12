@@ -2,7 +2,6 @@ import { Button, Form, Modal, Popover } from "react-bootstrap";
 import firebase from "firebase";
 import { db } from "../firebase";
 import { useState, useRef } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 //higher level component should check if user is a tutor before rendering this
 const CreateClass = () => {
@@ -89,10 +88,10 @@ const CreateClass = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="info" onClick={handleSubmit}>
+          <Button className="modal-action-btn" onClick={handleSubmit}>
             Create Class
           </Button>
-          <Button variant="danger" onClick={handleHide}>
+          <Button className="modal-close-btn" onClick={handleHide}>
             Close
           </Button>
         </Modal.Footer>

@@ -2,7 +2,6 @@ import { Button, Form, Modal, Popover } from "react-bootstrap";
 import firebase from "firebase";
 import { db } from "../firebase";
 import { useState, useRef } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 //higher level component should check if user is a tutor before rendering this
 const JoinClass = () => {
@@ -75,13 +74,14 @@ const JoinClass = () => {
   async function handleSubmit() {
     const classId = classIdRef.current.value;
     setErrorMessage("");
-    if (await passwordCorrect(classId, passRef.current.value)) {
+    if (classIdRef.current.value === "") {
+      setErrorMessage("Class ID required");
+    } else if (await passwordCorrect(classId, passRef.current.value)) {
+      //not entirely sure await is not needed here
       console.log("join class successfully");
       joinClass(classId);
       updateUserClassesField(classId);
       handleHide();
-    } else if (classIdRef.current.value === "") {
-      setErrorMessage("Class ID required");
     } else {
       setErrorMessage("Class ID or password incorrect, contact your tutor");
     }
@@ -122,10 +122,10 @@ const JoinClass = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="info" onClick={handleSubmit}>
+          <Button className="modal-action-btn" onClick={handleSubmit}>
             Join Class
           </Button>
-          <Button variant="danger" onClick={handleHide}>
+          <Button className="modal-close-btn" onClick={handleHide}>
             Close
           </Button>
         </Modal.Footer>
