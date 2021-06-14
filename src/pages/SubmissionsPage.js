@@ -64,10 +64,12 @@ const SubmissionsPage = () => {
     return (
         <div>
             <Navbar />
-            <div style={{textAlign:'center'}}>
+            <div className='containerWide'>
                 <h1 >My Submissions</h1>
                 <button className='btn'
-                style={{backgroundColor:'transparent', textDecorationLine:'underline'}} onClick={() => { getUserSubmissions() }}>Refresh Submissions</button>
+                style={{
+                    backgroundColor:'transparent', textDecorationLine:'underline', fontStyle:'italic', fontSize:12, padding:0, margin:0}} 
+                    onClick={() => { getUserSubmissions() }}>Refresh Submissions</button>
             </div>
 
             <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', maxWidth:1920, justifyContent:'space-evenly'}}>
@@ -84,7 +86,7 @@ const SubmissionsPage = () => {
                         </div>
                     )}
             </div>
-                    <div className='container'><SubmitSubmission /></div>
+                    <div className='container' style={{background: 'rgba(100, 100, 100, 0.75)'}}><SubmitSubmission /></div>
         </div>
     )
 }

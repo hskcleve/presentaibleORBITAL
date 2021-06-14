@@ -8,6 +8,7 @@ import DashboardPage from "../pages/Dashboard";
 import SubmissionsPage from "../pages/SubmissionsPage";
 import ViewPostPage from "../pages/ViewPostPage";
 import ExplorePage from "../pages/ExplorePage";
+import SpeechRecognitionPage from "../pages/SpeechRecognitionPage";
 import { AuthProvider } from "../contexts/AuthContext"
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <PrivateRoute exact path="/explore" component={ExplorePage}/>
           <PrivateRoute exact path="/submissions" component={SubmissionsPage}/>
           <PrivateRoute exact path="/about" component={AboutPage}/>
+          <PrivateRoute exact path="/speechrecognition" component={SpeechRecognitionPage}/>
           <PrivateRoute path="/viewpost/" component={ViewPostPage}/>
           <Route path="/">
             <LoginPage />

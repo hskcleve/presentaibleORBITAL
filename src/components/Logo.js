@@ -1,7 +1,7 @@
 import React from "react";
 
 const Logo = ({ fontSize, marginTop }) => {
-  const AIstyling = { color: "orange" };
+  const AIstyling = { color: "goldenrod" };
   return (
     <div
       className="header"
