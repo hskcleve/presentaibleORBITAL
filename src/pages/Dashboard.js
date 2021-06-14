@@ -3,8 +3,26 @@ import CreateClass from "../components/CreateClass";
 import JoinClass from "../components/JoinClass";
 import Navbar from "../components/Navbar";
 import Posts from "../components/Posts";
+import AddStudent from "../components/AddStudent";
+import { db } from "../firebase";
+import firebase from "firebase";
+import { useState, useEffect } from "react";
 
 const DashboardPage = () => {
+  const { currentUser } = firebase.auth();
+  const [modules, setModules] = useState([]);
+
+  useEffect(() => {
+    loadOptions();
+  }, []);
+
+  async function loadOptions() {
+    const userDocRef = await db.collection("users").doc(currentUser.uid).get();
+    setModules(userDocRef.data().classes);
+  }
+
+  console.log(modules);
+
   return (
     console.log("DashboardPage reached"),
     (
@@ -18,6 +36,7 @@ const DashboardPage = () => {
             <Classes></Classes>
             <CreateClass></CreateClass>
             <JoinClass></JoinClass>
+            <AddStudent modules={modules}></AddStudent>
           </h1>
         </div>
       </>
