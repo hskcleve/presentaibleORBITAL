@@ -17,43 +17,48 @@ const Navbar = () => {
     }
   }
   return (
-      <div className="navbar">
-        <h2 className="header">
-          <Logo />
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
-            onClick={() => { history.push('/') }}>
-            Main
-                </button></div>
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
-            onClick={() => { history.push('/dashboard') }}>
-            Dashboard
-                </button></div>
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
-            onClick={() => { history.push('/explore') }}>
-            Explore
-                </button></div>
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
-            onClick={() => { history.push('/submissions') }}>
-            My Submissions
-                </button></div>
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent'}}
-            onClick={() => { history.push('/about') }}>
-            About
-                </button></div>
-          <div><button className='btn'
-            style={{ backgroundColor: 'transparent', textDecorationLine:'underline'}}
-            onClick={() => { handleLogout() }}>
-            Log out
-                </button>
-          </div>
-        </h2>
-      </div>
-      
+    <div className="navbar">
+      <h2 className="header">
+        <Logo />
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/') }}>
+          Main
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/dashboard') }}>
+          Dashboard
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/explore') }}>
+          Explore
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/submissions') }}>
+          My Submissions
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/speechrecognition') }}>
+          Speech to Script
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent' }}
+          onClick={() => { history.push('/about') }}>
+          About
+        </button></div>
+        <div><button className='btn'
+          style={{ backgroundColor: 'transparent', textDecorationLine: 'underline' }}
+          onClick={() => { handleLogout() }}>
+          Log out
+        </button>
+        </div>
+      </h2>
+    </div>
+
 
 
   );
