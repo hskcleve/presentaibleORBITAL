@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
         school: school,
         role: { tutor: role === "Tutor", student: role === "Student" },
         posts: [],
+        classes: [],
       });
   }
   /*
