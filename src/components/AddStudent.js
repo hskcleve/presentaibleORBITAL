@@ -15,13 +15,15 @@ const AddStudent = (props) => {
   const handleHide = () => setShow(false);
 
   function showOptions(modInfo) {
-    return modInfo.modules.map((item, i) => {
-      return (
-        <option key={i} value={item.className}>
-          {item.className}
-        </option>
-      );
-    });
+    return modInfo.length !== 0
+      ? modInfo.map((item, i) => {
+          return (
+            <option key={i} value={item.className}>
+              {item.className}
+            </option>
+          );
+        })
+      : "";
   }
 
   const handleSubmit = () => {
@@ -122,7 +124,7 @@ const AddStudent = (props) => {
                 ref={classRef}
                 as="select"
               >
-                {showOptions(props)}
+                {showOptions(props.modules)}
               </Form.Control>
             </Form.Group>
           </Form>
