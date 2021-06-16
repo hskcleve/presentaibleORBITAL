@@ -68,7 +68,7 @@ const SubmissionsPage = () => {
                 <h1 >My Submissions</h1>
                 <button className='btn'
                 style={{
-                    backgroundColor:'transparent', textDecorationLine:'underline', fontStyle:'italic', fontSize:12, padding:0, margin:0}} 
+                    backgroundColor:'transparent', textDecorationLine:'underline', fontStyle:'italic', fontSize:12, padding:0, margin:0}}
                     onClick={() => { getUserSubmissions() }}>Refresh Submissions</button>
             </div>
 
@@ -76,8 +76,6 @@ const SubmissionsPage = () => {
                 {submissions.map(submission =>
                         <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:210}}>
                             <h2>{submission[2]}</h2>
-                            <h5>PostUID: {submission[0]}</h5>
-                            <br></br>
                             {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}
                             <div style={{ textAlign: 'center'}}>
                                 <button className='btn' style={{ fontSize: 10 }} onClick={() => { onOpen({ submission }) }}>Open</button>
