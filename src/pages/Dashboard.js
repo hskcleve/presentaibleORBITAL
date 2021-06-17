@@ -1,12 +1,12 @@
+import firebase from "firebase";
+import { useEffect, useState } from "react";
+import AddStudent from "../components/AddStudent";
 import Classes from "../components/Classes";
 import CreateClass from "../components/CreateClass";
 import JoinClass from "../components/JoinClass";
 import Navbar from "../components/Navbar";
-import Posts from "../components/Posts";
-import AddStudent from "../components/AddStudent";
+import Profile from "../components/Profile";
 import { db } from "../firebase";
-import firebase from "firebase";
-import { useState, useEffect } from "react";
 
 const DashboardPage = () => {
   const { currentUser } = firebase.auth();
@@ -18,7 +18,10 @@ const DashboardPage = () => {
 
   async function loadOptions() {
     const userDocRef = await db.collection("users").doc(currentUser.uid).get();
-    setModules(userDocRef.data().classes);
+    //undefined field check for users without classes array
+    const userClasses =
+      userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
+    setModules(userClasses);
   }
 
   console.log(modules);
@@ -28,17 +31,19 @@ const DashboardPage = () => {
     (
       <>
         <Navbar />
-        <div>
-          <h1 className="header">My Dashboard</h1>
 
-          <h1 className="containerForSubmission">
-            <h3>My Submissions</h3>
-            <Classes></Classes>
-            <CreateClass></CreateClass>
-            <JoinClass></JoinClass>
-            <AddStudent modules={modules}></AddStudent>
-          </h1>
+        <div className="profile-component">
+          <h1 className="header">My Dashboard</h1>
+          <Profile
+            name={currentUser.displayName}
+            id={currentUser.uid}
+          ></Profile>
         </div>
+
+        <Classes></Classes>
+        <CreateClass></CreateClass>
+        <JoinClass></JoinClass>
+        <AddStudent modules={modules}></AddStudent>
       </>
     )
   );
