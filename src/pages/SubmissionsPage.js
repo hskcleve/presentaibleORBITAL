@@ -63,7 +63,6 @@ const SubmissionsPage = () => {
 
     return (
         <div>
-            <Navbar />
             <div className='containerWide'>
                 <h1 >My Submissions</h1>
                 <button className='btn'
@@ -84,7 +83,6 @@ const SubmissionsPage = () => {
                         </div>
                     )}
             </div>
-                    <div className='container' style={{background: 'rgba(100, 100, 100, 0.75)'}}><SubmitSubmission /></div>
         </div>
     )
 }

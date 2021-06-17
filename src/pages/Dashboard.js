@@ -7,6 +7,7 @@ import JoinClass from "../components/JoinClass";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
 import { db } from "../firebase";
+import SubmissionsPage from "./SubmissionsPage"
 
 const DashboardPage = () => {
   const { currentUser } = firebase.auth();
@@ -39,6 +40,7 @@ const DashboardPage = () => {
             id={currentUser.uid}
           ></Profile>
         </div>
+        <SubmissionsPage />
 
         <Classes></Classes>
         <CreateClass></CreateClass>
