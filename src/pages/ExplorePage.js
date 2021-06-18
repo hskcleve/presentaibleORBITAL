@@ -24,7 +24,7 @@ const ExplorePage = () => {
     useEffect(() => {
         getSchoolSubmissions();
         console.log('getSchoolSubmissions called!, school is: ' + school);
-        setCurrentFilter(school);
+        setCurrentFilter('Public');
     }, [school]) // similarly here, useEffect is called whenever school is changed; ie from the getSchool call.
 
     useEffect(() => {
