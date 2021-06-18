@@ -28,7 +28,9 @@ body {
   background: #ffffffbe;
   margin: 5px;
   padding: 10px 20px;
-  /*cursor: pointer;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 20px;
 }
 

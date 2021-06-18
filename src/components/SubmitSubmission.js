@@ -26,6 +26,15 @@ const SubmitSubmission = (props) => {
   const handleSubmit = (event) => {
     var moduleSelect = document.getElementById("submission-class-slt");
     const moduleTarget = moduleSelect.value;
+    const timestamp = new Intl.DateTimeFormat('en-US',
+      {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(Date.now());
+    console.log("time of submission: " + timestamp.toString());
     console.log(moduleTarget);
     event.preventDefault();
     if (!currentSubmission) {
@@ -42,6 +51,7 @@ const SubmitSubmission = (props) => {
           school: props.school,
           attachedFileName: file.name,
           moduleName: moduleTarget,
+          timeStamp: timestamp
         })
         .then((docRef) => {
           db.collection("users")
@@ -66,6 +76,7 @@ const SubmitSubmission = (props) => {
           content: currentSubmission,
           school: props.school,
           moduleName: moduleTarget,
+          timeStamp: timestamp
         })
         .then((docRef) => {
           db.collection("users")

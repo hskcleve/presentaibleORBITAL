@@ -25,7 +25,8 @@ const SubmissionsPage = () => {
                     const content = data.content;
                     const postUID = doc.id;
                     const postTitle = data.title;
-                    arr.push([postUID, content, postTitle]);
+                    const timestamp = data.timeStamp;
+                    arr.push([postUID, content, postTitle, timestamp]);
                 })
                 setSubmissions(arr)
             })
@@ -73,9 +74,11 @@ const SubmissionsPage = () => {
 
             <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', maxWidth:1920, justifyContent:'space-evenly'}}>
                 {submissions.map(submission =>
-                        <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:210}}>
-                            <h2>{submission[2]}</h2>
-                            {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}
+                        <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:240, maxHeight:400}}>
+                            <div><h2>{submission[2]}</h2>
+                            <div>Posted: {submission[3]}</div>
+                            <br></br>
+                            {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}</div>
                             <div style={{ textAlign: 'center'}}>
                                 <button className='btn' style={{ fontSize: 10 }} onClick={() => { onOpen({ submission }) }}>Open</button>
                                 <button className='btn' style={{ fontSize: 10 }} onClick={() => { onDelete({ submission }) }}>Delete</button>

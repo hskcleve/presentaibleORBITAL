@@ -73,7 +73,8 @@ const ExplorePage = () => {
                     const author = data.author;
                     const PostUID = doc.id;
                     const title = data.title;
-                    arr.push([author, content, PostUID, title]);
+                    const timestamp = data.timeStamp;
+                    arr.push([author, content, PostUID, title, timestamp]);
                 })
                 setSubmissions(arr)
             })
@@ -89,7 +90,8 @@ const ExplorePage = () => {
                     const author = data.author;
                     const PostUID = doc.id;
                     const title = data.title;
-                    arr.push([author, content, PostUID, title]);
+                    const timestamp = data.timeStamp;
+                    arr.push([author, content, PostUID, title, timestamp]);
                 })
                 setSubmissions(arr)
             })}
@@ -124,9 +126,10 @@ const ExplorePage = () => {
         <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', minHeight:500, maxWidth:1920}}>
         {submissions.map(submission => 
             <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, maxHeight:250, backgroundColor: getColor()}}>
-                <h2>{submission[3]} </h2>
-                <h4>by {submission[0]}</h4>
-                <div>{submission[1].split(' ').slice(0,20).join(" ") + " ..."}</div>
+                <div><h2>{submission[3]} </h2>
+                <div>by {submission[0]} on {submission[4]} </div>
+                <br></br>
+                <div>{submission[1].split(' ').slice(0,20).join(" ") + " ..."}</div></div>
                 <div style={{textAlign:'end'}}> 
                 <button className='btn' style={{fontSize:10, backgroundColor:'transparent', textDecorationLine:'underline'}} onClick={()=>{onOpen({submission})}}>see more</button>
                 </div> 
