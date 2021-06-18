@@ -61,8 +61,6 @@ const ExplorePage = () => {
     }
 
     const getSchoolSubmissions = () => {
-
-
         if (currentFilter === school) {
             db.collection('submissions')
             .where("school", "==", currentFilter)
@@ -101,6 +99,19 @@ const ExplorePage = () => {
         history.push("/viewpost/" + submission[2]);
     }
 
+    const getColor = () => {
+        switch(currentFilter) {
+            case "Public":
+                return 'rgba(41, 194, 166, 0.6)'
+            case "SMU":
+            case "NTU":
+            case "NUS":
+                return 'rgba(218,165,32,0.7)'
+            default:
+                return 'rgba(237, 81, 14, 0.6)'
+        }
+    }
+
     const RenderSubmissions = () => {
         if (submissions.length === 0 ) {
             return (
@@ -112,7 +123,7 @@ const ExplorePage = () => {
         return(
         <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', minHeight:500, maxWidth:1920}}>
         {submissions.map(submission => 
-            <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, maxHeight:250}}>
+            <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, maxHeight:250, backgroundColor: getColor()}}>
                 <h2>{submission[3]} </h2>
                 <h4>by {submission[0]}</h4>
                 <div>{submission[1].split(' ').slice(0,20).join(" ") + " ..."}</div>
