@@ -6,12 +6,14 @@ import CreateClass from "../components/CreateClass";
 import JoinClass from "../components/JoinClass";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
+import SubmitSubmission from "../components/SubmitSubmission";
 import { db } from "../firebase";
-import SubmissionsPage from "./SubmissionsPage"
+import SubmissionsPage from "./SubmissionsPage";
 
 const DashboardPage = () => {
   const { currentUser } = firebase.auth();
   const [modules, setModules] = useState([]);
+  const [userSchool, setUserSchool] = useState();
 
   useEffect(() => {
     loadOptions();
@@ -23,6 +25,7 @@ const DashboardPage = () => {
     const userClasses =
       userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
     setModules(userClasses);
+    setUserSchool(userDocRef.data().school);
   }
 
   console.log(modules);
@@ -46,6 +49,10 @@ const DashboardPage = () => {
         <CreateClass></CreateClass>
         <JoinClass></JoinClass>
         <AddStudent modules={modules}></AddStudent>
+        <SubmitSubmission
+          modules={modules}
+          school={userSchool}
+        ></SubmitSubmission>
       </>
     )
   );

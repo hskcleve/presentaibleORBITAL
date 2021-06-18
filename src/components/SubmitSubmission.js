@@ -1,112 +1,186 @@
 import firebase from "firebase";
-import { React, useState, useEffect } from "react";
-import { db, storageRef } from '../firebase';
+import { React, useState } from "react";
+import { Button } from "react-bootstrap";
+import { db, storageRef } from "../firebase";
 
-const SubmitSubmission = () => {
-    const user = firebase.auth().currentUser;
-    const [currentSubmission, setCurrentSubmission] = useState('');
-    const [school, setSchool] = useState('');
-    const [file, setFile] = useState();
-    const userUID = user.uid;
-    const [postUID, setPostUID] = useState('');
+const SubmitSubmission = (props) => {
+  const user = firebase.auth().currentUser;
+  const [currentSubmission, setCurrentSubmission] = useState("");
+  const [file, setFile] = useState();
+  const userUID = user.uid;
 
-    useEffect(() => {
-        getSchool();
-    }, [])
+  function showOptions(modInfo) {
+    return modInfo.length !== 0
+      ? modInfo.map((item, i) => {
+          return (
+            <>
+              <option key={i} value={item.className}>
+                {item.className}
+              </option>
+            </>
+          );
+        })
+      : "";
+  }
 
-    const getSchool = () => {
-        console.log('getSchool called!');
-        db.collection("users").doc(userUID).get().then((doc)=>{
-          const data = doc.data();
-          setSchool(data.school);
-          console.log('getSchool has set school to ' + school);
-        }).catch((error) => {console.log("error in getSchool", error);})
+  const handleSubmit = (event) => {
+    var moduleSelect = document.getElementById("submission-class-slt");
+    const moduleTarget = moduleSelect.value;
+    console.log(moduleTarget);
+    event.preventDefault();
+    if (!currentSubmission) {
+      alert("Cannot submit empty script!");
+      return;
     }
-
-    const onSubmit = (event) => {
-      setPostUID("");
-      getSchool();
-        event.preventDefault();
-        if(!currentSubmission) {
-            alert('Cannot submit empty script!')
-            return
-        }
-        if (file!=undefined){
-            db.collection('submissions').add({
-                title: currentSubmissionTitle,
-                author: user.displayName,
-                userUID: userUID,
-                content: currentSubmission,
-                school: school,
-                attachedFileName: file.name,
-            }).then((docRef) => {
-                db.collection('users').doc(userUID).update({
-                  posts: firebase.firestore.FieldValue.arrayUnion(docRef.id)
-                })
-                const fileRef = storageRef.child("" + docRef.id + "/" + file.name);
-                fileRef.put(file).then( () => {
-                    console.log("" + file.name + " has been uploaded.");
-                }).catch((error) => console.log("failed to upload", error));
+    if (file != undefined) {
+      db.collection("submissions")
+        .add({
+          title: currentSubmissionTitle,
+          author: user.displayName,
+          userUID: userUID,
+          content: currentSubmission,
+          school: props.school,
+          attachedFileName: file.name,
+          moduleName: moduleTarget,
+        })
+        .then((docRef) => {
+          db.collection("users")
+            .doc(userUID)
+            .update({
+              posts: firebase.firestore.FieldValue.arrayUnion(docRef.id),
             });
-        } else {
-            db.collection('submissions').add({
-                title: currentSubmissionTitle,
-                author: user.displayName,
-                userUID: userUID,
-                content: currentSubmission,
-                school: school,
-            }).then((docRef) => {
-              db.collection('users').doc(userUID).update({
-                posts: firebase.firestore.FieldValue.arrayUnion(docRef.id)
-              })
+          const fileRef = storageRef.child("" + docRef.id + "/" + file.name);
+          fileRef
+            .put(file)
+            .then(() => {
+              console.log("" + file.name + " has been uploaded.");
+            })
+            .catch((error) => console.log("failed to upload", error));
+        });
+    } else {
+      db.collection("submissions")
+        .add({
+          title: currentSubmissionTitle,
+          author: user.displayName,
+          userUID: userUID,
+          content: currentSubmission,
+          school: props.school,
+          moduleName: moduleTarget,
+        })
+        .then((docRef) => {
+          db.collection("users")
+            .doc(userUID)
+            .update({
+              posts: firebase.firestore.FieldValue.arrayUnion(docRef.id),
             });
-        }
-        setCurrentSubmission("");
-        setCurrentSubmissionTitle("");
+        });
     }
-  
-    const handleSubmissionAdd = (event) => {
-        setCurrentSubmission(event.target.value);
-    }
+    setCurrentSubmission("");
+    setCurrentSubmissionTitle("");
+    handleHide();
+  };
 
-    const handleFileAttachment = (event) => {
-        setFile(event.target.files[0]);
-    }
+  const handleSubmissionAdd = (event) => {
+    setCurrentSubmission(event.target.value);
+  };
 
-    const [currentSubmissionTitle, setCurrentSubmissionTitle] = useState('');
+  const handleFileAttachment = (event) => {
+    setFile(event.target.files[0]);
+  };
 
-    const handleTitleChange = (event) => {
-      setCurrentSubmissionTitle(event.target.value);
-    }
+  const [currentSubmissionTitle, setCurrentSubmissionTitle] = useState("");
 
-    return (
-        <div style={{marginTop:30}}>
-            <form onSubmit={onSubmit}>
-                    <h2>Add a new submission:</h2>
-                    <input type='text'
-                            placeholder='Title...'
-                            value={currentSubmissionTitle}
-                            onChange={handleTitleChange}
-                            style={{minHeight:30, maxHeight:30, minWidth:435, maxWidth:435,
-                              fontFamily: "Helvetica Neue", fontSize:15}}
-                            />
-                            <br></br>
-                    <textarea id="script" name="script"
-                        type='text'
-                        placeholder=' Upload a new script!'
-                        value={currentSubmission}
-                        onChange={handleSubmissionAdd} 
-                        style={{minHeight:250, maxHeight:250, minWidth:435, maxWidth:435,
-                        fontFamily: "Helvetica Neue", fontSize:15}}/>
-                        <br></br>
-                    <input type = "file"
-                        onChange={handleFileAttachment} />
-                <div className='center'>
-                    <input className='btn' type='submit' value='Add Submission' />
-                </div>
+  const handleTitleChange = (event) => {
+    setCurrentSubmissionTitle(event.target.value);
+  };
+
+  const handleShow = () => {
+    var modal = document.getElementById("submission-modal");
+    modal.style.display = "contents";
+  };
+  const handleHide = () => {
+    var modal = document.getElementById("submission-modal");
+    modal.style.display = "none";
+  };
+
+  return (
+    <>
+      <Button onClick={handleShow}>Add Submission</Button>
+      <div
+        id="submission-modal"
+        className="submission-modal"
+        style={{ marginTop: 30 }}
+      >
+        <div className="submission-modal-content">
+          <div className="submission-modal-body">
+            <form onSubmit={handleSubmit}>
+              <h2 style={{ margin: 5 }}>Add a new submission:</h2>
+              <input
+                type="text"
+                placeholder="Title..."
+                value={currentSubmissionTitle}
+                onChange={handleTitleChange}
+                style={{
+                  margin: 5,
+                  minHeight: 30,
+                  maxHeight: 30,
+                  minWidth: 435,
+                  maxWidth: 435,
+                  fontFamily: "Helvetica Neue",
+                  fontSize: 15,
+                }}
+              />
+              <select
+                style={{
+                  margin: 5,
+                  minHeight: 30,
+                  maxHeight: 30,
+                  minWidth: 435,
+                  maxWidth: 435,
+                  fontFamily: "Helvetica Neue",
+                  fontSize: 15,
+                }}
+                className="submission-class-slt"
+                id="submission-class-slt"
+              >
+                {showOptions(props.modules)}
+                <option value={"Public"}>Public</option>
+              </select>
+              <br></br>
+              <textarea
+                id="script"
+                name="script"
+                type="text"
+                placeholder=" Upload a new script!"
+                value={currentSubmission}
+                onChange={handleSubmissionAdd}
+                style={{
+                  margin: 5,
+                  minHeight: 250,
+                  maxHeight: 250,
+                  minWidth: 435,
+                  maxWidth: 435,
+                  fontFamily: "Helvetica Neue",
+                  fontSize: 15,
+                }}
+              />
+              <br></br>
+              <input type="file" onChange={handleFileAttachment} />
             </form>
+            <button onClick={handleSubmit} className="modal-submission-btn">
+              Submit
+            </button>
+            <button onClick={handleHide} className="submission-modal-close-btn">
+              Close
+            </button>
+          </div>
         </div>
-    )
-}
+      </div>
+    </>
+  );
+};
 
-export default SubmitSubmission
+export default SubmitSubmission;
+
+/*
+ */
