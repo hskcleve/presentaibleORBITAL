@@ -34,6 +34,16 @@ body {
   border-radius: 20px;
 }
 
+.submissionLong {
+  background: #ffffffbe;
+  margin: 5px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 3px;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -55,9 +65,7 @@ body {
 .containerWide {
   max-width: 1920px;
   min-width: 100px;
-  margin: 20px auto;
   overflow: auto;
-  min-height: 0px;
   padding: 30px;
   border-radius: 5px;
   background: rgba(202, 202, 202, 0.644);
@@ -322,7 +330,6 @@ footer {
 }
 
 .profile-component {
-  margin: 5px;
   align-items: center;
 }
 
@@ -401,4 +408,14 @@ footer {
 
 .submission-modal-body.add-form {
   align-self: center;
+}
+
+.dashboardSidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+  background-color:rgba(202, 202, 202, 0.644);
+  margin-top: 10px;
+  border-radius: 5px;
+  max-width: 425px;
 }

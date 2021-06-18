@@ -142,6 +142,7 @@ const ExplorePage = () => {
     return (
         <div>
             <Navbar />
+            <br></br>
             <div> 
             <div className='containerWide' style={{display:'flex', alignItems:'center'}}>
                 <h3>Submissions from:</h3>

@@ -37,16 +37,6 @@ const Navbar = () => {
         </button></div>
         <div><button className='btn'
           style={{ backgroundColor: 'transparent' }}
-          onClick={() => { history.push('/submissions') }}>
-          My Submissions
-        </button></div>
-        <div><button className='btn'
-          style={{ backgroundColor: 'transparent' }}
-          onClick={() => { history.push('/speechrecognition') }}>
-          Speech to Script
-        </button></div>
-        <div><button className='btn'
-          style={{ backgroundColor: 'transparent' }}
           onClick={() => { history.push('/about') }}>
           About
         </button></div>
