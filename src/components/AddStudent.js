@@ -11,7 +11,10 @@ const AddStudent = (props) => {
   const studentIdRef = useRef("");
   const classRef = useRef("");
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setErrorMessage("");
+    setShow(true);
+  };
   const handleHide = () => setShow(false);
 
   function showOptions(modInfo) {
@@ -30,20 +33,31 @@ const AddStudent = (props) => {
     const classInfo = getClassInfoByName(classRef.current.value);
     console.log(classInfo);
     const studentId = studentIdRef.current.value;
-    addStudentToClass(studentId, classInfo.classId);
-    updateStudentData(studentId, classInfo);
-    return handleHide();
+
+    if (studentId === "") {
+      setErrorMessage("Student ID required");
+    } else {
+      getStudentNameById(studentId).then((name) => {
+        if (name === "") {
+          setErrorMessage("Invalid ID, check with school coordinator");
+        } else {
+          addStudentToClass(studentId, name, classInfo.classId);
+          updateStudentData(studentId, classInfo);
+          handleHide();
+        }
+      });
+    }
   };
 
-  async function addStudentToClass(studentId, classId) {
+  async function addStudentToClass(studentId, name, classId) {
     console.log("student " + studentId + "added to class " + classId);
-    const studentName = await getStudentNameById(studentId);
-    console.log("we are trying to add Mr. " + studentName);
+    //const studentName = await getStudentNameById(studentId);
+    console.log("we are trying to add Mr. " + name);
     db.collection("classes")
       .doc(classId)
       .update({
         students: firebase.firestore.FieldValue.arrayUnion({
-          name: studentName,
+          name: name,
           submissions: [],
           grade: "",
         }),
@@ -87,9 +101,8 @@ const AddStudent = (props) => {
       });
     if (studentName === "") {
       setErrorMessage("No such student, check Id is correct");
-    } else {
-      return studentName;
     }
+    return studentName;
   }
 
   function getClassInfoByName(name) {

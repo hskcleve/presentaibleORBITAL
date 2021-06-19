@@ -4,12 +4,13 @@ import { db } from "../firebase";
 import { useState, useRef } from "react";
 
 //higher level component should check if user is a tutor before rendering this
-const CreateClass = () => {
+const CreateClass = (props) => {
   const { currentUser } = firebase.auth();
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const moduleRef = useRef("");
   const passRef = useRef("");
+  const { school } = props;
 
   function createClass() {
     const moduleName = moduleRef.current.value;
@@ -26,6 +27,12 @@ const CreateClass = () => {
         updateUserClassesField(moduleName, docu.path);
       })
       .catch((error) => console.log(error));
+    //updates database;
+    db.collection("schools")
+      .doc(school)
+      .collection("Modules")
+      .doc(moduleName)
+      .set({});
   }
 
   function updateUserClassesField(className, path) {
@@ -42,16 +49,43 @@ const CreateClass = () => {
       });
   }
 
-  const handleShow = () => setShow(true);
+  //todo
+  async function moduleExist(moduleName, schoolName) {
+    var moduleExists = false;
+    await db
+      .collection("schools")
+      .doc(schoolName)
+      .collection("Modules")
+      .doc(moduleName)
+      .get()
+      .then((doc) => {
+        moduleExists = doc.exists;
+        console.log(moduleExists);
+      });
+    return moduleExists;
+  }
+
+  const handleShow = () => {
+    console.log(school);
+    setErrorMessage("");
+    setShow(true);
+  };
+
   const handleHide = () => setShow(false);
   const handleSubmit = () => {
-    setErrorMessage("");
     console.log(moduleRef.current.value);
-    if (moduleRef.current.value !== "") {
+    var moduleCodeTaken = false;
+    moduleExist(moduleRef.current.value, school).then(
+      (result) => (moduleCodeTaken = result)
+    );
+    if (moduleRef.current.value === "") {
+      setErrorMessage("Module Code required");
+    } else if (moduleCodeTaken) {
+      console.log("somehow module exists");
+      setErrorMessage("Module Code exists, check with faculty coordinator");
+    } else {
       createClass();
       handleHide();
-    } else {
-      setErrorMessage("Need to fill up Module Code");
     }
     return moduleRef.current.value !== "" ? handleHide : handleShow;
   };

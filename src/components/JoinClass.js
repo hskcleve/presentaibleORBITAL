@@ -68,7 +68,10 @@ const JoinClass = () => {
     console.log("successfully updated user class field");
   }
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setErrorMessage("");
+    setShow(true);
+  };
   const handleHide = () => setShow(false);
 
   async function handleSubmit() {

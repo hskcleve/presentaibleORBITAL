@@ -46,7 +46,7 @@ const DashboardPage = () => {
         <SubmissionsPage />
 
         <Classes></Classes>
-        <CreateClass></CreateClass>
+        <CreateClass school={userSchool}></CreateClass>
         <JoinClass></JoinClass>
         <AddStudent modules={modules}></AddStudent>
         <SubmitSubmission
