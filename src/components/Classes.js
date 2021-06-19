@@ -15,7 +15,7 @@ const Classes = () => {
       return <h3>no classes yet</h3>;
     } else {
       return classes.map((classData) => (
-        <div>
+        <div className="classes-wrap">
           <h4>Module code: {classData.className}</h4>
           <h5>Tutor: {classData.tutorName}</h5>
           <h5>Class ID: {classData.classId}</h5>

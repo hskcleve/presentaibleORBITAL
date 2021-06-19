@@ -285,6 +285,19 @@ footer {
   background-color: goldenrod;
 }
 
+.dashboard-wrapper {
+  min-width: 600px;
+}
+
+.classes-wrap {
+  background-color: rgba(254, 254, 254, 0.6);
+  margin: 5px;
+}
+
+.classes-wrap-h4 {
+  background-color: goldenrod;
+}
+
 .profile-container {
   margin: 0;
   padding: 0;
@@ -292,8 +305,8 @@ footer {
   display: flex;
   width: 40%;
   height: 30%;
-  min-width: 200px;
-  min-height: none;
+  min-width: 300px;
+  min-height: 200px;
   align-items: center;
   background-color: goldenrod;
   border-radius: 20px 20px 20px 20px;
@@ -336,7 +349,7 @@ footer {
 .profile-edit-btn {
   padding: 3px;
   border-radius: 5px 5px 5px 5px;
-  background-color: dodgerblue;
+  background-color: rgb(238, 181, 36);
   right: -12px;
   margin-top: 5px;
 }
@@ -414,7 +427,7 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 10px 10px;
-  background-color:rgba(202, 202, 202, 0.644);
+  background-color: rgba(202, 202, 202, 0.644);
   margin-top: 10px;
   border-radius: 5px;
   max-width: 425px;
