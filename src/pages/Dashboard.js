@@ -36,24 +36,31 @@ const DashboardPage = () => {
       <>
         <Navbar />
         <br></br>
-        <div style={{display:'flex', alignItems:'flex-start', marginLeft:20, justifyContent: 'space-evenly'}}>
-        <div className="profile-component">
-          <Profile
-            name={currentUser.displayName}
-            id={currentUser.uid}
-          ></Profile>
-          <div className="dashboardSidebar">
-        <Classes></Classes>
-        <CreateClass school={userSchool}></CreateClass>
-        <JoinClass></JoinClass>
-        <AddStudent modules={modules}></AddStudent>
-        <SubmitSubmission
-          modules={modules}
-          school={userSchool}
-        ></SubmitSubmission>
-        </div>
-        </div>
-        <SubmissionsPage />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginLeft: 20,
+            justifyContent: "space-evenly",
+          }}
+        >
+          <div className="profile-component">
+            <Profile
+              name={currentUser.displayName}
+              id={currentUser.uid}
+            ></Profile>
+            <div className="dashboardSidebar">
+              <Classes></Classes>
+              <CreateClass school={userSchool}></CreateClass>
+              <JoinClass></JoinClass>
+              <AddStudent modules={modules}></AddStudent>
+              <SubmitSubmission
+                modules={modules}
+                school={userSchool}
+              ></SubmitSubmission>
+            </div>
+          </div>
+          <SubmissionsPage />
         </div>
       </>
     )

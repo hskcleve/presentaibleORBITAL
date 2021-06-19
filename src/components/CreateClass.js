@@ -38,13 +38,26 @@ const CreateClass = (props) => {
   function updateUserClassesField(className, path) {
     const docuPath = path.split("/");
     console.log(docuPath[1]);
+    const classId = docuPath[1];
     db.collection("users")
       .doc(currentUser.uid)
       .update({
         classes: firebase.firestore.FieldValue.arrayUnion({
           className: className,
           tutorName: currentUser.displayName,
-          classId: docuPath[1],
+          classId: classId,
+        }),
+      });
+    updateSchoolFields(classId, className);
+  }
+
+  function updateSchoolFields(classId, className) {
+    db.collection("schools")
+      .doc(school)
+      .update({
+        Modules: firebase.firestore.FieldValue.arrayUnion({
+          classId: classId,
+          className: className,
         }),
       });
   }
