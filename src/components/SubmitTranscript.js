@@ -28,19 +28,29 @@ const SubmitTranscript = ({transcript}) => {
     }
 
     const onSubmit = (event) => {
-      setPostUID("");
-      getSchool();
+        const timestamp = new Intl.DateTimeFormat('en-US',
+            {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }).format(Date.now());
+        console.log("time of submission: " + timestamp.toString());
+        setPostUID("");
+        getSchool();
         event.preventDefault();
-        if(!currentSubmission) {
+        if (!currentSubmission) {
             alert('Cannot submit empty script!')
             return
         }
-            db.collection('submissions').add({
+        db.collection('submissions').add({
                 title: currentSubmissionTitle,
                 author: user.displayName,
                 userUID: userUID,
                 content: currentSubmission,
                 school: school,
+                timeStamp: timestamp
             }).then((docRef) => {
               db.collection('users').doc(userUID).update({
                 posts: firebase.firestore.FieldValue.arrayUnion(docRef.id)

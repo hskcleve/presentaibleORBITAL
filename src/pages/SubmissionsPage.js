@@ -25,7 +25,8 @@ const SubmissionsPage = () => {
                     const content = data.content;
                     const postUID = doc.id;
                     const postTitle = data.title;
-                    arr.push([postUID, content, postTitle]);
+                    const timestamp = data.timeStamp;
+                    arr.push([postUID, content, postTitle, timestamp]);
                 })
                 setSubmissions(arr)
             })
@@ -63,7 +64,7 @@ const SubmissionsPage = () => {
 
     return (
         <div>
-            <div className='containerWide'>
+            <div className='containerWide' style={{marginRight:10, maxWidth:800,}}>
                 <h1 >My Submissions</h1>
                 <button className='btn'
                 style={{
@@ -71,12 +72,14 @@ const SubmissionsPage = () => {
                     onClick={() => { getUserSubmissions() }}>Refresh Submissions</button>
             </div>
 
-            <div className='containerWide' style={{backgroundColor:'transparent', flexWrap:'wrap', display:'flex', maxWidth:1920, justifyContent:'space-evenly'}}>
+            <div className='containerWide' style={{backgroundColor:'transparent', display:'flex', maxWidth:1920, flexDirection:'column'}}>
                 {submissions.map(submission =>
-                        <div className='submission' style={{fontSize:12, minWidth:250, maxWidth:250, minHeight:125, maxHeight:210}}>
-                            <h2>{submission[2]}</h2>
-                            {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}
-                            <div style={{ textAlign: 'center'}}>
+                        <div className='submissionLong' style={{fontSize:12, minWidth:700, maxWidth:700,  minHeight:50, maxHeight:400}}>
+                            <div><h2>{submission[2]}</h2>
+                            <div>Posted: {submission[3]}</div>
+                            <br></br>
+                            {submission[1].split(' ').slice(0, 20).join(" ") + " ..."}</div>
+                            <div style={{ textAlign: 'center', display:'flex', flexDirection:'column'}}>
                                 <button className='btn' style={{ fontSize: 10 }} onClick={() => { onOpen({ submission }) }}>Open</button>
                                 <button className='btn' style={{ fontSize: 10 }} onClick={() => { onDelete({ submission }) }}>Delete</button>
                             </div>

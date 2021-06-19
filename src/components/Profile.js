@@ -3,7 +3,7 @@ import React from "react";
 const Profile = (props) => {
   const { name, id } = props;
   return (
-    <div className="profile-container">
+    <div className="profile-container" style={{minWidth:425, minHeight:300}}>
       <title>Profile</title>
       <div>
         <img
