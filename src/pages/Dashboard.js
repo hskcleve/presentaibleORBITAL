@@ -14,10 +14,15 @@ const DashboardPage = () => {
   const { currentUser } = firebase.auth();
   const [modules, setModules] = useState([]);
   const [userSchool, setUserSchool] = useState();
+  const [schoolModules, setSchoolModules] = useState([]);
 
   useEffect(() => {
     loadOptions();
   }, []);
+
+  useEffect(() => {
+    loadSchoolModules();
+  }, [userSchool]);
 
   async function loadOptions() {
     const userDocRef = await db.collection("users").doc(currentUser.uid).get();
@@ -26,6 +31,20 @@ const DashboardPage = () => {
       userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
     setModules(userClasses);
     setUserSchool(userDocRef.data().school);
+  }
+
+  async function loadSchoolModules() {
+    console.log(userSchool);
+    const schoolModulesRef = await db
+      .collection("schools")
+      .doc(userSchool)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setSchoolModules(doc.data().Modules);
+        }
+      });
+    console.log(schoolModules);
   }
 
   console.log(modules);
@@ -52,7 +71,7 @@ const DashboardPage = () => {
             <div className="dashboardSidebar">
               <Classes></Classes>
               <CreateClass school={userSchool}></CreateClass>
-              <JoinClass></JoinClass>
+              <JoinClass modules={schoolModules}></JoinClass>
               <AddStudent modules={modules}></AddStudent>
               <SubmitSubmission
                 modules={modules}

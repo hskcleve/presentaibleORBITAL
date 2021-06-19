@@ -104,8 +104,10 @@ const SubmissionsPage = () => {
             flexDirection: "column",
           }}
         >
-          {submissions.map((submission) => (
+          {submissions.map((submission, i) => (
             <div
+              id={i}
+              key={i}
               className="submissionLong"
               style={{
                 fontSize: 12,

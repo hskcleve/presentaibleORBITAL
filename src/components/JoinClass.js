@@ -4,12 +4,24 @@ import { db } from "../firebase";
 import { useState, useRef } from "react";
 
 //higher level component should check if user is a tutor before rendering this
-const JoinClass = () => {
+const JoinClass = (props) => {
   const { currentUser } = firebase.auth();
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const classIdRef = useRef("");
   const passRef = useRef("");
+
+  function showOptions(modInfo) {
+    return modInfo.length !== 0
+      ? modInfo.map((item, i) => {
+          return (
+            <option key={i} value={item.className}>
+              {item.className}
+            </option>
+          );
+        })
+      : "";
+  }
 
   async function joinClass(classId) {
     console.log("joinClass called");
@@ -29,6 +41,7 @@ const JoinClass = () => {
   }
 
   async function passwordCorrect(classId, password) {
+    console.log(classId);
     console.log("checking password");
     let isCorrect = false;
     await db
@@ -75,11 +88,14 @@ const JoinClass = () => {
   const handleHide = () => setShow(false);
 
   async function handleSubmit() {
-    const classId = classIdRef.current.value;
+    const moduleName = classIdRef.current.value;
+    const classId = getClassInfoByName(moduleName).classId;
+    console.log(classId);
+    var passwordChecked = await passwordCorrect(classId, passRef.current.value);
     setErrorMessage("");
     if (classIdRef.current.value === "") {
       setErrorMessage("Class ID required");
-    } else if (await passwordCorrect(classId, passRef.current.value)) {
+    } else if (passwordChecked) {
       //not entirely sure await is not needed here
       console.log("join class successfully");
       joinClass(classId);
@@ -89,6 +105,10 @@ const JoinClass = () => {
       setErrorMessage("Class ID or password incorrect, contact your tutor");
     }
     return classIdRef.current.value !== "" ? handleHide : handleShow;
+  }
+
+  function getClassInfoByName(name) {
+    return props.modules.filter((mod) => mod.className == name)[0];
   }
 
   return (
@@ -105,13 +125,10 @@ const JoinClass = () => {
             <br></br>
             <Form.Label style={{ color: "red" }}>{errorMessage}</Form.Label>
             <Form.Group>
-              <Form.Label>Class ID *</Form.Label>
-              <Form.Control
-                id="moduleCodeInfo"
-                required
-                ref={classIdRef}
-                type="text "
-              ></Form.Control>
+              <Form.Label>Class *</Form.Label>
+              <Form.Control id="moduleCodeInfo" ref={classIdRef} as="select">
+                {showOptions(props.modules)}
+              </Form.Control>
             </Form.Group>
             <Form.Group>
               <Form.Label>Enter the password</Form.Label>
