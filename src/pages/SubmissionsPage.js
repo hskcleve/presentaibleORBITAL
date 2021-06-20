@@ -1,19 +1,78 @@
 import firebase from "firebase";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { db, storageRef } from "../firebase";
 import { useHistory } from "react-router-dom";
-import SubmitSubmission from "../components/SubmitSubmission";
-import Navbar from "../components/Navbar";
+import { Form,Button } from "react-bootstrap";
+
 
 const SubmissionsPage = (props) => {
   const user = firebase.auth().currentUser;
   const userUID = user.uid;
   const history = useHistory();
   const [submissions, setSubmissions] = useState([]);
+  const [modules, setModules] = useState([]);
+  const filterRef = useRef();
+  const [currentFilter, setCurrentFilter] = useState('');
+
+
+  async function handleFilter(e) {
+    e.preventDefault();
+    setCurrentFilter(filterRef.current.value);
+    console.log('current filter: ' + filterRef.current.value);
+  }
 
   useEffect(() => {
     getUserSubmissions();
+    getModules();
+    setCurrentFilter('All Classes');
   }, []);
+
+  useEffect(() => {
+    if (currentFilter === "All Classes"){ 
+      getUserSubmissions();
+      return;
+    }
+    db.collection("submissions")
+      .where("userUID", "==", userUID)
+      .get()
+      .then((querySnapshot) => {
+        const arr = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const content = data.content;
+          const postUID = doc.id;
+          const postTitle = data.title;
+          const timestamp = data.timeStamp;
+          const modulename = data.moduleName;
+          if (modulename === currentFilter){
+          arr.push([postUID, content, postTitle, timestamp]);
+          }
+        });
+        setSubmissions(arr);
+      });
+  }, [currentFilter]);
+
+  const getColor = () => {
+    switch(currentFilter) {
+        case "All Classes":
+            return 'rgba(41, 194, 166, 0.6)'
+        default:
+            return 'rgba(237, 81, 14, 0.6)'
+    }
+}
+
+  const getModules = () => {
+    const tempModules = [];
+        db.collection("users").doc(userUID).get().then((doc)=>{
+            const data = doc.data();
+            const moduleArray = data.classes;
+            moduleArray.forEach((mod)=>{
+                const className = mod["className"];
+                tempModules.push(className);
+            })
+            setModules(tempModules);
+        })
+  }
 
   const getUserSubmissions = () => {
     db.collection("submissions")
@@ -77,7 +136,7 @@ const SubmissionsPage = (props) => {
 
   return (
     <div>
-      <div className="containerWide" style={{ marginRight: 10, maxWidth: 800 }}>
+      <div className="containerWide" style={{ marginRight: 10, maxWidth: 800, minWidth: 800 }}>
         <h1>My Submissions</h1>
         <button
           className="btn"
@@ -95,6 +154,21 @@ const SubmissionsPage = (props) => {
         >
           Refresh Submissions
         </button>
+        <div style={{display:'flex', alignItems:'center', marginTop:30}}>
+                <p>Showing submissions from:</p>
+                    <Form onSubmit={handleFilter} style={{marginLeft:10, display:'flex', alignItems:'center'}}>
+                        <Form.Group id="filter">
+                            <Form.Control ref={filterRef} as="select">
+                                <option>All Classes</option>
+                                {modules.map(mod =>
+                                    <option>{mod}</option>)}
+                            </Form.Control>
+                        </Form.Group>
+                        <Button className='btnForFilter' type="submit">
+                            Filter
+                        </Button>
+                    </Form>
+                </div>
         <div className="container-all-submissions">
           {submissions.map((submission, i) => (
             <div
@@ -107,6 +181,7 @@ const SubmissionsPage = (props) => {
                 maxWidth: 700,
                 minHeight: 50,
                 maxHeight: 400,
+                backgroundColor: getColor()
               }}
             >
               <div>

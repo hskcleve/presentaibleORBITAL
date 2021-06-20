@@ -65,6 +65,7 @@ const ViewPostPage = () => {
     return (
         <div>
             <Navbar />
+            <br></br>
             <div className='containerWide'>
             <h1>{postTitle}</h1>
             <h3>by {postAuthor}</h3>
