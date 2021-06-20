@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import SubmitSubmission from "../components/SubmitSubmission";
 import Navbar from "../components/Navbar";
 
-const SubmissionsPage = () => {
+const SubmissionsPage = (props) => {
   const user = firebase.auth().currentUser;
   const userUID = user.uid;
   const history = useHistory();

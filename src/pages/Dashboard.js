@@ -113,7 +113,7 @@ const DashboardPage = () => {
                 id={currentUser.uid}
               ></Profile>
               <div className="dashboardSidebar">
-                <Classes></Classes>
+                <Classes modules={modules}></Classes>
                 {renderButtons(userRole)}
               </div>
             </div>
