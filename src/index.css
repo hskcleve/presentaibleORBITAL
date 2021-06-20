@@ -432,3 +432,14 @@ footer {
   border-radius: 5px;
   max-width: 425px;
 }
+
+.user-conditional-btns {
+  display: table;
+  width: 100%;
+}
+
+.dashboardSidebar button {
+  width: 100%;
+  text-align: center;
+  flex-wrap: inherit;
+}

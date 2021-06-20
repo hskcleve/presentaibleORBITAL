@@ -95,15 +95,7 @@ const SubmissionsPage = () => {
         >
           Refresh Submissions
         </button>
-        <div
-          className="containerWide"
-          style={{
-            backgroundColor: "transparent",
-            display: "flex",
-            maxWidth: 1920,
-            flexDirection: "column",
-          }}
-        >
+        <div className="container-all-submissions">
           {submissions.map((submission, i) => (
             <div
               id={i}

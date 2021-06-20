@@ -15,6 +15,7 @@ const DashboardPage = () => {
   const [modules, setModules] = useState([]);
   const [userSchool, setUserSchool] = useState();
   const [schoolModules, setSchoolModules] = useState([]);
+  const [userRole, setUserRole] = useState(false);
 
   useEffect(() => {
     loadOptions();
@@ -29,8 +30,10 @@ const DashboardPage = () => {
     //undefined field check for users without classes array
     const userClasses =
       userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
+    const roleInfo = userDocRef.data().role;
     setModules(userClasses);
     setUserSchool(userDocRef.data().school);
+    setUserRole(roleInfo.tutor);
   }
 
   async function loadSchoolModules() {
@@ -47,7 +50,47 @@ const DashboardPage = () => {
     console.log(schoolModules);
   }
 
-  console.log(modules);
+  function renderButtons(tutorRole) {
+    return (
+      <div className="user-conditional-btns">
+        {renderCreateClass(tutorRole)}
+        {renderJoinClass(tutorRole)}
+        {renderAddStudent(tutorRole)}
+        {renderSubmitSubmission(tutorRole)}
+      </div>
+    );
+  }
+
+  function renderCreateClass(tutorRole) {
+    return (
+      <div>{tutorRole && <CreateClass school={userSchool}></CreateClass>}</div>
+    );
+  }
+
+  function renderJoinClass(tutorRole) {
+    return (
+      <div>{!tutorRole && <JoinClass modules={schoolModules}></JoinClass>}</div>
+    );
+  }
+
+  function renderAddStudent(tutorRole) {
+    return (
+      <div>{tutorRole && <AddStudent modules={modules}></AddStudent>}</div>
+    );
+  }
+
+  function renderSubmitSubmission(tutorRole) {
+    return (
+      <div>
+        {!tutorRole && (
+          <SubmitSubmission
+            modules={modules}
+            school={userSchool}
+          ></SubmitSubmission>
+        )}
+      </div>
+    );
+  }
 
   return (
     console.log("DashboardPage reached"),
@@ -56,7 +99,7 @@ const DashboardPage = () => {
         <Navbar />
         <div className="dashboard-wrapper">
           <br></br>
-          <div
+          <section
             style={{
               display: "flex",
               alignItems: "flex-start",
@@ -71,17 +114,11 @@ const DashboardPage = () => {
               ></Profile>
               <div className="dashboardSidebar">
                 <Classes></Classes>
-                <CreateClass school={userSchool}></CreateClass>
-                <JoinClass modules={schoolModules}></JoinClass>
-                <AddStudent modules={modules}></AddStudent>
-                <SubmitSubmission
-                  modules={modules}
-                  school={userSchool}
-                ></SubmitSubmission>
+                {renderButtons(userRole)}
               </div>
             </div>
             <SubmissionsPage />
-          </div>
+          </section>
         </div>
       </>
     )
