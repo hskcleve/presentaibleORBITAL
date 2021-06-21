@@ -9,6 +9,7 @@ import Profile from "../components/Profile";
 import SubmitSubmission from "../components/SubmitSubmission";
 import { db } from "../firebase";
 import SubmissionsPage from "./SubmissionsPage";
+import TutorSubmission from "../components/TutorSubmissions";
 
 const DashboardPage = () => {
   const { currentUser } = firebase.auth();
@@ -16,6 +17,7 @@ const DashboardPage = () => {
   const [userSchool, setUserSchool] = useState();
   const [schoolModules, setSchoolModules] = useState([]);
   const [userRole, setUserRole] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadOptions();
@@ -48,6 +50,7 @@ const DashboardPage = () => {
         }
       });
     console.log(schoolModules);
+    setLoading(false);
   }
 
   function renderButtons(tutorRole) {
@@ -92,36 +95,59 @@ const DashboardPage = () => {
     );
   }
 
-  return (
-    console.log("DashboardPage reached"),
-    (
+  function renderSubmissions(tutorRole) {
+    return (
       <>
-        <Navbar />
-        <div className="dashboard-wrapper">
-          <br></br>
-          <section
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginLeft: 20,
-              justifyContent: "space-evenly",
-            }}
-          >
-            <div className="profile-component">
-              <Profile
-                name={currentUser.displayName}
-                id={currentUser.uid}
-              ></Profile>
-              <div className="dashboardSidebar">
-                <Classes modules={modules}></Classes>
-                {renderButtons(userRole)}
-              </div>
-            </div>
-            <SubmissionsPage />
-          </section>
-        </div>
+        {renderStudentSubmissions(tutorRole)}
+        {renderTutorSubmissions(tutorRole)}
       </>
-    )
+    );
+  }
+
+  function renderStudentSubmissions(tutorRole) {
+    return <>{!tutorRole && <SubmissionsPage></SubmissionsPage>}</>;
+  }
+
+  function renderTutorSubmissions(tutorRole) {
+    return (
+      <>{tutorRole && <TutorSubmission modules={modules}></TutorSubmission>}</>
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <div className="dashboard-wrapper">
+        <br></br>
+        <section
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginLeft: 20,
+            justifyContent: "space-evenly",
+          }}
+        >
+          <div className="profile-component">
+            <Profile
+              name={currentUser.displayName}
+              id={currentUser.uid}
+            ></Profile>
+
+            {!loading && (
+              <>
+                <div className="dashboardSidebar">
+                  <Classes modules={modules}></Classes>
+                  {renderButtons(userRole)}
+                </div>
+              </>
+            )}
+          </div>
+          <div className="container-submissions">
+            {!loading && renderSubmissions(userRole)}
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

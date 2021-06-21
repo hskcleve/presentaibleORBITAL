@@ -26,14 +26,13 @@ const SubmitSubmission = (props) => {
   const handleSubmit = (event) => {
     var moduleSelect = document.getElementById("submission-class-slt");
     const moduleTarget = moduleSelect.value;
-    const timestamp = new Intl.DateTimeFormat('en-US',
-      {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }).format(Date.now());
+    const timestamp = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(Date.now());
     console.log("time of submission: " + timestamp.toString());
     console.log(moduleTarget);
     event.preventDefault();
@@ -51,7 +50,7 @@ const SubmitSubmission = (props) => {
           school: props.school,
           attachedFileName: file.name,
           moduleName: moduleTarget,
-          timeStamp: timestamp
+          timeStamp: timestamp,
         })
         .then((docRef) => {
           db.collection("users")
@@ -76,7 +75,7 @@ const SubmitSubmission = (props) => {
           content: currentSubmission,
           school: props.school,
           moduleName: moduleTarget,
-          timeStamp: timestamp
+          timeStamp: timestamp,
         })
         .then((docRef) => {
           db.collection("users")
@@ -124,7 +123,7 @@ const SubmitSubmission = (props) => {
       >
         <div className="submission-modal-content">
           <div className="submission-modal-body">
-            <form onSubmit={handleSubmit}>
+            <form>
               <h2 style={{ margin: 5 }}>Add a new submission:</h2>
               <input
                 type="text"
