@@ -152,6 +152,11 @@ body {
   align-items: center;
 }
 
+.AI-logo-wording {
+  font-size: 31px;
+  color: goldenrod;
+}
+
 .btn {
   display: inline-block;
   /*background: rgb(226, 170, 170);*/
