@@ -3,7 +3,10 @@ import React from "react";
 const Profile = (props) => {
   const { name, id } = props;
   return (
-    <div className="profile-container" style={{minWidth:425, minHeight:300}}>
+    <div
+      className="profile-container"
+      style={{ minWidth: 425, minHeight: 300 }}
+    >
       <title>Profile</title>
       <div>
         <img
@@ -16,7 +19,7 @@ const Profile = (props) => {
           <button className="profile-edit-btn">Edit profile</button>
         </div>
       </div>
-      <p>lorem lorem lorem lorem</p>
+      <p>Here contains the feedback score component</p>
     </div>
   );
 };

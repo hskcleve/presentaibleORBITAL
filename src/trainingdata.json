@@ -1,42 +1,180 @@
 [
-    {
-        "input": "The pace is too slow",
-        "output": "bad"
-    },
-    {
-        "input": "Could be better",
-        "output": "bad"
-    },
-    {
-        "input": "Needs more information and evidence",
-        "output": "bad"
-    },
-    {
-        "input": "Does not seem to address the question",
-        "output": "bad"
-    },
-    {
-        "input": "You went off-topic sometimes",
-        "output": "bad"
-    },
-    {
-        "input": "Great presentation!",
-        "output": "good"
-    },
-    {
-        "input": "You addressed the topic really well",
-        "output": "good"
-    },
-    {
-        "input": "Good pace and tonality. Eloquent speech.",
-        "output": "good"
-    },
-    {
-        "input": "You have improved",
-        "output": "good"
-    },
-    {
-        "input": "Well written script.",
-        "output": "good"
-    }
+  {
+    "input": "The pace is too slow",
+    "output": "bad"
+  },
+  {
+    "input": "Could be better",
+    "output": "bad"
+  },
+  {
+    "input": "Needs more information and evidence",
+    "output": "bad"
+  },
+  {
+    "input": "Does not seem to address the question",
+    "output": "bad"
+  },
+  {
+    "input": "You went off-topic sometimes",
+    "output": "bad"
+  },
+  {
+    "input": "Great presentation!",
+    "output": "good"
+  },
+  {
+    "input": "You addressed the topic really well",
+    "output": "good"
+  },
+  {
+    "input": "Good pace and tonality. Eloquent speech.",
+    "output": "good"
+  },
+  {
+    "input": "You have improved",
+    "output": "good"
+  },
+  {
+    "input": "Well written script.",
+    "output": "good"
+  },
+  {
+    "input": "I really enjoyed the topic you presented",
+    "output": "good"
+  },
+  {
+    "input": "I like the way you used pictures in the slides",
+    "output": "good"
+  },
+  {
+    "input": "You really know how to effectively captivate your audience. Well Done",
+    "output": "good"
+  },
+  {
+    "input": "You are an effective presenter, the pace was clear and content was concise",
+    "output": "good"
+  },
+  { "input": "Good Job keep it up", "output": "good" },
+  { "input": "You lack confidence", "output": "bad" },
+  { "input": "You fail to understand your target audience", "output": "bad" },
+  { "input": "You should try to understand your audience", "output": "bad" },
+  { "input": "You need more practice", "output": "bad" },
+  { "input": "You speak too fast", "output": "bad" },
+  { "input": "it is difficult to understand you", "output": "bad" },
+  { "input": "the slides are too wordy", "output": "bad" },
+  { "input": "Slides are not concised", "output": "bad" },
+  { "input": "I learnt something from your presentation", "output": "good" },
+  { "input": "The presentation was engaging", "output": "good" },
+  { "input": "The points were clearly conveyed", "output": "good" },
+  { "input": "The presentation lack focus", "output": "bad" },
+  { "input": "the presentation was boring", "output": "bad" },
+  { "input": "the slides were too plain", "output": "bad" },
+  { "input": "the slides are clean and simple", "output": "good" },
+  { "input": "the flow of the presentation was good", "output": "good" },
+  { "input": "it is obvious you are reading from a script", "output": "bad" },
+  { "input": "the tone used was too monotonous", "output": "bad" },
+  { "input": "you should improve the tone used", "output": "bad" },
+  { "input": "you could try to sound more interested", "output": "bad" },
+  { "input": "work on varying your tone", "output": "bad" },
+  { "input": "the fonts used were too small to see clearly", "output": "bad" },
+  { "input": "I liked the colour used in the slides", "output": "good" },
+  { "input": "the slides were colourful", "output": "good" },
+  { "input": "the presentation is concise", "output": "good" },
+  { "input": "you should be more formal", "output": "bad" },
+  { "input": "a more formal tone would be more suitable", "output": "bad" },
+  { "input": "in slide 3, there were too many words", "output": "bad" },
+  { "input": "you could use a diagram in slide 7 instead", "output": "bad" },
+  { "input": "you could vary your tone more", "output": "bad" },
+  { "input": "get to the point", "output": "bad" },
+  { "input": "be more enthusiastic ", "output": "bad" },
+  { "input": "the humour was not appropriate", "output": "bad" },
+  {
+    "input": "the second section of your slides could be conveyed clearer",
+    "output": "bad"
+  },
+  { "input": "the topic was fun", "output": "good" },
+  { "input": "the presentation is interesting", "output": "good" },
+  { "input": "it is obvious that you are well prepared", "output": "good" },
+  { "input": "well prepared", "output": "good" },
+  { "input": "the presentation is well rehearsed", "output": "good" },
+  { "input": "perfectly presented", "output": "bad" },
+  { "input": "no comments", "output": "good" },
+  {
+    "input": "Overall the presentation was well prepared, the tone used was good too",
+    "output": "good"
+  },
+  { "input": "The eye contact use was effective", "output": "good" },
+  {
+    "input": "good use of eye contact and the slides were clear",
+    "output": "good"
+  },
+  {
+    "input": "The flow of the presentation was good and the points were logical",
+    "output": "good"
+  },
+  {
+    "input": "There was an awkward pause at the 1 minute mark",
+    "output": "bad"
+  },
+  {
+    "input": "there was too long of a pause in the middle, could use more practice",
+    "output": "bad"
+  },
+  {
+    "input": "should be more prepared, the slides are poorly organised",
+    "output": "bad"
+  },
+  {
+    "input": "it was refreshing, the ideas were interesting too",
+    "output": "good"
+  },
+  {
+    "input": "you have a good sense of the target audience, the tone used was good and the presentation is engaging",
+    "output": "good"
+  },
+  { "input": "wow that was really good", "output": "good" },
+  { "input": "impressive and interesting", "output": "good" },
+  {
+    "input": "i am impressed by how well prepared you are, the flow of the contents were clear and engaging",
+    "output": "good"
+  },
+  {
+    "input": "wah that was really good, i liked the part where you referred to points in your slides",
+    "output": "good"
+  },
+  {
+    "input": "you should put more effort into the presentation",
+    "output": "bad"
+  },
+  { "input": "the eye contact is lacking", "output": "bad" },
+  { "input": "that was the best", "output": "good" },
+  { "input": "the slides were too small, it was hard to see", "output": "bad" },
+  {
+    "input": "at slide 8, the slide was shown for too short of a duration.",
+    "output": "bad"
+  },
+  {
+    "input": "badly presented, you need to improve on your delivery",
+    "output": "bad"
+  },
+  {
+    "input": "refer to your notes from IS2101, you need to keep in mind the 5Cs",
+    "output": "bad"
+  },
+  { "input": "the presentation was too dragged out", "output": "bad" },
+  { "input": "the presentation is not clear", "output": "bad" },
+  {
+    "input": "work on enunciation, the presentation is badly delivered",
+    "output": "bad"
+  },
+  { "input": "I did not like it", "output": "bad" },
+  {
+    "input": "you put alot of work into the slides, the animation were effective",
+    "output": "good"
+  },
+  {
+    "input": "you understand how to give an effective presentation, the points were brought across well and the slides were great",
+    "output": "good"
+  }
 ]
