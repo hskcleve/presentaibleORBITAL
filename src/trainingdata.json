@@ -1,0 +1,42 @@
+[
+    {
+        "input": "The pace is too slow",
+        "output": "bad"
+    },
+    {
+        "input": "Could be better",
+        "output": "bad"
+    },
+    {
+        "input": "Needs more information and evidence",
+        "output": "bad"
+    },
+    {
+        "input": "Does not seem to address the question",
+        "output": "bad"
+    },
+    {
+        "input": "You went off-topic sometimes",
+        "output": "bad"
+    },
+    {
+        "input": "Great presentation!",
+        "output": "good"
+    },
+    {
+        "input": "You addressed the topic really well",
+        "output": "good"
+    },
+    {
+        "input": "Good pace and tonality. Eloquent speech.",
+        "output": "good"
+    },
+    {
+        "input": "You have improved",
+        "output": "good"
+    },
+    {
+        "input": "Well written script.",
+        "output": "good"
+    }
+]
