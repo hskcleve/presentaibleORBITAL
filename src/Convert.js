@@ -14,6 +14,7 @@ const its = require("wink-nlp/src/its.js");
 const as = require("wink-nlp/src/as.js");
 
 const model = require("wink-eng-lite-model");
+const doc = require("wink-nlp/src/doc-v2");
 const nlp = winkNLP(model);
 
 const patterns = [
@@ -31,7 +32,12 @@ const patterns = [
       "VERB ADJ",
       "VERB NOUN",
       "NOUN VERB",
+      "NOUN",
+      "VERB",
+      "ADJ",
+      "ADV",
       "INTJ",
+      "PART",
     ],
   },
 ];
@@ -44,11 +50,4 @@ const reWrittenDatajson = originalTrainingData.map((item) => ({
 }));
 const reWrittenData = JSON.stringify(reWrittenDatajson);
 //console.log(JSON.stringify(reWrittenData));
-fs.writeFileSync("parsedTrainingData.json", reWrittenData);
-
-const reWrittenDataTaggedjson = originalTrainingData.map((item) => ({
-  input: nlp.readDoc(item.input).customEntities().out(its.pos),
-  output: net.run(nlp.readDoc(item.input).customEntities().out(its.pos)),
-}));
-const reWrittenDataTagged = JSON.stringify(reWrittenDataTaggedjson);
-fs.writeFileSync("parsedAutoTagData.json", reWrittenDataTagged);
+fs.writeFileSync("parsedTrainingData2.json", reWrittenData);
