@@ -18,7 +18,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-speech-recognition": "^3.8.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "wink-eng-lite-model": "https://github.com/winkjs/wink-eng-lite-model/releases/download/1.3.0/wink-eng-lite-model-1.3.0.tgz",
+    "wink-nlp": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
