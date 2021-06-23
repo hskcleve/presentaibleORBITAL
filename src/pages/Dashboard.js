@@ -18,6 +18,8 @@ const DashboardPage = () => {
   const [schoolModules, setSchoolModules] = useState([]);
   const [userRole, setUserRole] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [goodFeedbacks, setGoodFeedbacks] = useState(0);
+  const [totalFeedbacks, setTotalFeedbacks] = useState(0);
 
   useEffect(() => {
     loadOptions();
@@ -36,6 +38,7 @@ const DashboardPage = () => {
     setModules(userClasses);
     setUserSchool(userDocRef.data().school);
     setUserRole(roleInfo.tutor);
+    //todo - get feedback from user profile
   }
 
   async function loadSchoolModules() {
@@ -131,6 +134,8 @@ const DashboardPage = () => {
             <Profile
               name={currentUser.displayName}
               id={currentUser.uid}
+              goodFeedbacks={goodFeedbacks}
+              totalFeedbacks={totalFeedbacks}
             ></Profile>
 
             {!loading && (

@@ -128,6 +128,7 @@ const ViewSubmissionByClass = (props) => {
                 {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
               </div>
             </div>
+            <h2>Feedbacks goes here</h2>
             <div style={{ textAlign: "end" }}>
               <button
                 className="btn"
