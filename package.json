@@ -1,4 +1,5 @@
 {
+  "proxy": "https://presentaible-backend.herokuapp.com",
   "name": "presentaible",
   "version": "0.1.0",
   "private": true,
