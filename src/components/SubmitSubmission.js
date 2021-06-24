@@ -51,6 +51,10 @@ const SubmitSubmission = (props) => {
           attachedFileName: file.name,
           moduleName: moduleTarget,
           timeStamp: timestamp,
+          good: 0,
+          bad: 0,
+          neutral: 0,
+          totalFeedbacks: 0,
         })
         .then((docRef) => {
           db.collection("users")
@@ -76,6 +80,10 @@ const SubmitSubmission = (props) => {
           school: props.school,
           moduleName: moduleTarget,
           timeStamp: timestamp,
+          good: 0,
+          bad: 0,
+          neutral: 0,
+          totalFeedbacks: 0,
         })
         .then((docRef) => {
           db.collection("users")

@@ -3,13 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import { db } from "../firebase";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
+import Feedback from "../components/Feedback";
 
 const ViewSubmissionByClass = (props) => {
   const user = firebase.auth().currentUser;
   const userUID = user.uid;
   const [submissions, setSubmissions] = useState([]);
   const history = useHistory();
-
   const [modules, setModules] = useState([]);
   const filterRef = useRef();
   const [currentFilter, setCurrentFilter] = useState("None");
@@ -62,7 +62,21 @@ const ViewSubmissionByClass = (props) => {
             const PostUID = doc.id;
             const title = data.title;
             const timestamp = data.timeStamp;
-            arr.push([author, content, PostUID, title, timestamp]);
+            const good = data.good;
+            const neutral = data.neutral;
+            const bad = data.bad;
+            const totalFeedbacks = data.totalFeedbacks;
+            arr.push([
+              author, //0
+              content, //1
+              PostUID, //2
+              title, //3
+              timestamp, //4
+              good, //5
+              neutral, //6
+              bad, //7
+              totalFeedbacks, //8
+            ]);
           });
           setSubmissions(arr);
         });
@@ -74,16 +88,7 @@ const ViewSubmissionByClass = (props) => {
   };
 
   const getColor = () => {
-    switch (currentFilter) {
-      case "Public":
-        return "rgba(41, 194, 166, 0.6)";
-      case "SMU":
-      case "NTU":
-      case "NUS":
-        return "rgba(218,165,32,0.7)";
-      default:
-        return "rgba(237, 81, 14, 0.6)";
-    }
+    return "#EAD7C3";
   };
 
   const RenderSubmissions = () => {
@@ -105,6 +110,11 @@ const ViewSubmissionByClass = (props) => {
           display: "flex",
           minHeight: 500,
           maxWidth: 1920,
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          justifyContent: "start",
+          maxWidth: 800,
         }}
       >
         {submissions.map((submission) => (
@@ -112,9 +122,9 @@ const ViewSubmissionByClass = (props) => {
             className="submission"
             style={{
               fontSize: 12,
-              minWidth: 250,
-              maxWidth: 250,
-              maxHeight: 250,
+              minWidth: 350,
+              maxWidth: 350,
+              maxHeight: 390,
               backgroundColor: getColor(),
             }}
           >
@@ -124,11 +134,16 @@ const ViewSubmissionByClass = (props) => {
                 by {submission[0]} on {submission[4]}{" "}
               </div>
               <br></br>
-              <div>
+              <div style={{ minHeight: 60 }}>
                 {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
               </div>
+              <Feedback
+                feedback={submission[8] != 0 && submission[8] != undefined}
+                badFeedbacks={submission[7]}
+                goodFeedbacks={submission[5]}
+                neutral={submission[6]}
+              ></Feedback>
             </div>
-            <h2>Feedbacks goes here</h2>
             <div style={{ textAlign: "end" }}>
               <button
                 className="btn"
@@ -156,7 +171,12 @@ const ViewSubmissionByClass = (props) => {
       <div>
         <div
           className="containerWide"
-          style={{ display: "flex", alignItems: "center" }}
+          style={{
+            minWidth: 800,
+            maxWidth: 800,
+            display: "flex",
+            alignItems: "center",
+          }}
         >
           <h3>Submissions in:</h3>
           <Form

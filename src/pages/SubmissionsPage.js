@@ -42,9 +42,22 @@ const SubmissionsPage = (props) => {
           const postUID = doc.id;
           const postTitle = data.title;
           const timestamp = data.timeStamp;
+          const good = data.good;
+          const neutral = data.neutral;
+          const bad = data.bad;
+          const totalFeedbacks = data.totalFeedbacks;
           const modulename = data.moduleName;
           if (modulename === currentFilter) {
-            arr.push([postUID, content, postTitle, timestamp]);
+            arr.push([
+              postUID, //0
+              content, //1
+              postTitle, //2
+              timestamp, //3
+              good, //4
+              neutral, //5
+              bad, //6
+              totalFeedbacks, //7
+            ]);
           }
         });
         setSubmissions(arr);
@@ -88,7 +101,20 @@ const SubmissionsPage = (props) => {
           const postUID = doc.id;
           const postTitle = data.title;
           const timestamp = data.timeStamp;
-          arr.push([postUID, content, postTitle, timestamp]);
+          const good = data.good;
+          const neutral = data.neutral;
+          const bad = data.bad;
+          const totalFeedbacks = data.totalFeedbacks;
+          arr.push([
+            postUID, //0
+            content, //1
+            postTitle, //2
+            timestamp, //3
+            good, //4
+            neutral, //5
+            bad, //6
+            totalFeedbacks, //7
+          ]);
         });
         setSubmissions(arr);
       });
@@ -197,7 +223,7 @@ const SubmissionsPage = (props) => {
                 <h2>{submission[2]}</h2>
                 <div>Posted: {submission[3]}</div>
                 <br></br>
-                {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
+                {submission[1].split(" ").slice(0, 40).join(" ") + " ..."}
               </div>
 
               <div
@@ -209,9 +235,10 @@ const SubmissionsPage = (props) => {
               >
                 <div className="dashboard-submission-feedback">
                   <Feedback
-                    feedback={true}
-                    badFeedbacks={1}
-                    goodFeedbacks={2}
+                    feedback={submission[7] != 0 && submission[7] != undefined}
+                    badFeedbacks={submission[6]}
+                    goodFeedbacks={submission[4]}
+                    neutral={submission[5]}
                     isPost={true}
                   ></Feedback>
                 </div>
