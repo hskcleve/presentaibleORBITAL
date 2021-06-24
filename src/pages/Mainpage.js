@@ -10,7 +10,7 @@ const Mainpage = () => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify({ content: 'Is good, I love it. Nice presentation' })
+    body: JSON.stringify({ content: 'You went off-topic sometimes' })
   };
 
   useEffect(() => {
