@@ -112,7 +112,7 @@ const AddStudent = (props) => {
 
   return (
     <>
-      <Button onClick={handleShow}>Add Student</Button>
+      <button className='btnMargin' onClick={handleShow}>Add Student</button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>

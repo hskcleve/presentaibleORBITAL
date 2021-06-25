@@ -166,7 +166,7 @@ const SubmissionsPage = (props) => {
     <div>
       <div
         className="containerWide"
-        style={{ marginRight: 10, maxWidth: 800, minWidth: 800 }}
+        style={{ marginRight: 10, minWidth: 770}}
       >
         <h1>My Submissions</h1>
         <button
@@ -185,7 +185,7 @@ const SubmissionsPage = (props) => {
         >
           Refresh Submissions
         </button>
-        <div style={{ display: "flex", alignItems: "center", marginTop: 30 }}>
+        <div style={{ display: "flex", alignItems: "center", marginTop: 30 , maxWidth:700}}>
           <p>Showing submissions from:</p>
           <Form
             onSubmit={handleFilter}

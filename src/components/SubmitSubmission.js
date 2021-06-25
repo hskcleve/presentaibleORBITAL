@@ -123,7 +123,7 @@ const SubmitSubmission = (props) => {
 
   return (
     <>
-      <Button onClick={handleShow}>Add Submission</Button>
+      <button className='btnMargin' onClick={handleShow}>Add Submission</button>
       <div
         id="submission-modal"
         className="submission-modal"

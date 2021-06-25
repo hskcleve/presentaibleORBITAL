@@ -71,6 +71,13 @@ body {
   background: rgba(202, 202, 202, 0.644);
 }
 
+.classContainer {
+  background: rgba(218, 165, 32, 0.575);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px
+}
+
 .containerForSubmission {
   max-width: 90rem;
   min-width: 100px;
@@ -94,6 +101,12 @@ body {
   background: rgba(202, 202, 202, 0.644);
   padding: 30px;
   border-radius: 5px;
+}
+
+.container-all-submissions {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
 }
 
 .frontPageWelcome {
@@ -168,6 +181,20 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+}
+
+.btnMargin {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: inherit;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .btnForFilter {
@@ -309,7 +336,7 @@ footer {
   display: flex;
   width: 60%;
   height: 30%;
-  min-width: 600px;
+  max-width: 350px;
   min-height: 300px;
   align-items: center;
   background-color: goldenrod;
@@ -340,7 +367,6 @@ footer {
   font-weight: bolder;
   font-style: normal;
   font-size: 24px;
-  font-variant-caps: small-caps;
 }
 
 .profile-info h3 {
@@ -437,7 +463,9 @@ footer {
   background-color: rgba(202, 202, 202, 0.644);
   margin-top: 10px;
   border-radius: 5px;
+  min-width: 425px;
   max-width: 425px;
+  margin-bottom: 10px;
 }
 
 .user-conditional-btns {
@@ -461,7 +489,4 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.viewpost-info-container {
 }

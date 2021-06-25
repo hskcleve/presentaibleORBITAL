@@ -10,24 +10,22 @@ const Profile = (props) => {
   return (
     <div
       className="profile-container"
-      style={{ minWidth: 425, minHeight: 300 }}
+      style={{ minWidth: 425}}
     >
-      <title>Profile</title>
-
-      <img
+       <img
         className="profile-image"
         src="https://image.flaticon.com/icons/png/64/1077/1077012.png"
       ></img>
+      <div style={{display:'flex', flexDirection:'column'}}>
+      <div className="profile-info">
+        <h2>{name}</h2>
+        <h6>UserID: {id}</h6>
+      </div>
       <Feedback
         feedback={feedback}
         goodFeedbacks={goodFeedbacks}
         badFeedbacks={badFeedbacks}
       ></Feedback>
-
-      <div className="profile-info">
-        <h2>{name}</h2>
-        <h3>{id}</h3>
-        <button className="profile-edit-btn">Edit profile</button>
       </div>
     </div>
   );

@@ -198,12 +198,15 @@ const ExplorePage = () => {
               <div style={{ minHeight: 60 }}>
                 {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
               </div>
-              <Feedback
+              <br></br>
+              <div style={{display:'flex', justifyContent:'center'}}>
+              <Feedback 
                 feedback={submission[8] != 0 && submission[8] != undefined}
                 badFeedbacks={submission[7]}
                 goodFeedbacks={submission[5]}
                 neutral={submission[6]}
               ></Feedback>
+              </div>
             </div>
             <div style={{ textAlign: "end" }}>
               <button

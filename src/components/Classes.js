@@ -9,7 +9,7 @@ const Classes = (props) => {
   //should assign each classData to a viewClass component
   const loadClasses = () => {
     return modInfo.map((classData) => (
-      <div className="classes-wrap">
+      <div className="classContainer">
         <h4>Module code: {classData.className}</h4>
         <h5>Tutor: {classData.tutorName}</h5>
         <h5>Class ID: {classData.classId}</h5>

@@ -80,20 +80,19 @@ const ViewPostPage = () => {
     <div>
       <Navbar />
       <br></br>
-      <div className="viewpost-info-wrapper">
-        <div className="viewpost-info-container">
+      <div className="viewpost-info-wrapper" style={{display:'flex', alignItems:'center'}}>
+      <div style={{display:'flex', flexDirection:'column'}}>
           <h1>{postTitle}</h1>
           <h3>by {postAuthor}</h3>
           <h6>PostUID: {PostUID}</h6>
-          <PlayAudioFromURL downloadURL={downloadURL} />
-        </div>
+          </div>
+        <PlayAudioFromURL downloadURL={downloadURL} />
         <Feedback
           feedback={feedback}
           badFeedbacks={badFeedbacks}
           goodFeedbacks={goodFeedbacks}
-          neutral={neutralFeedbacks}
-          style={{ margin: 20 }}
-        ></Feedback>
+          neutral={neutralFeedbacks}>
+          </Feedback>
       </div>
       <div className="container">
         <strong>Script:</strong> {postContent}

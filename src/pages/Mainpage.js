@@ -10,7 +10,7 @@ const Mainpage = () => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify({ content: 'Very good, very nice' })
+    body: JSON.stringify({ content: 'well done' })
   };
 
   useEffect(() => {
@@ -23,11 +23,10 @@ const Mainpage = () => {
   return (
     <>
     <Navbar/>
-    
+    <p style={{fontSize:6}}>backend: {!data ? "loading...":data}</p>
       <div>
       <h1 className="frontPageWelcome" style={{color:'GhostWhite'}}>Welcome Back,</h1>
       <h1 className="frontPageWelcome2" style={{color:'Beige'}}>{username}.</h1>
-      <h1 className="frontPageWelcome2" style={{color:'Beige'}}>From Server: {!data ? "loading...":data}</h1>
       </div>
     
   </>)
