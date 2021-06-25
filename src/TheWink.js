@@ -7,33 +7,28 @@ const nlp = winkNLP(model);
 
 const patterns = [
     {name: 'descriptors', patterns: [
-        'AUX ADJ',
-        'ADJ AUX',
-        'ADV ADJ',
-        'ADJ ADV',
-        'ADJ NOUN',
-        'NOUN ADJ',
-        'ADV VERB',
-        'VERB ADV',
-        'VERB ADJ',
-        'VERB NOUN',
-        'NOUN VERB',
-        'INTJ',
+        'ADJ', // adjectives
+        'AUX ADJ', // 'is good'
+        'ADV ADJ', // 'very good'
+        'ADJ NOUN', // 'nice speech'
+        'ADV VERB', //  'well adapted'
+        'VERB ADJ', // 'done well'
+        'VERB NOUN', // 'included evidence'
+        'NOUN VERB', // 'script improving'
+        'INTJ', // 'Wow'
+        'ADV ADJ NOUN', // 'very interesting speech'
+        'PART ADJ', // 'not good, not bad'
+        'AUX VERB', // 'have improved'
+        'PART VERB ADJ' // 'not doing well'
     ]},
     
 ];
 nlp.learnCustomEntities(patterns);
 
-const badReview = 'Your submission is very disappointing. Your points are poorly organised and lack evidence. Pace of speech is slow and formality is poor. Put in more effort next time.';
-const doc = nlp.readDoc(badReview);
-console.log('Original: ' + doc.out())
-console.log('Parsed: ' + doc.customEntities().out(its.pos));
-
-const goodReview = 'Wow. Fantastic script, points are well organised and the flow of ideas is good. Arguments are nuanced. Good pace. Well done!';
-const doc2 = nlp.readDoc(goodReview);
-console.log('Original: ' + doc2.out())
-console.log('Parsed: ' + doc2.customEntities().out(its.pos));
-
+const toBeParsed = '<put input here>';
+const doc = nlp.readDoc(toBeParsed);
+//console.log('Original: ' + doc.out())
+console.log(doc.customEntities().out());
 
 /*
 console.log('the sentence fed in: ' + doc.out());
