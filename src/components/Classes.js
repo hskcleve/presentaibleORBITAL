@@ -14,7 +14,6 @@ const Classes = (props) => {
         <h5>Tutor: {classData.tutorName}</h5>
         <h5>Class ID: {classData.classId}</h5>
         <h5>{classData.maoxin}</h5>
-        <h5>Number of Students: {classData.students}</h5>
       </div>
     ));
   };

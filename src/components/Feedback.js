@@ -27,7 +27,7 @@ function noFeedbackChart() {
       width={"200px"}
       height={"200px"}
       chartType="PieChart"
-      loader={<div>Loading Chart</div>}
+      loader={<div style={{ color: "white" }}>Loading Chart</div>}
       data={[
         ["Rating", "percentage"],
         ["", 100],

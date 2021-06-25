@@ -55,7 +55,7 @@ const DashboardPage = () => {
 
   function renderButtons(tutorRole) {
     return (
-      <div style={{display:'flex', justifyContent:'space-around' }}>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
         {renderCreateClass(tutorRole)}
         {renderJoinClass(tutorRole)}
         {renderAddStudent(tutorRole)}
@@ -65,21 +65,15 @@ const DashboardPage = () => {
   }
 
   function renderCreateClass(tutorRole) {
-    return (
-      <>{tutorRole && <CreateClass school={userSchool}></CreateClass>}</>
-    );
+    return <>{tutorRole && <CreateClass school={userSchool}></CreateClass>}</>;
   }
 
   function renderJoinClass(tutorRole) {
-    return (
-      <>{!tutorRole && <JoinClass modules={schoolModules}></JoinClass>}</>
-    );
+    return <>{!tutorRole && <JoinClass modules={schoolModules}></JoinClass>}</>;
   }
 
   function renderAddStudent(tutorRole) {
-    return (
-      <>{tutorRole && <AddStudent modules={modules}></AddStudent>}</>
-    );
+    return <>{tutorRole && <AddStudent modules={modules}></AddStudent>}</>;
   }
 
   function renderSubmitSubmission(tutorRole) {
@@ -125,19 +119,20 @@ const DashboardPage = () => {
             alignItems: "flex-start",
             marginLeft: 20,
             justifyContent: "space-evenly",
-            flexFlow: "wrap"
+            flexFlow: "wrap",
           }}
         >
-          <div className="profile-component"
+          <div
+            className="profile-component"
             style={{
-              display:'flex',
-              flexFlow:'column wrap'
+              display: "flex",
+              flexFlow: "column wrap",
             }}
           >
             <Profile
               name={currentUser.displayName}
               id={currentUser.uid}
-              isStudent={!userRole}
+              tutorRole={userRole}
             ></Profile>
 
             {!loading && (
@@ -150,7 +145,7 @@ const DashboardPage = () => {
             )}
           </div>
           <div className="container-submissions">
-            {!loading && renderSubmissions(userRole)}
+            {renderSubmissions(userRole)}
           </div>
         </section>
       </div>
