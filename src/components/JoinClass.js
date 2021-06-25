@@ -113,9 +113,9 @@ const JoinClass = (props) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleShow}>
+      <button className='btnMargin' variant="secondary" onClick={handleShow}>
         Join Class
-      </Button>
+      </button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>

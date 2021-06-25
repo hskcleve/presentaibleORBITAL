@@ -105,7 +105,7 @@ const CreateClass = (props) => {
 
   return (
     <>
-      <Button onClick={handleShow}>Create Class</Button>
+      <button className='btnMargin' onClick={handleShow}>Create Class</button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>

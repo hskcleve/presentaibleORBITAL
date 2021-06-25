@@ -55,7 +55,7 @@ const DashboardPage = () => {
 
   function renderButtons(tutorRole) {
     return (
-      <div className="user-conditional-btns">
+      <div style={{display:'flex', justifyContent:'space-around' }}>
         {renderCreateClass(tutorRole)}
         {renderJoinClass(tutorRole)}
         {renderAddStudent(tutorRole)}
@@ -66,32 +66,32 @@ const DashboardPage = () => {
 
   function renderCreateClass(tutorRole) {
     return (
-      <div>{tutorRole && <CreateClass school={userSchool}></CreateClass>}</div>
+      <>{tutorRole && <CreateClass school={userSchool}></CreateClass>}</>
     );
   }
 
   function renderJoinClass(tutorRole) {
     return (
-      <div>{!tutorRole && <JoinClass modules={schoolModules}></JoinClass>}</div>
+      <>{!tutorRole && <JoinClass modules={schoolModules}></JoinClass>}</>
     );
   }
 
   function renderAddStudent(tutorRole) {
     return (
-      <div>{tutorRole && <AddStudent modules={modules}></AddStudent>}</div>
+      <>{tutorRole && <AddStudent modules={modules}></AddStudent>}</>
     );
   }
 
   function renderSubmitSubmission(tutorRole) {
     return (
-      <div>
+      <>
         {!tutorRole && (
           <SubmitSubmission
             modules={modules}
             school={userSchool}
           ></SubmitSubmission>
         )}
-      </div>
+      </>
     );
   }
 
@@ -125,9 +125,15 @@ const DashboardPage = () => {
             alignItems: "flex-start",
             marginLeft: 20,
             justifyContent: "space-evenly",
+            flexFlow: "wrap"
           }}
         >
-          <div className="profile-component">
+          <div className="profile-component"
+            style={{
+              display:'flex',
+              flexFlow:'column wrap'
+            }}
+          >
             <Profile
               name={currentUser.displayName}
               id={currentUser.uid}
