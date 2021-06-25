@@ -10,12 +10,12 @@ const Mainpage = () => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify({ content: 'You went off-topic sometimes' })
+    body: JSON.stringify({ content: 'Very good, very nice' })
   };
 
   useEffect(() => {
     setUsername(user.displayName);
-    fetch("/post", requestOptions)
+    fetch("https://presentaible.herokuapp.com/post", requestOptions)
     .then(response => response.json())
     .then(data=> setData(data.message));
   }, [])
