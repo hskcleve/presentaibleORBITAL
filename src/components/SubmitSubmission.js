@@ -55,6 +55,7 @@ const SubmitSubmission = (props) => {
           bad: 0,
           neutral: 0,
           totalFeedbacks: 0,
+          weightage: "neutral",
         })
         .then((docRef) => {
           db.collection("users")
@@ -84,6 +85,7 @@ const SubmitSubmission = (props) => {
           bad: 0,
           neutral: 0,
           totalFeedbacks: 0,
+          weightage: "neutral",
         })
         .then((docRef) => {
           db.collection("users")

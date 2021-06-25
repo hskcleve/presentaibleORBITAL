@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { db } from "../firebase";
 import firebase from "firebase";
 
-const SubmitComment = () => {
+const SubmitComment = (props) => {
   const user = firebase.auth().currentUser;
   const [comment, setComment] = useState("");
   const postUID = String(
@@ -12,24 +12,22 @@ const SubmitComment = () => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": " application/json" },
-    body: JSON.stringify({ content: comment }),
+    body: JSON.stringify({ content: comment.toLowerCase() }),
   };
   const uid = user.uid;
+  const { goodFeedbacks, badFeedbacks, neutral } = props;
+  const [currentFeedback, setCurrentFeedback] = useState("");
 
   useEffect(() => {
     console.log(comment);
     if (updated) {
-      fetch("/post", requestOptions)
+      fetch("https://presentaible.herokuapp.com/post", requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          //todo -----
+          //update currentFeedback
+          setCurrentFeedback(data.message);
           //update database
-          db.collection("submissions")
-            .doc(postUID)
-            .update({
-              [data.message]: firebase.firestore.FieldValue.increment(1),
-              totalFeedbacks: firebase.firestore.FieldValue.increment(1),
-            });
+          updatePostWeightage(postUID, data);
           //cause a reload of the page
           console.log(data);
         });
@@ -42,9 +40,39 @@ const SubmitComment = () => {
       });
       setUpdated(false);
       setComment("");
+      //update post weightage
     }
     //add rating of this comment to submissions db
   }, [updated]);
+
+  function updatePostWeightage(postUID, data) {
+    const currentFeedback = data.message;
+    const max = findNewWeightage(data.message);
+    db.collection("submissions")
+      .doc(postUID)
+      .update({
+        [data.message]: firebase.firestore.FieldValue.increment(1),
+        totalFeedbacks: firebase.firestore.FieldValue.increment(1),
+        weightage: max,
+      });
+  }
+
+  function findNewWeightage(review) {
+    let good = goodFeedbacks;
+    let bad = badFeedbacks;
+    if (review === "good") {
+      good = good + 1;
+    } else if (review === "bad") {
+      bad = bad + 1;
+    }
+    if (good > bad) {
+      return "good";
+    } else if (bad > good) {
+      return "bad";
+    } else {
+      return "neutral";
+    }
+  }
 
   const onSubmit = (event) => {
     event.preventDefault();

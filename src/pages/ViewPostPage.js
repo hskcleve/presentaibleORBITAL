@@ -116,7 +116,11 @@ const ViewPostPage = () => {
             <p>{comments[1]}</p>
           </div>
         ))}
-        <SubmitComment />
+        <SubmitComment
+          badFeedbacks={badFeedbacks}
+          goodFeedbacks={goodFeedbacks}
+          neutral={neutralFeedbacks}
+        />
       </div>
     </div>
   );

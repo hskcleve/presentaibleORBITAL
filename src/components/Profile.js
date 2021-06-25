@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase";
 import Feedback from "./Feedback";
 
 const Profile = (props) => {
-  const { name, id } = props;
-  const { goodFeedbacks, totalFeedbacks } = props;
-  const badFeedbacks = totalFeedbacks - goodFeedbacks;
-  const feedback = Boolean(totalFeedbacks);
+  const { name, id, isStudent } = props;
+  const [goodFeedbacks, setGoodFeedbacks] = useState(0);
+  const [badFeedbacks, setBadFeedbacks] = useState(0);
+  const [neutralFeedbacks, setNeutralFeedbacks] = useState(0);
+  const [feedback, setFeedback] = useState(false);
+
+  useEffect(() => {
+    db.collection("submissions")
+      .where("userUID", "==", id)
+      .get()
+      .then((querySnapshot) => {
+        const weightageArray = [];
+        querySnapshot.forEach((doc) =>
+          weightageArray.push(doc.data().weightage)
+        );
+        console.log(weightageArray);
+        const goodCount = weightageArray.filter((x) => x === "good");
+        const badCount = weightageArray.filter((x) => x === "bad");
+        const neutralCount = weightageArray.filter((x) => x === "neutral");
+        setGoodFeedbacks(goodCount.length);
+        setBadFeedbacks(badCount.length);
+        setNeutralFeedbacks(neutralCount.length);
+        setFeedback(weightageArray.length != 0);
+      });
+  }, []);
 
   return (
     <div
@@ -22,6 +44,8 @@ const Profile = (props) => {
         feedback={feedback}
         goodFeedbacks={goodFeedbacks}
         badFeedbacks={badFeedbacks}
+        neutral={neutralFeedbacks}
+        isStudent={isStudent}
       ></Feedback>
 
       <div className="profile-info">
