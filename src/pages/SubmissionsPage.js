@@ -223,7 +223,7 @@ const SubmissionsPage = (props) => {
                 <h2>{submission[2]}</h2>
                 <div>Posted: {submission[3]}</div>
                 <br></br>
-                {submission[1].split(" ").slice(0, 30).join(" ") + " ..."}
+                {submission[1].split(" ").slice(0, 40).join(" ") + " ..."}
               </div>
 
               <div
