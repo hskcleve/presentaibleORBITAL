@@ -1,0 +1,408 @@
+[
+  {
+    "input": "well done",
+    "output": "good"
+  },
+  {
+    "input": "raised good",
+    "output": "good"
+  },
+  {
+    "input": "well backed",
+    "output": "good"
+  },
+  {
+    "input": "impressive job",
+    "output": "good"
+  },
+  {
+    "input": "is good",
+    "output": "good"
+  },
+  {
+    "input": "well written",
+    "output": "good"
+  },
+  {
+    "input": "wow",
+    "output": "good"
+  },
+  {
+    "input": "best scripts",
+    "output": "good"
+  },
+  {
+    "input": "have read",
+    "output": "good"
+  },
+  {
+    "input": "good use",
+    "output": "good"
+  },
+  {
+    "input": "much technical jargon",
+    "output": "good"
+  },
+  {
+    "input": "impressive speech",
+    "output": "good"
+  },
+  {
+    "input": "have improved",
+    "output": "good"
+  },
+  {
+    "input": "last script",
+    "output": "good"
+  },
+  {
+    "input": "good effort",
+    "output": "good"
+  },
+  {
+    "input": "good signposting",
+    "output": "good"
+  },
+  {
+    "input": "is present",
+    "output": "good"
+  },
+  {
+    "input": "overarching ideas",
+    "output": "good"
+  },
+  {
+    "input": "well thought",
+    "output": "good"
+  },
+  {
+    "input": "well organised",
+    "output": "good"
+  },
+  {
+    "input": "clear",
+    "output": "good"
+  },
+  {
+    "input": "concise",
+    "output": "good"
+  },
+  {
+    "input": "professional",
+    "output": "good"
+  },
+  {
+    "input": "is much",
+    "output": "good"
+  },
+  {
+    "input": "latest revision",
+    "output": "good"
+  },
+  {
+    "input": "high quality",
+    "output": "good"
+  },
+  {
+    "input": "fine execution",
+    "output": "good"
+  },
+  {
+    "input": "is satisfactory",
+    "output": "good"
+  },
+  {
+    "input": "superior quality",
+    "output": "good"
+  },
+  {
+    "input": "is adequate",
+    "output": "good"
+  },
+  {
+    "input": "good content",
+    "output": "good"
+  },
+  {
+    "input": "good flow",
+    "output": "good"
+  },
+  {
+    "input": "sound",
+    "output": "good"
+  },
+  {
+    "input": "clear effort",
+    "output": "good"
+  },
+  {
+    "input": "good intonation",
+    "output": "good"
+  },
+  {
+    "input": "solid grasp",
+    "output": "good"
+  },
+  {
+    "input": "good job",
+    "output": "good"
+  },
+  {
+    "input": "fine delivery",
+    "output": "good"
+  },
+  {
+    "input": "flawless execution",
+    "output": "good"
+  },
+  {
+    "input": "is perfect",
+    "output": "good"
+  },
+  {
+    "input": "excellent",
+    "output": "good"
+  },
+  {
+    "input": "exceptional quality",
+    "output": "good"
+  },
+  {
+    "input": "superb delivery",
+    "output": "good"
+  },
+  {
+    "input": "ideas substantiated",
+    "output": "good"
+  },
+  {
+    "input": "robust evidence",
+    "output": "good"
+  },
+  {
+    "input": "wonderful presentation",
+    "output": "good"
+  },
+  {
+    "input": "have great",
+    "output": "good"
+  },
+  {
+    "input": "potential",
+    "output": "good"
+  },
+  {
+    "input": "very engaging script",
+    "output": "good"
+  },
+  {
+    "input": "content shows",
+    "output": "good"
+  },
+  {
+    "input": "good understanding",
+    "output": "good"
+  },
+  {
+    "input": "interesting topic",
+    "output": "good"
+  },
+  {
+    "input": "impeccable script",
+    "output": "good"
+  },
+  {
+    "input": "immaculate delivery",
+    "output": "good"
+  },
+  {
+    "input": "is supporting",
+    "output": "good"
+  },
+  {
+    "input": "evidence shown",
+    "output": "good"
+  },
+  {
+    "input": "logically presented",
+    "output": "good"
+  },
+  {
+    "input": "easily follow",
+    "output": "good"
+  },
+  {
+    "input": "appropriate tone",
+    "output": "good"
+  },
+  {
+    "input": "well developed",
+    "output": "good"
+  },
+  {
+    "input": "well selected",
+    "output": "good"
+  },
+  {
+    "input": "completely addressed",
+    "output": "good"
+  },
+  {
+    "input": "very nuanced",
+    "output": "good"
+  },
+  {
+    "input": "meets requirements",
+    "output": "good"
+  },
+  {
+    "input": "good time",
+    "output": "good"
+  },
+  {
+    "input": "just nice",
+    "output": "good"
+  },
+  {
+    "input": "used natural",
+    "output": "good"
+  },
+  {
+    "input": "conversational",
+    "output": "good"
+  },
+  {
+    "input": "was coherent",
+    "output": "good"
+  },
+  {
+    "input": "appropriately changed",
+    "output": "good"
+  },
+  {
+    "input": "maintain interest",
+    "output": "good"
+  },
+  {
+    "input": "avoided filler",
+    "output": "good"
+  },
+  {
+    "input": "well adapted",
+    "output": "good"
+  },
+  {
+    "input": "demonstrated command",
+    "output": "good"
+  },
+  {
+    "input": "formal",
+    "output": "good"
+  },
+  {
+    "input": "English",
+    "output": "good"
+  },
+  {
+    "input": "when appropriate",
+    "output": "good"
+  },
+  {
+    "input": "best vocabulary",
+    "output": "good"
+  },
+  {
+    "input": "technical words",
+    "output": "good"
+  },
+  {
+    "input": "well defined",
+    "output": "good"
+  },
+  {
+    "input": "easy",
+    "output": "good"
+  },
+
+  { "input": "were incoherent", "output": "bad" },
+  { "input": "is bad", "output": "bad" },
+  { "input": "was abrupt", "output": "bad" },
+  { "input": "should improve", "output": "bad" },
+  { "input": "presentation needs", "output": "bad" },
+  { "input": "was difficult", "output": "bad" },
+  { "input": "more varied", "output": "bad" },
+  { "input": "too long", "output": "bad" },
+  { "input": "should work", "output": "bad" },
+  { "input": "too much information", "output": "bad" },
+  { "input": "consistent colour", "output": "bad" },
+  { "input": "too much information", "output": "bad" },
+  { "input": "is difficult", "output": "bad" },
+  { "input": "presentation needs", "output": "bad" },
+  { "input": "better focus", "output": "bad" },
+  { "input": "is disappointing", "output": "bad" },
+  { "input": "better quality", "output": "bad" },
+  { "input": "could use", "output": "bad" },
+  { "input": "more hand", "output": "bad" },
+  { "input": "should try", "output": "bad" },
+  { "input": "more hand", "output": "bad" },
+  { "input": "should smile", "output": "bad" },
+  { "input": "when talking", "output": "bad" },
+  { "input": "would help", "output": "bad" },
+  { "input": "more friendly", "output": "bad" },
+  { "input": "presentation lacks", "output": "bad" },
+  { "input": "are unsupported", "output": "bad" },
+  { "input": "more reliable sources", "output": "bad" },
+  { "input": "need better", "output": "bad" },
+  { "input": "not convincing", "output": "bad" },
+  { "input": "be feasible", "output": "bad" },
+  { "input": "should try", "output": "bad" },
+  { "input": "too tense", "output": "bad" },
+  { "input": "not consistent", "output": "bad" },
+  { "input": "could improve", "output": "bad" },
+  { "input": "more consistent pace", "output": "bad" },
+  { "input": "other parts", "output": "bad" },
+  { "input": "too slow", "output": "bad" },
+  { "input": "much technical jargon", "output": "bad" },
+  { "input": "is difficult", "output": "bad" },
+  { "input": "general audience", "output": "bad" },
+  { "input": "should use", "output": "bad" },
+  { "input": "less technical jargon", "output": "bad" },
+  { "input": "should replace", "output": "bad" },
+  { "input": "technical jargon", "output": "bad" },
+  { "input": "are easy", "output": "bad" },
+  { "input": "more concise", "output": "bad" },
+  { "input": "not professional", "output": "bad" },
+  { "input": "should work", "output": "bad" },
+  { "input": "could use", "output": "bad" },
+  { "input": "more formal words", "output": "bad" },
+  { "input": "more professional", "output": "bad" },
+  { "input": "pictures used", "output": "bad" },
+  { "input": "not appropriate", "output": "bad" },
+  { "input": "not appropriate", "output": "bad" },
+  { "input": "more formal", "output": "bad" },
+  { "input": "when speaking", "output": "bad" },
+  { "input": "be more", "output": "bad" },
+  { "input": "should work", "output": "bad" },
+  { "input": "to rehearse more", "output": "bad" },
+  { "input": "have poor", "output": "bad" },
+  { "input": "was hard", "output": "bad" },
+  { "input": "should try", "output": "bad" },
+  { "input": "to look more", "output": "bad" },
+  { "input": "font used", "output": "bad" },
+  { "input": "too small", "output": "bad" },
+  { "input": "were distracting", "output": "bad" },
+  { "input": "too distracting", "output": "bad" },
+  { "input": "overly use", "output": "bad" },
+  { "input": "should rehearse", "output": "bad" },
+  { "input": "badly prepared", "output": "bad" },
+  { "input": "is obvious", "output": "bad" },
+  { "input": "are reading", "output": "bad" },
+  { "input": "more confident", "output": "bad" },
+  { "input": "would help", "output": "bad" },
+  { "input": "convincing", "output": "bad" },
+  { "input": "is more", "output": "bad" },
+  { "input": "too many", "output": "bad" },
+  { "input": "awkward", "output": "bad" },
+  { "input": "should look", "output": "bad" },
+  { "input": "maintain eye", "output": "bad" }
+]
