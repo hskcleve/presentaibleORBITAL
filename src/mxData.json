@@ -11,6 +11,8 @@
     "input": "well backed",
     "output": "good"
   },
+  { "input": "cool presentation", "output": "good" },
+  { "input": "cool ideas", "output": "good" },
   {
     "input": "impressive job",
     "output": "good"
@@ -323,7 +325,8 @@
     "input": "easy",
     "output": "good"
   },
-
+  { "input": "interesting ideas", "output": "good" },
+  { "input": "interesting concept", "output": "good" },
   { "input": "were incoherent", "output": "bad" },
   { "input": "is bad", "output": "bad" },
   { "input": "was abrupt", "output": "bad" },
@@ -377,7 +380,6 @@
   { "input": "more formal words", "output": "bad" },
   { "input": "more professional", "output": "bad" },
   { "input": "pictures used", "output": "bad" },
-  { "input": "not appropriate", "output": "bad" },
   { "input": "not appropriate", "output": "bad" },
   { "input": "more formal", "output": "bad" },
   { "input": "when speaking", "output": "bad" },
