@@ -73,8 +73,9 @@ const CreateClass = (props) => {
       .get()
       .then((doc) => {
         moduleExists = doc.exists;
-        console.log(moduleExists);
+        console.log("await done");
       });
+    console.log(moduleExists);
     return moduleExists;
   }
 
@@ -87,25 +88,29 @@ const CreateClass = (props) => {
   const handleHide = () => setShow(false);
   const handleSubmit = () => {
     console.log(moduleRef.current.value);
-    var moduleCodeTaken = false;
-    moduleExist(moduleRef.current.value, school).then(
-      (result) => (moduleCodeTaken = result)
-    );
+    let moduleCodeTaken = false;
+
     if (moduleRef.current.value === "") {
       setErrorMessage("Module Code required");
-    } else if (moduleCodeTaken) {
-      console.log("somehow module exists");
-      setErrorMessage("Module Code exists, check with faculty coordinator");
     } else {
-      createClass();
-      handleHide();
+      moduleExist(moduleRef.current.value, school).then((result) => {
+        if (result) {
+          //module already exists
+          console.log("somehow module exists");
+          setErrorMessage("Module Code exists, check with faculty coordinator");
+        } else {
+          createClass();
+          handleHide();
+        }
+      });
     }
-    return moduleRef.current.value !== "" ? handleHide : handleShow;
   };
 
   return (
     <>
-      <button className='btnMargin' onClick={handleShow}>Create Class</button>
+      <button className="btnMargin" onClick={handleShow}>
+        Create Class
+      </button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>
