@@ -17,7 +17,7 @@ const Feedback = (props) => {
       return noFeedbackChart();
     }
   };
-  return <div>{loadChart()}</div>;
+  return loadChart();
 };
 export default Feedback;
 

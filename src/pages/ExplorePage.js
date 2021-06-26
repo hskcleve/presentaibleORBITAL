@@ -196,7 +196,7 @@ const ExplorePage = () => {
               </div>
               <br></br>
               <div style={{ minHeight: 60 }}>
-                {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
+                {submission[1].split(" ").slice(0, 18).join(" ") + " ..."}
               </div>
               <br></br>
               <div style={{display:'flex', justifyContent:'center'}}>
