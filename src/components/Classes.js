@@ -12,8 +12,6 @@ const Classes = (props) => {
       <div className="classContainer">
         <h4>Module code: {classData.className}</h4>
         <h5>Tutor: {classData.tutorName}</h5>
-        <h5>Class ID: {classData.classId}</h5>
-        <h5>{classData.maoxin}</h5>
       </div>
     ));
   };
