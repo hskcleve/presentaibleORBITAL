@@ -4,10 +4,11 @@ import PlayAudioFromURL from "../components/PlayAudioFromURL";
 import SubmitComment from "../components/SubmitComment";
 import Navbar from "../components/Navbar";
 import Feedback from "../components/Feedback";
+import { useHistory } from "react-router-dom";
 
 const ViewPostPage = () => {
   const PostUID = String(
-    window.location.pathname.substring(10, window.location.pathname.length)
+    window.location.pathname.substring(18, window.location.pathname.length)
   );
   const [postContent, setPostContent] = useState("");
   const [postAuthor, setPostAuthor] = useState("");
@@ -19,6 +20,8 @@ const ViewPostPage = () => {
   const [goodFeedbacks, setGoodFeedbacks] = useState(0);
   const [badFeedbacks, setBadFeedbacks] = useState(0);
   const [neutralFeedbacks, setNeutralFeedbacks] = useState(0);
+  const origin = window.location.pathname.substring(1, 8) === "explore" ? "explore" : "dashboard";
+  const history = useHistory();
 
   useEffect(() => {
     loadPost();
@@ -76,10 +79,15 @@ const ViewPostPage = () => {
       });
   };
 
+  const goBack = () => {
+    history.push("/" + origin)
+  }
+
   return (
     <div>
       <Navbar />
       <br></br>
+      <button className='btn' onClick={()=>{goBack()}}>← Back to {origin}</button>
       <div className="viewpost-info-wrapper" style={{display:'flex', alignItems:'center'}}>
       <div style={{display:'flex', flexDirection:'column'}}>
           <h1>{postTitle}</h1>

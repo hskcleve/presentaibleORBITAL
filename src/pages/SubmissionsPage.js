@@ -121,7 +121,7 @@ const SubmissionsPage = (props) => {
   };
 
   const onOpen = ({ submission }) => {
-    history.push("/viewpost/" + submission[0]);
+    history.push("/ownsubs/viewpost/" + submission[0]);
   };
 
   const onDelete = ({ submission }) => {

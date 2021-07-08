@@ -137,7 +137,7 @@ const ExplorePage = () => {
   };
 
   const onOpen = ({ submission }) => {
-    history.push("/viewpost/" + submission[2]);
+    history.push("/explore/viewpost/" + submission[2]);
   };
 
   const getColor = () => {
