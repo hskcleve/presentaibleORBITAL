@@ -5,6 +5,8 @@ import SubmitComment from "../components/SubmitComment";
 import Navbar from "../components/Navbar";
 import Feedback from "../components/Feedback";
 import { useHistory } from "react-router-dom";
+import firebase from "firebase";
+import EditSubmission from "../components/EditSubmission";
 
 const ViewPostPage = () => {
   const PostUID = String(
@@ -22,6 +24,7 @@ const ViewPostPage = () => {
   const [neutralFeedbacks, setNeutralFeedbacks] = useState(0);
   const origin = window.location.pathname.substring(1, 8) === "explore" ? "explore" : "dashboard";
   const history = useHistory();
+  const user = firebase.auth().currentUser;
 
   useEffect(() => {
     loadPost();
@@ -83,6 +86,23 @@ const ViewPostPage = () => {
     history.push("/" + origin)
   }
 
+  function renderEditSubmission() {
+    if (postAuthor !== user.displayName) {
+      return
+    }
+    console.log('btn clicked')
+    return (
+      <div className='center'>
+        <EditSubmission
+        postUID={PostUID}
+        previousTitle={postTitle}
+        previousContent={postContent}
+        >
+        </EditSubmission>
+        </div>
+    );
+  }
+
   return (
     <div>
       <Navbar />
@@ -104,6 +124,7 @@ const ViewPostPage = () => {
       </div>
       <div className="container">
         <strong>Script:</strong> {postContent}
+        {renderEditSubmission()}
       </div>
 
       <div className="container">
