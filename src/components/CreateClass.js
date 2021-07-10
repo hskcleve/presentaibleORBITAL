@@ -116,6 +116,7 @@ const CreateClass = (props) => {
           <Form>
             <Form.Label style={{ fontSize: 24 }}>
               <strong>Create Class</strong>
+              <br></br>
             </Form.Label>
             <br></br>
             <Form.Label style={{ color: "red" }}>{errorMessage}</Form.Label>
@@ -128,6 +129,7 @@ const CreateClass = (props) => {
                 type="text "
               ></Form.Control>
             </Form.Group>
+            <br></br>
             <Form.Group>
               <Form.Label>Set a password</Form.Label>
               <Form.Control
@@ -140,12 +142,14 @@ const CreateClass = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="modal-action-btn" onClick={handleSubmit}>
+          <div className='center'>
+          <button className="btn" onClick={handleSubmit}>
             Create Class
-          </Button>
-          <Button className="modal-close-btn" onClick={handleHide}>
+          </button>
+          <button className="btn" onClick={handleHide}>
             Close
-          </Button>
+          </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

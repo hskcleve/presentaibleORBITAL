@@ -61,6 +61,16 @@ body {
   border-radius: 5px;
   background: rgba(202, 202, 202, 0.644);
 }
+
+.containerProfile {
+  max-width: 500px;
+  min-width: 100px;
+  margin: 0px auto;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(202, 202, 202, 0.644);
+}
+
 .containerWide {
   max-width: 1920px;
   min-width: 100px;
@@ -71,7 +81,7 @@ body {
 }
 
 .classContainer {
-  background: rgba(218, 165, 32, 0.575);
+  background: rgba(255, 255, 255, 0.712);
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -299,7 +309,8 @@ footer {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color:rgba(202, 202, 202, 0.644);
+  border-radius: 10;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
@@ -399,7 +410,8 @@ footer {
 }
 
 .submission-modal-content {
-  background-color: #fefefe;
+  background-color:rgba(202, 202, 202, 0.644);
+  border-radius: 10;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -412,7 +424,8 @@ footer {
 }
 
 .submission-modal-body {
-  background-color: #fefefe;
+  background-color:rgba(202, 202, 202, 0.644);
+  border-radius: 10;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;

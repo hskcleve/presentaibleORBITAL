@@ -132,7 +132,7 @@ const SubmitSubmission = (props) => {
         style={{ marginTop: 30 }}
       >
         <div className="submission-modal-content">
-          <div className="submission-modal-body">
+          <div className="submission-modal-body" style={{backgroundColor:'rgba(202, 202, 202, 0.644)', borderRadius:10}}>
             <form>
               <h2 style={{ margin: 5 }}>Add a new submission:</h2>
               <input
@@ -141,22 +141,20 @@ const SubmitSubmission = (props) => {
                 value={currentSubmissionTitle}
                 onChange={handleTitleChange}
                 style={{
-                  margin: 5,
+                  marginTop: 5,
                   minHeight: 30,
                   maxHeight: 30,
-                  minWidth: 435,
-                  maxWidth: 435,
+                  width: '100%',
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
               />
               <select
                 style={{
-                  margin: 5,
+                  marginTop: 5,
                   minHeight: 30,
                   maxHeight: 30,
-                  minWidth: 435,
-                  maxWidth: 435,
+                  width: '100%',
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
@@ -175,11 +173,10 @@ const SubmitSubmission = (props) => {
                 value={currentSubmission}
                 onChange={handleSubmissionAdd}
                 style={{
-                  margin: 5,
+                  marginTop: 5,
                   minHeight: 250,
                   maxHeight: 250,
-                  minWidth: 435,
-                  maxWidth: 435,
+                  width: '100%',
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
@@ -187,12 +184,14 @@ const SubmitSubmission = (props) => {
               <br></br>
               <input type="file" onChange={handleFileAttachment} />
             </form>
-            <button onClick={handleSubmit} className="modal-submission-btn">
+            <div className = 'center'>
+            <button onClick={handleSubmit} className="btn">
               Submit
             </button>
-            <button onClick={handleHide} className="submission-modal-close-btn">
+            <button onClick={handleHide} className="btn">
               Close
             </button>
+            </div>
           </div>
         </div>
       </div>

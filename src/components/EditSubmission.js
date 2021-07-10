@@ -57,12 +57,11 @@ const EditSubmission = (props) => {
                 style={{
                   background: 'rgba(300, 300, 300, 0.6)',
                   border: '1px solid #888',
-                  margin: 5,
                   minHeight: 250,
-                  minWidth: 610,
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
-                  resize: 'none'
+                  resize: 'none',
+                  width: '100%'
                 }}
               />
               <br></br>

@@ -121,6 +121,7 @@ const JoinClass = (props) => {
           <Form>
             <Form.Label style={{ fontSize: 24 }}>
               <strong>Join Class</strong>
+              <br></br>
             </Form.Label>
             <br></br>
             <Form.Label style={{ color: "red" }}>{errorMessage}</Form.Label>
@@ -130,6 +131,7 @@ const JoinClass = (props) => {
                 {showOptions(props.modules)}
               </Form.Control>
             </Form.Group>
+            <br></br>
             <Form.Group>
               <Form.Label>Enter the password</Form.Label>
               <Form.Control
@@ -142,12 +144,14 @@ const JoinClass = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="modal-action-btn" onClick={handleSubmit}>
+          <div className='center'>
+          <button className="btn" onClick={handleSubmit}>
             Join Class
-          </Button>
-          <Button className="modal-close-btn" onClick={handleHide}>
+          </button>
+          <button className="btn" onClick={handleHide}>
             Close
-          </Button>
+          </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

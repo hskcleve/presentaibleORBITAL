@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Feedback from "./Feedback";
+import ProfilePic from "./tempImages/user.png"
 
 const Profile = (props) => {
   const { name, id, tutorRole } = props;
@@ -30,24 +31,25 @@ const Profile = (props) => {
   }, []);
 
   return (
-    <div className="profile-container" style={{ minWidth: 425 }}>
-      <img
-        className="profile-image"
-        src="https://image.flaticon.com/icons/png/64/1077/1077012.png"
-      ></img>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div className="profile-info">
+    <div className='containerProfile' style={{minWidth: 425}}>
+      <div style={{display:'flex', flexDirection:'column'}}>
+      <div style={{display:'flex'}}>
+      <div><img src={ProfilePic} alt="profilePic"></img></div>
+      <div style={{ marginLeft:20, marginTop:4, display: "flex", flexDirection: "column" }}>
           <h2>{name}</h2>
           <h6>UserID: {id}</h6>
-        </div>
+      </div>
+      </div>
         {feedback && (
-          <Feedback
+          <div className='center' style={{marginTop:40}}>
+          <div><Feedback
             feedback={feedback}
             goodFeedbacks={goodFeedbacks}
             badFeedbacks={badFeedbacks}
             neutral={neutralFeedbacks}
             tutorRole={feedback}
-          ></Feedback>
+          ></Feedback></div>
+          </div>
         )}{" "}
       </div>
     </div>

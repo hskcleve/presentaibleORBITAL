@@ -118,6 +118,7 @@ const AddStudent = (props) => {
           <Form>
             <Form.Label style={{ fontSize: 24 }}>
               <strong>Add Student</strong>
+              <br></br>
             </Form.Label>
             <br></br>
             <Form.Label style={{ color: "red" }}>{errorMessage}</Form.Label>
@@ -130,6 +131,7 @@ const AddStudent = (props) => {
                 type="text "
               ></Form.Control>
             </Form.Group>
+            <br></br>
             <Form.Group>
               <Form.Label>Class to add to</Form.Label>
               <Form.Control
@@ -143,12 +145,14 @@ const AddStudent = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="modal-action-btn" onClick={handleSubmit}>
+          <div className='center'>
+          <button className="btn" onClick={handleSubmit}>
             Add Student
-          </Button>
-          <Button className="modal-close-btn" onClick={handleHide}>
+          </button>
+          <button className="btn" onClick={handleHide}>
             Close
-          </Button>
+          </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>
