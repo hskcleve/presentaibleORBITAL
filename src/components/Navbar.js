@@ -36,11 +36,6 @@ const Navbar = () => {
           Explore
         </button></div>
         <div><button className='btn'
-          style={{ backgroundColor: 'transparent' }}
-          onClick={() => { history.push('/about') }}>
-          About
-        </button></div>
-        <div><button className='btn'
           style={{ backgroundColor: 'transparent', textDecorationLine: 'underline' }}
           onClick={() => { handleLogout() }}>
           Log out

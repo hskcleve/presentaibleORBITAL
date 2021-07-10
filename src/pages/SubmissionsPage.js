@@ -164,20 +164,16 @@ const SubmissionsPage = (props) => {
 
   return (
     <div>
-      <div
-        className="containerWide"
-        style={{ marginRight: 10, minWidth: 770}}
-      >
-        <h1>My Submissions</h1>
+      <h1 style={{color:'whitesmoke'}}>My Submissions</h1>
         <button
           className="btn"
           style={{
             backgroundColor: "transparent",
             textDecorationLine: "underline",
-            fontStyle: "italic",
             fontSize: 12,
             padding: 0,
             margin: 0,
+            color: 'antiquewhite'
           }}
           onClick={() => {
             getUserSubmissions();
@@ -185,7 +181,11 @@ const SubmissionsPage = (props) => {
         >
           Refresh Submissions
         </button>
-        <div style={{ display: "flex", alignItems: "center", marginTop: 30 , maxWidth:700}}>
+      <div
+        className="containerWide"
+        style={{ marginRight: 10, minWidth: 770, marginTop: 30}}
+      >
+        <div style={{ display: "flex", alignItems: "center", maxWidth:700}}>
           <p>Showing submissions from:</p>
           <Form
             onSubmit={handleFilter}
