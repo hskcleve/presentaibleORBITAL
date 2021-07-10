@@ -6,8 +6,8 @@ const TutorSubmission = (props) => {
   console.log(moduleList.map((mod) => console.log(mod.className)));
   return (
     <div>
-      <h2>My Classes</h2>
-      <p>Tutor views students' submissions by class</p>
+      <h2 style={{color:'ghostwhite'}}>My Classes</h2>
+      <p style={{color:'antiqueWhite'}}>Tutor views students' submissions by class</p>
       <ViewSubmissionByClass moduleCode={"Orbital"}></ViewSubmissionByClass>
     </div>
   );

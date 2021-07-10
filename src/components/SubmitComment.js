@@ -6,7 +6,7 @@ const SubmitComment = (props) => {
   const user = firebase.auth().currentUser;
   const [comment, setComment] = useState("");
   const postUID = String(
-    window.location.pathname.substring(10, window.location.pathname.length)
+    window.location.pathname.substring(18, window.location.pathname.length)
   );
   const [updated, setUpdated] = useState(false);
   const requestOptions = {
@@ -37,6 +37,7 @@ const SubmitComment = (props) => {
         PostUID: postUID,
         author: user.displayName,
         content: comment,
+        rating: currentFeedback
       });
       setUpdated(false);
       setComment("");
