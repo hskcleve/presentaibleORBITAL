@@ -134,7 +134,7 @@ body {
   max-width: 1920px;
   margin: 0px auto;
   overflow: auto;
-  min-height: 1080px;
+  height: 100vh;
   border: 0px solid steelblue;
   padding: 0px;
   border-radius: 0px;
