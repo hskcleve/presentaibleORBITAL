@@ -149,6 +149,7 @@ body {
   /*background-image: url(https://i.imgur.com/ZGJrVUJ.jpg);*/
   background: url(https://i.imgur.com/gFAH2DQ.jpg);
   background-size: cover;
+  background-position-y: -1100px;
 }
 
 .landingPage {
