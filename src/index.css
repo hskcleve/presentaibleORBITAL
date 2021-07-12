@@ -85,6 +85,15 @@ body {
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
+  height: auto;
+  text-transform: capitalize;
+}
+
+.edit-class-button {
+  max-width: 4rem;
+  position: relative;
+  top: -40px;
+  left: 300px;
 }
 
 .containerForSubmission {
@@ -309,7 +318,7 @@ footer {
 }
 
 .modal-content {
-  background-color:rgba(202, 202, 202, 0.644);
+  background-color: rgba(202, 202, 202, 0.644);
   border-radius: 10;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -410,7 +419,7 @@ footer {
 }
 
 .submission-modal-content {
-  background-color:rgba(202, 202, 202, 0.644);
+  background-color: rgba(202, 202, 202, 0.644);
   border-radius: 10;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -424,7 +433,7 @@ footer {
 }
 
 .submission-modal-body {
-  background-color:rgba(202, 202, 202, 0.644);
+  background-color: rgba(202, 202, 202, 0.644);
   border-radius: 10;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -500,4 +509,76 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.module-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: black; /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.8); /*Black background with .8 opacity*/
+}
+
+.module-modal-content {
+  background-color: rgba(202, 202, 202, 0.644);
+  border-radius: 10;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: black; /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.8); /*Black background with .8 opacity*/
+}
+
+.module-modal-body {
+  background-color: rgba(202, 202, 202, 0.644);
+  border-radius: 10;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+  align-items: center;
+  min-width: 475px;
+}
+
+.module-modal-body h1 {
+  display: inline-block;
+  color: white;
+}
+
+.underline {
+  background-color: darkgoldenrod;
+  height: 3px;
+  width: 100%;
+  margin-top: -5px;
+}
+
+.no-students {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 500;
+  color: goldenrod;
+}
+
+.kick-button {
+  max-width: 2rem;
+  position: relative;
+  top: -30px;
+  left: 300px;
+  border: none; /* Remove borders */
+  color: darkred;
+  background: transparent;
+}
+
+.kick-button:hover {
+  cursor: grab;
+  color: rgba(235, 26, 26, 0.75);
 }

@@ -29,8 +29,7 @@ const DashboardPage = () => {
   async function loadOptions() {
     const userDocRef = await db.collection("users").doc(currentUser.uid).get();
     //undefined field check for users without classes array
-    const userClasses =
-      userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
+    const userClasses = userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
     const roleInfo = userDocRef.data().role;
     setModules(userClasses);
     setUserSchool(userDocRef.data().school);
@@ -79,12 +78,7 @@ const DashboardPage = () => {
   function renderSubmitSubmission(tutorRole) {
     return (
       <>
-        {!tutorRole && (
-          <SubmitSubmission
-            modules={modules}
-            school={userSchool}
-          ></SubmitSubmission>
-        )}
+        {!tutorRole && <SubmitSubmission modules={modules} school={userSchool}></SubmitSubmission>}
       </>
     );
   }
@@ -103,9 +97,7 @@ const DashboardPage = () => {
   }
 
   function renderTutorSubmissions(tutorRole) {
-    return (
-      <>{tutorRole && <TutorSubmission modules={modules}></TutorSubmission>}</>
-    );
+    return <>{tutorRole && <TutorSubmission modules={modules}></TutorSubmission>}</>;
   }
 
   return (
@@ -138,15 +130,13 @@ const DashboardPage = () => {
             {!loading && (
               <>
                 <div className="dashboardSidebar">
-                  <Classes modules={modules}></Classes>
+                  <Classes tutorRole={userRole} modules={modules}></Classes>
                   {renderButtons(userRole)}
                 </div>
               </>
             )}
           </div>
-          <div className="container-submissions">
-            {renderSubmissions(userRole)}
-          </div>
+          <div className="container-submissions">{renderSubmissions(userRole)}</div>
         </section>
       </div>
     </>
