@@ -6,6 +6,7 @@ const EditClass = (props) => {
   const classId = classData.classId;
   const [studentInfo, setstudentInfo] = useState([]);
   const [moduleDelete, setModuleDelete] = useState(false);
+  const [initialInfo, setInitialInfo] = useState([]);
   const handleRealDelete = props.handleDelete;
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const EditClass = (props) => {
       .then((doc) => {
         if (doc.exists) {
           setstudentInfo(doc.data().students);
+          setInitialInfo(doc.data().students);
         }
       });
     console.log("student info are", studentInfo);
@@ -43,7 +45,7 @@ const EditClass = (props) => {
     ) : (
       studentInfo.map((studentData, index) => (
         <div className="classContainer" key={index}>
-          <div>
+          <div className="no-overload">
             {capitalize(studentData.name)}
             <h6>Student ID :{studentData.studentId}</h6>
           </div>
@@ -67,6 +69,10 @@ const EditClass = (props) => {
     replace array with current studentInfo array in the db
     */
   };
+  const handleRevert = () => {
+    setModuleDelete(false);
+    setstudentInfo(initialInfo);
+  };
 
   function loadButton(isTutor, classData) {
     if (isTutor) {
@@ -86,12 +92,17 @@ const EditClass = (props) => {
                   {classData.className}
                   <div className="underline"></div>
                 </h1>
-                <span>
+                <span className="button-span">
+                  <button onClick={handleRevert} className="revert-module">
+                    <i class="fa fa-refresh"></i> Revert
+                  </button>
+
                   <button onClick={handleDelete} className="delete-module">
                     <i class="fa fa-close"></i>
                     {"  "}Delete
                   </button>
                 </span>
+
                 {loadStudents()}
                 {moduleDelete && (
                   <>

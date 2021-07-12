@@ -28,11 +28,7 @@ const CreateClass = (props) => {
       })
       .catch((error) => console.log(error));
     //updates database;
-    db.collection("schools")
-      .doc(school)
-      .collection("Modules")
-      .doc(moduleName)
-      .set({});
+    db.collection("schools").doc(school).collection("Modules").doc(moduleName).set({});
   }
 
   function updateUserClassesField(className, path) {
@@ -92,6 +88,8 @@ const CreateClass = (props) => {
 
     if (moduleRef.current.value === "") {
       setErrorMessage("Module Code required");
+    } else if (moduleRef.current.value.length > 15) {
+      setErrorMessage("Module Code must be a maximum of 15 characters long");
     } else {
       moduleExist(moduleRef.current.value, school).then((result) => {
         if (result) {
@@ -132,23 +130,18 @@ const CreateClass = (props) => {
             <br></br>
             <Form.Group>
               <Form.Label>Set a password</Form.Label>
-              <Form.Control
-                id="passwordInfo"
-                required
-                ref={passRef}
-                type="text"
-              ></Form.Control>
+              <Form.Control id="passwordInfo" required ref={passRef} type="text"></Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <div className='center'>
-          <button className="btn" onClick={handleSubmit}>
-            Create Class
-          </button>
-          <button className="btn" onClick={handleHide}>
-            Close
-          </button>
+          <div className="center">
+            <button className="btn" onClick={handleSubmit}>
+              Create Class
+            </button>
+            <button className="btn" onClick={handleHide}>
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </Modal>
