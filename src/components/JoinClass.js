@@ -32,6 +32,7 @@ const JoinClass = (props) => {
           name: currentUser.displayName,
           submissions: [],
           grade: "",
+          studentId: currentUser.uid,
         }),
       })
       .then((doc) => {
@@ -113,7 +114,7 @@ const JoinClass = (props) => {
 
   return (
     <>
-      <button className='btnMargin' variant="secondary" onClick={handleShow}>
+      <button className="btnMargin" variant="secondary" onClick={handleShow}>
         Join Class
       </button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
@@ -134,23 +135,18 @@ const JoinClass = (props) => {
             <br></br>
             <Form.Group>
               <Form.Label>Enter the password</Form.Label>
-              <Form.Control
-                id="passwordInfo"
-                required
-                ref={passRef}
-                type="text"
-              ></Form.Control>
+              <Form.Control id="passwordInfo" required ref={passRef} type="text"></Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <div className='center'>
-          <button className="btn" onClick={handleSubmit}>
-            Join Class
-          </button>
-          <button className="btn" onClick={handleHide}>
-            Close
-          </button>
+          <div className="center">
+            <button className="btn" onClick={handleSubmit}>
+              Join Class
+            </button>
+            <button className="btn" onClick={handleHide}>
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </Modal>

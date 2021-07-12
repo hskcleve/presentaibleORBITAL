@@ -60,6 +60,7 @@ const AddStudent = (props) => {
           name: name,
           submissions: [],
           grade: "",
+          studentId: studentId,
         }),
       })
       .then((doc) => {
@@ -112,7 +113,9 @@ const AddStudent = (props) => {
 
   return (
     <>
-      <button className='btnMargin' onClick={handleShow}>Add Student</button>
+      <button className="btnMargin" onClick={handleShow}>
+        Add Student
+      </button>
       <Modal show={show} onHide={handleHide} backdrop="static" keyboard={true}>
         <Modal.Body>
           <Form>
@@ -134,24 +137,20 @@ const AddStudent = (props) => {
             <br></br>
             <Form.Group>
               <Form.Label>Class to add to</Form.Label>
-              <Form.Control
-                placeholder="Choose your class"
-                ref={classRef}
-                as="select"
-              >
+              <Form.Control placeholder="Choose your class" ref={classRef} as="select">
                 {showOptions(props.modules)}
               </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <div className='center'>
-          <button className="btn" onClick={handleSubmit}>
-            Add Student
-          </button>
-          <button className="btn" onClick={handleHide}>
-            Close
-          </button>
+          <div className="center">
+            <button className="btn" onClick={handleSubmit}>
+              Add Student
+            </button>
+            <button className="btn" onClick={handleHide}>
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </Modal>
