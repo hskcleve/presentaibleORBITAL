@@ -5,6 +5,8 @@ const EditClass = (props) => {
   const { isTutor, classData } = props;
   const classId = classData.classId;
   const [studentInfo, setstudentInfo] = useState([]);
+  const [moduleDelete, setModuleDelete] = useState(false);
+  const handleRealDelete = props.handleDelete;
 
   useEffect(() => {
     const docInfo = db
@@ -26,7 +28,9 @@ const EditClass = (props) => {
   const handleHide = () => {
     var modal = document.getElementById("module-modal" + classId);
     modal.style.display = "none";
+    setModuleDelete(false);
   };
+  //todo -> update database after discussing with cleve
   const handleKick = (studentId) => {
     const currentStudentInfo = studentInfo;
     const remaindingStudentInfo = studentInfo.filter((x) => x.studentId !== studentId);
@@ -52,6 +56,17 @@ const EditClass = (props) => {
   };
 
   const capitalize = (s) => (s && s[0].toUpperCase() + s.slice(1)) || "";
+  const handleDelete = () => setModuleDelete(!moduleDelete);
+  const handleConfirm = () => {
+    console.log("confirm clicked");
+    handleHide();
+    if (moduleDelete) {
+      handleRealDelete();
+    }
+    /*
+    replace array with current studentInfo array in the db
+    */
+  };
 
   function loadButton(isTutor, classData) {
     if (isTutor) {
@@ -71,9 +86,20 @@ const EditClass = (props) => {
                   {classData.className}
                   <div className="underline"></div>
                 </h1>
+                <span>
+                  <button onClick={handleDelete} className="delete-module">
+                    <i class="fa fa-close"></i>
+                    {"  "}Delete
+                  </button>
+                </span>
                 {loadStudents()}
+                {moduleDelete && (
+                  <>
+                    <text className="delete-warning">Module will be deleted</text>
+                  </>
+                )}
                 <div className="center">
-                  <button onClick={() => console.log(classData)} className="btn">
+                  <button onClick={handleConfirm} className="btn">
                     Confirm
                   </button>
                   <button onClick={handleHide} className="btn">

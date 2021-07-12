@@ -86,7 +86,6 @@ body {
   padding: 10px;
   margin: 10px;
   height: auto;
-  text-transform: capitalize;
 }
 
 .edit-class-button {
@@ -581,4 +580,26 @@ footer {
 .kick-button:hover {
   cursor: grab;
   color: rgba(235, 26, 26, 0.75);
+}
+
+.delete-module {
+  max-width: 4rem;
+  height: 2rem;
+  margin-left: 60%;
+  color: white;
+  background-color: darkred;
+  font-weight: 500;
+}
+
+.delete-module:hover {
+  cursor: grab;
+  background-color: rgba(189, 5, 5, 0.774);
+  font-weight: 700;
+}
+
+.delete-warning {
+  font-size: medium;
+  font-weight: 600;
+  color: rgba(189, 5, 5, 0.774);
+  margin-left: 30%;
 }

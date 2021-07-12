@@ -5,9 +5,15 @@ import { Card } from "react-bootstrap";
 import EditClass from "./EditClass";
 
 const Classes = (props) => {
-  const modInfo = props.modules;
+  const [modInfo, setModInfo] = useState(props.modules);
   const isTutor = props.tutorRole;
   console.log("debugging classes", modInfo);
+
+  const handleDelete = (classId) => {
+    const currentModInfo = modInfo;
+    const remaindingModInfo = modInfo.filter((x) => x.classId !== classId);
+    setModInfo(remaindingModInfo);
+  };
 
   //should assign each classData to a viewClass component
   const loadClasses = () => {
@@ -15,7 +21,13 @@ const Classes = (props) => {
       <div key={index} className="classContainer">
         <h4>Module code: {classData.className}</h4>
         <h5>Tutor: {classData.tutorName}</h5>
-        {<EditClass isTutor={isTutor} classData={classData}></EditClass>}
+        {
+          <EditClass
+            handleDelete={() => handleDelete(classData.classId)}
+            isTutor={isTutor}
+            classData={classData}
+          ></EditClass>
+        }
       </div>
     ));
   };
