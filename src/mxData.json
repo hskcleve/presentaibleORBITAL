@@ -79,6 +79,8 @@
   { "input": "awkward", "output": "bad" },
   { "input": "should look", "output": "bad" },
   { "input": "maintain eye", "output": "bad" },
+  { "input": "not good", "output": "bad"},
+  {"input": "not", "output": "bad"},
   {
     "input": "well done",
     "output": "good"
