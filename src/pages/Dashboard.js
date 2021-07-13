@@ -31,7 +31,8 @@ const DashboardPage = () => {
     //undefined field check for users without classes array
     const userClasses = userDocRef.data().classes != undefined ? userDocRef.data().classes : [];
     const roleInfo = userDocRef.data().role;
-    setModules(userClasses);
+    //filters out deleted mods
+    setModules(userClasses.filter((x) => x.deleted != true));
     setUserSchool(userDocRef.data().school);
     setUserRole(roleInfo.tutor);
     //todo - get feedback from user profile

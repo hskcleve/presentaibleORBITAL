@@ -10,35 +10,13 @@ const ViewSubmissionByClass = (props) => {
   const userUID = user.uid;
   const [submissions, setSubmissions] = useState([]);
   const history = useHistory();
-  const [modules, setModules] = useState([]);
+  const modules = props.modules;
   const filterRef = useRef();
   const [currentFilter, setCurrentFilter] = useState("None");
 
   useEffect(() => {
-    getModules();
-  }, []); // uses an empty dependency array because it is constant. If dependency array removed useEffect is called
-  // continuously, causing multiple API calls to get school non stop.
-
-  useEffect(() => {
     getSchoolSubmissions();
   }, [currentFilter]);
-
-  const getModules = () => {
-    console.log("getModules called!");
-    const tempModules = [];
-    db.collection("users")
-      .doc(userUID)
-      .get()
-      .then((doc) => {
-        const data = doc.data();
-        const moduleArray = data.classes;
-        moduleArray.forEach((mod) => {
-          const className = mod["className"];
-          tempModules.push(className);
-        });
-        setModules(tempModules);
-      });
-  };
 
   async function handleFilter(e) {
     e.preventDefault();
@@ -94,9 +72,7 @@ const ViewSubmissionByClass = (props) => {
   const RenderSubmissions = () => {
     if (submissions.length === 0) {
       return (
-        <div
-          style={{ textAlign: "center", marginTop: 200, color: "whitesmoke" }}
-        >
+        <div style={{ textAlign: "center", marginTop: 200, color: "whitesmoke" }}>
           <h3>No submissions yet!</h3>
         </div>
       );
@@ -137,13 +113,13 @@ const ViewSubmissionByClass = (props) => {
               <div style={{ minHeight: 60 }}>
                 {submission[1].split(" ").slice(0, 20).join(" ") + " ..."}
               </div>
-              <div style={{display:'flex', justifyContent:'center'}}>
-              <Feedback
-                feedback={submission[8] != 0 && submission[8] != undefined}
-                badFeedbacks={submission[7]}
-                goodFeedbacks={submission[5]}
-                neutral={submission[6]}
-              ></Feedback>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Feedback
+                  feedback={submission[8] != 0 && submission[8] != undefined}
+                  badFeedbacks={submission[7]}
+                  goodFeedbacks={submission[5]}
+                  neutral={submission[6]}
+                ></Feedback>
               </div>
             </div>
             <div style={{ textAlign: "end" }}>
@@ -189,7 +165,7 @@ const ViewSubmissionByClass = (props) => {
               <Form.Control ref={filterRef} as="select">
                 <option>None</option>
                 {modules.map((mod) => (
-                  <option>{mod}</option>
+                  <option>{mod.className}</option>
                 ))}
               </Form.Control>
             </Form.Group>
