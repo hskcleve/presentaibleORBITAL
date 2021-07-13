@@ -18,16 +18,16 @@ const Classes = (props) => {
   //should assign each classData to a viewClass component
   const loadClasses = () => {
     return modInfo.map((classData, index) => (
-      <div key={index} className="classContainer">
-        <h4>Module code: {classData.className}</h4>
-        <h5>Tutor: {classData.tutorName}</h5>
-        {
+      <div key={index} className="classContainer" style={{display:'flex', justifyContent:'space-between'}}>
+        <div><h4>Module code: {classData.className}</h4>
+        <h5>Tutor: {classData.tutorName}</h5></div>
+        <div style={{marginRight:7}}>{
           <EditClass
             handleDelete={() => handleDelete(classData.classId)}
             isTutor={isTutor}
             classData={classData}
           ></EditClass>
-        }
+        }</div>
       </div>
     ));
   };

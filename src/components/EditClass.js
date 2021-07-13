@@ -44,14 +44,14 @@ const EditClass = (props) => {
       <div className="no-students">No students yet</div>
     ) : (
       studentInfo.map((studentData, index) => (
-        <div className="classContainer" key={index}>
-          <div className="no-overload">
+        <div className="classContainer" style={{display:'flex', justifyContent:'space-between'}} key={index}>
+          <div>
             {capitalize(studentData.name)}
             <h6>Student ID :{studentData.studentId}</h6>
           </div>
-          <button onClick={() => handleKick(studentData.studentId)} className="kick-button">
+          <div><button onClick={() => handleKick(studentData.studentId)} className="kick-button">
             <i class="fa fa-trash"></i>
-          </button>
+          </button></div>
         </div>
       ))
     );
@@ -82,33 +82,41 @@ const EditClass = (props) => {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           ></link>
-          <button onClick={handleShow} className="edit-class-button">
+          <button onClick={handleShow} className="btn" style={{fontSize:12, padding:0, textDecorationLine:'underline', backgroundColor:'transparent'}}>
             Edit
           </button>
           <div id={"module-modal" + classId} className="module-modal">
             <div className="module-modal-content">
               <div className="module-modal-body">
+              <div style={{display:'flex', justifyContent:'space-between', margin:10, marginBottom:30}}>
                 <h1>
                   {classData.className}
                   <div className="underline"></div>
                 </h1>
-                <span className="button-span">
+                <div style={{display:'flex'}}>
+                
                   <button onClick={handleRevert} className="revert-module">
                     <i class="fa fa-refresh"></i> Revert
                   </button>
-
                   <button onClick={handleDelete} className="delete-module">
                     <i class="fa fa-close"></i>
                     {"  "}Delete
                   </button>
-                </span>
+                
+                </div>
+                </div>
 
                 {loadStudents()}
                 {moduleDelete && (
-                  <>
-                    <text className="delete-warning">Module will be deleted</text>
-                  </>
+                  <div style={{textAlign:'center', fontSize:15, color:'maroon'}}>
+                      Click confirm for module deletion. This action is irreversible!
+                  </div>
                 )}
+                {!moduleDelete && (
+                  <div style={{textAlign:'center', fontSize:15, color:'transparent'}}>
+                    .
+              </div>
+                )} 
                 <div className="center">
                   <button onClick={handleConfirm} className="btn">
                     Confirm

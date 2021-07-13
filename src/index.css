@@ -89,10 +89,7 @@ body {
 }
 
 .edit-class-button {
-  max-width: 4rem;
-  position: relative;
-  top: -40px;
-  left: 300px;
+  border:none;
 }
 
 .containerForSubmission {
@@ -569,17 +566,15 @@ footer {
 }
 
 .kick-button {
-  max-width: 2rem;
-  position: relative;
-  top: -30px;
-  left: 300px;
   border: none; /* Remove borders */
-  color: darkred;
+  color: rgb(0, 0, 0);
   background: transparent;
+  margin-top:13px;
+  margin-right: 20px;
 }
 
 .kick-button:hover {
-  cursor: grab;
+  cursor: pointer;
   color: rgba(235, 26, 26, 0.75);
 }
 
@@ -600,31 +595,35 @@ footer {
 }
 
 .delete-module {
+  min-width: 100px;
+  padding:10px;
+  cursor: pointer;
   color: white;
-  height: 2rem;
-  margin-top: -1rem;
-  max-width: 30%;
-  background-color: darkred;
+  border: none;
+  background-color: rgba(139, 0, 0, 0.781);
   font-weight: 500;
+  border-radius: 3px;
 }
 
 .delete-module:hover {
-  cursor: grab;
   background-color: rgba(189, 5, 5, 0.774);
   font-weight: 700;
 }
 
 .revert-module {
-  max-width: 30%;
-  margin-top: -1rem;
+  padding:10px;
+  min-width: 100px;
+  max-width: 100px;
+  cursor: pointer;
+  border: none;
   color: white;
-  background-color: darkcyan;
+  background-color: rgba(0, 139, 139, 0.781);
   font-weight: 500;
-  z-index: 30;
+  border-radius: 3px;
+  margin-right: 20px;
 }
 
 .revert-module:hover {
-  cursor: grab;
   background-color: rgba(23, 207, 161, 0.774);
   font-weight: 700;
 }
