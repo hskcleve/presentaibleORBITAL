@@ -47,7 +47,7 @@ const EditClass = (props) => {
   };
   const loadStudents = () => {
     return studentInfo.length === 0 ? (
-      <div className="no-students">No students yet</div>
+      <div className='center'>No students yet!</div>
     ) : (
       studentInfo.map((studentData, index) => (
         <div className="classContainer" style={{display:'flex', justifyContent:'space-between'}} key={index}>
