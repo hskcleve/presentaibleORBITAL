@@ -131,7 +131,7 @@ const DashboardPage = () => {
             {!loading && (
               <>
                 <div className="dashboardSidebar">
-                  <Classes tutorRole={userRole} modules={modules}></Classes>
+                  <Classes school={userSchool} tutorRole={userRole} modules={modules}></Classes>
                   {renderButtons(userRole)}
                 </div>
               </>
