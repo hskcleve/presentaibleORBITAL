@@ -74,18 +74,16 @@ const SubmissionsPage = (props) => {
   };
 
   const getModules = () => {
-    const tempModules = [];
     db.collection("users")
       .doc(userUID)
       .get()
       .then((doc) => {
         const data = doc.data();
         const moduleArray = data.classes;
-        moduleArray.forEach((mod) => {
-          const className = mod["className"];
-          tempModules.push(className);
-        });
-        setModules(tempModules);
+        let newModArray = moduleArray.flatMap((x) =>
+          x.deleted ? [x.className + " (removed)"] : [x.className],
+        );
+        setModules(newModArray);
       });
   };
 
@@ -131,9 +129,7 @@ const SubmissionsPage = (props) => {
       .then((doc) => {
         const data = doc.data();
         const richMedia = data.attachedFileName;
-        const attachedFileRef = storageRef.child(
-          "" + submission[0] + "/" + richMedia
-        );
+        const attachedFileRef = storageRef.child("" + submission[0] + "/" + richMedia);
         attachedFileRef
           .delete()
           .then(() => {
@@ -164,28 +160,25 @@ const SubmissionsPage = (props) => {
 
   return (
     <div>
-      <h1 style={{color:'whitesmoke'}}>My Submissions</h1>
-        <button
-          className="btn"
-          style={{
-            backgroundColor: "transparent",
-            textDecorationLine: "underline",
-            fontSize: 12,
-            padding: 0,
-            margin: 0,
-            color: 'antiquewhite'
-          }}
-          onClick={() => {
-            getUserSubmissions();
-          }}
-        >
-          Refresh Submissions
-        </button>
-      <div
-        className="containerWide"
-        style={{ marginRight: 10, minWidth: 770, marginTop: 30}}
+      <h1 style={{ color: "whitesmoke" }}>My Submissions</h1>
+      <button
+        className="btn"
+        style={{
+          backgroundColor: "transparent",
+          textDecorationLine: "underline",
+          fontSize: 12,
+          padding: 0,
+          margin: 0,
+          color: "antiquewhite",
+        }}
+        onClick={() => {
+          getUserSubmissions();
+        }}
       >
-        <div style={{ display: "flex", alignItems: "center", maxWidth:700}}>
+        Refresh Submissions
+      </button>
+      <div className="containerWide" style={{ marginRight: 10, minWidth: 770, marginTop: 30 }}>
+        <div style={{ display: "flex", alignItems: "center", maxWidth: 700 }}>
           <p>Showing submissions from:</p>
           <Form
             onSubmit={handleFilter}

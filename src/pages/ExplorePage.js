@@ -49,18 +49,13 @@ const ExplorePage = () => {
 
   const getModules = () => {
     console.log("getModules called!");
-    const tempModules = [];
     db.collection("users")
       .doc(userUID)
       .get()
       .then((doc) => {
         const data = doc.data();
         const moduleArray = data.classes;
-        moduleArray.forEach((mod) => {
-          const className = mod["className"];
-          tempModules.push(className);
-        });
-        setModules(tempModules);
+        setModules(moduleArray.filter((x) => x.deleted !== true));
       });
   };
 
@@ -156,9 +151,7 @@ const ExplorePage = () => {
   const RenderSubmissions = () => {
     if (submissions.length === 0) {
       return (
-        <div
-          style={{ textAlign: "center", marginTop: 200, color: "whitesmoke" }}
-        >
+        <div style={{ textAlign: "center", marginTop: 200, color: "whitesmoke" }}>
           <h3>No submissions yet!</h3>
         </div>
       );
@@ -199,13 +192,13 @@ const ExplorePage = () => {
                 {submission[1].split(" ").slice(0, 18).join(" ") + " ..."}
               </div>
               <br></br>
-              <div style={{display:'flex', justifyContent:'center'}}>
-              <Feedback 
-                feedback={submission[8] != 0 && submission[8] != undefined}
-                badFeedbacks={submission[7]}
-                goodFeedbacks={submission[5]}
-                neutral={submission[6]}
-              ></Feedback>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Feedback
+                  feedback={submission[8] != 0 && submission[8] != undefined}
+                  badFeedbacks={submission[7]}
+                  goodFeedbacks={submission[5]}
+                  neutral={submission[6]}
+                ></Feedback>
               </div>
             </div>
             <div style={{ textAlign: "end" }}>
@@ -234,10 +227,7 @@ const ExplorePage = () => {
       <Navbar />
       <br></br>
       <div>
-        <div
-          className="containerWide"
-          style={{ display: "flex", alignItems: "center" }}
-        >
+        <div className="containerWide" style={{ display: "flex", alignItems: "center" }}>
           <h3>Submissions from:</h3>
           <Form
             onSubmit={handleFilter}
@@ -248,7 +238,7 @@ const ExplorePage = () => {
                 <option>Public</option>
                 <option>{school}</option>
                 {modules.map((mod) => (
-                  <option>{mod}</option>
+                  <option>{mod.className}</option>
                 ))}
               </Form.Control>
             </Form.Group>
