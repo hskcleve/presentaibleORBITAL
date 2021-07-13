@@ -77,6 +77,7 @@ const JoinClass = (props) => {
               tutorName: tutorName,
             }),
           });
+        window.location.reload(true);
       })
       .catch((error) => console.log(error));
     console.log("successfully updated user class field");
@@ -99,9 +100,10 @@ const JoinClass = (props) => {
     } else if (passwordChecked) {
       //not entirely sure await is not needed here
       console.log("join class successfully");
-      joinClass(classId);
-      updateUserClassesField(classId);
       handleHide();
+      Promise.all(joinClass(classId), updateUserClassesField(classId)).then(
+        window.location.reload(true),
+      );
     } else {
       setErrorMessage("Class ID or password incorrect, contact your tutor");
     }

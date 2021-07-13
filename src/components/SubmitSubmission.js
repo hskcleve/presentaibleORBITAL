@@ -70,6 +70,7 @@ const SubmitSubmission = (props) => {
               console.log("" + file.name + " has been uploaded.");
             })
             .catch((error) => console.log("failed to upload", error));
+          window.location.reload(true);
         });
     } else {
       db.collection("submissions")
@@ -93,6 +94,7 @@ const SubmitSubmission = (props) => {
             .update({
               posts: firebase.firestore.FieldValue.arrayUnion(docRef.id),
             });
+          window.location.reload(true);
         });
     }
     setCurrentSubmission("");
@@ -125,14 +127,15 @@ const SubmitSubmission = (props) => {
 
   return (
     <>
-      <button className='btnMargin' onClick={handleShow}>Add Submission</button>
-      <div
-        id="submission-modal"
-        className="submission-modal"
-        style={{ marginTop: 30 }}
-      >
+      <button className="btnMargin" onClick={handleShow}>
+        Add Submission
+      </button>
+      <div id="submission-modal" className="submission-modal" style={{ marginTop: 30 }}>
         <div className="submission-modal-content">
-          <div className="submission-modal-body" style={{backgroundColor:'rgba(202, 202, 202, 0.644)', borderRadius:10}}>
+          <div
+            className="submission-modal-body"
+            style={{ backgroundColor: "rgba(202, 202, 202, 0.644)", borderRadius: 10 }}
+          >
             <form>
               <h2 style={{ margin: 5 }}>Add a new submission:</h2>
               <input
@@ -144,7 +147,7 @@ const SubmitSubmission = (props) => {
                   marginTop: 5,
                   minHeight: 30,
                   maxHeight: 30,
-                  width: '100%',
+                  width: "100%",
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
@@ -154,7 +157,7 @@ const SubmitSubmission = (props) => {
                   marginTop: 5,
                   minHeight: 30,
                   maxHeight: 30,
-                  width: '100%',
+                  width: "100%",
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
@@ -176,7 +179,7 @@ const SubmitSubmission = (props) => {
                   marginTop: 5,
                   minHeight: 250,
                   maxHeight: 250,
-                  width: '100%',
+                  width: "100%",
                   fontFamily: "Helvetica Neue",
                   fontSize: 15,
                 }}
@@ -184,13 +187,13 @@ const SubmitSubmission = (props) => {
               <br></br>
               <input type="file" onChange={handleFileAttachment} />
             </form>
-            <div className = 'center'>
-            <button onClick={handleSubmit} className="btn">
-              Submit
-            </button>
-            <button onClick={handleHide} className="btn">
-              Close
-            </button>
+            <div className="center">
+              <button onClick={handleSubmit} className="btn">
+                Submit
+              </button>
+              <button onClick={handleHide} className="btn">
+                Close
+              </button>
             </div>
           </div>
         </div>

@@ -28,7 +28,12 @@ const CreateClass = (props) => {
       })
       .catch((error) => console.log(error));
     //updates database;
-    db.collection("schools").doc(school).collection("Modules").doc(moduleName).set({});
+    db.collection("schools")
+      .doc(school)
+      .collection("Modules")
+      .doc(moduleName)
+      .set({})
+      .then(() => window.location.reload(true));
   }
 
   function updateUserClassesField(className, path) {

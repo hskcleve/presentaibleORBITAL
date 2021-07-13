@@ -41,9 +41,11 @@ const AddStudent = (props) => {
         if (name === "") {
           setErrorMessage("Invalid ID, check with school coordinator");
         } else {
-          addStudentToClass(studentId, name, classInfo.classId);
-          updateStudentData(studentId, classInfo);
           handleHide();
+          Promise.all(
+            addStudentToClass(studentId, name, classInfo.classId),
+            updateStudentData(studentId, classInfo),
+          ).then(window.location.reload(true));
         }
       });
     }
@@ -83,7 +85,9 @@ const AddStudent = (props) => {
           tutorName: tutorName,
         }),
       })
-      .then((doc) => console.log("studentData updated"))
+      .then((doc) => {
+        console.log("studentData updated");
+      })
       .catch((error) => console.log(error));
   }
 
