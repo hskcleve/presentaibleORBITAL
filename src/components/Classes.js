@@ -13,6 +13,35 @@ const Classes = (props) => {
     const currentModInfo = modInfo;
     const remaindingModInfo = modInfo.filter((x) => x.classId !== classId);
     setModInfo(remaindingModInfo);
+    //deleting for each student and tutor in classes
+    const classDocRef = db.collection("classes").doc(classId);
+    classDocRef.get().then((queryResult) => {
+      const studentInfoArray = queryResult.data().students;
+      let temp = [];
+      temp = studentInfoArray.map((x) => x.studentId);
+      temp.push(queryResult.data().tutorId);
+      console.log("student info array", temp);
+      temp.forEach((studentId) => {
+        db.collection("users")
+          .doc(studentId)
+          .get()
+          .then((queryResult) => {
+            //read db
+            var tempClassesArray = queryResult.data().classes;
+            //high level plays
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#for_adding_and_removing_items_during_a_map
+            //https://stackoverflow.com/questions/38922998/add-property-to-an-array-of-objects
+            var newClassesArray = tempClassesArray.flatMap((x) =>
+              x.classId === classId ? [x].map((y) => ({ ...y, deleted: true })) : [x],
+            );
+            console.log("newclassesarray ", newClassesArray);
+            //finally update db
+            db.collection("users").doc(studentId).update({ classes: newClassesArray });
+          });
+      });
+      //removing class from database
+      db.collection("classes").doc(classId).delete();
+    });
   };
 
   //should assign each classData to a viewClass component

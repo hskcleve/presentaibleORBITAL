@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
+import firebase from "firebase";
 
 const EditClass = (props) => {
   const { isTutor, classData } = props;
@@ -7,6 +8,7 @@ const EditClass = (props) => {
   const [studentInfo, setstudentInfo] = useState([]);
   const [moduleDelete, setModuleDelete] = useState(false);
   const [initialInfo, setInitialInfo] = useState([]);
+  const [deletedStudentInfo, setDeletedStudentInfo] = useState([]);
   const handleRealDelete = props.handleDelete;
 
   useEffect(() => {
@@ -32,12 +34,16 @@ const EditClass = (props) => {
     modal.style.display = "none";
     setModuleDelete(false);
   };
-  //todo -> update database after discussing with cleve
+
   const handleKick = (studentId) => {
     const currentStudentInfo = studentInfo;
     const remaindingStudentInfo = studentInfo.filter((x) => x.studentId !== studentId);
-    console.log("kicked one now left", remaindingStudentInfo);
+    const filteredStudentInfo = studentInfo.filter((x) => x === studentId);
     setstudentInfo(remaindingStudentInfo);
+    const temp = deletedStudentInfo;
+    console.log(temp);
+    temp.push(studentId);
+    setDeletedStudentInfo(temp);
   };
   const loadStudents = () => {
     return studentInfo.length === 0 ? (
@@ -64,10 +70,29 @@ const EditClass = (props) => {
     handleHide();
     if (moduleDelete) {
       handleRealDelete();
+    } else {
+      //students deleted
+      db.collection("classes").doc(classData.classId).update({ students: studentInfo });
+      console.log("some students deleted ", deletedStudentInfo);
+      deletedStudentInfo.forEach((studentId) => {
+        db.collection("users")
+          .doc(studentId)
+          .get()
+          .then((queryResult) => {
+            //read db
+            var tempClassesArray = queryResult.data().classes;
+            //high level plays
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#for_adding_and_removing_items_during_a_map
+            //https://stackoverflow.com/questions/38922998/add-property-to-an-array-of-objects
+            var newClassesArray = tempClassesArray.flatMap((x) =>
+              x.classId === classData.classId ? [x].map((y) => ({ ...y, deleted: true })) : [x],
+            );
+            console.log("newclassesarray ", newClassesArray);
+            //finally update db
+            db.collection("users").doc(studentId).update({ classes: newClassesArray });
+          });
+      });
     }
-    /*
-    replace array with current studentInfo array in the db
-    */
   };
   const handleRevert = () => {
     setModuleDelete(false);
