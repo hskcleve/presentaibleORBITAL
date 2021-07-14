@@ -154,7 +154,9 @@ const SubmissionsPage = (props) => {
     db.collection("users")
       .doc(userUID)
       .update({
-        posts: firebase.firestore.FieldValue.arrayRemove(submission[0]),
+        posts: firebase.firestore.FieldValue.arrayRemove(submission[0])
+      }).then(()=>{
+        window.location.reload(true);
       });
   };
 
