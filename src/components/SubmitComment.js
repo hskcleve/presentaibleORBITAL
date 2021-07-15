@@ -34,12 +34,14 @@ const SubmitComment = (props) => {
             author: user.displayName,
             content: comment,
             rating: data.message,
+          }).then(()=>{
+            setUpdated(false);
+            setComment("");
+            window.location.reload(true);
           });
+          
         });
       console.log("updated has a value of ", updated);
-
-      setUpdated(false);
-      setComment("");
       //update post weightage
     }
     //add rating of this comment to submissions db
