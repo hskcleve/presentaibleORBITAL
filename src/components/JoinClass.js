@@ -1,7 +1,7 @@
 import { Button, Form, Modal, Popover } from "react-bootstrap";
 import firebase from "firebase";
 import { db } from "../firebase";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 //higher level component should check if user is a tutor before rendering this
 const JoinClass = (props) => {
@@ -10,6 +10,8 @@ const JoinClass = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const classIdRef = useRef("");
   const passRef = useRef("");
+  const [promise1, setPromise1] = useState(false);
+  const [promise2, setPromise2] = useState(false);
 
   function showOptions(modInfo) {
     return modInfo.length !== 0
@@ -21,6 +23,18 @@ const JoinClass = (props) => {
           );
         })
       : "";
+  }
+
+  useEffect(()=>{
+    promise1&&promise2 ? refreshPage() : console.log('not yet')
+  },[promise1])
+
+  useEffect(()=>{
+    promise1&&promise2 ? refreshPage() : console.log('not yet')
+  },[promise2])
+
+  function refreshPage(){
+    window.location.reload(true);
   }
 
   async function joinClass(classId) {
@@ -37,6 +51,7 @@ const JoinClass = (props) => {
       })
       .then((doc) => {
         console.log("student added to /classes");
+        setPromise1(true);
       })
       .catch((error) => console.log(error));
   }
@@ -77,8 +92,7 @@ const JoinClass = (props) => {
               tutorName: tutorName,
             }),
           });
-        window.location.reload(true);
-      })
+      }).then(()=>{setPromise2(true)})
       .catch((error) => console.log(error));
     console.log("successfully updated user class field");
   }
@@ -101,9 +115,7 @@ const JoinClass = (props) => {
       //not entirely sure await is not needed here
       console.log("join class successfully");
       handleHide();
-      Promise.all(joinClass(classId), updateUserClassesField(classId)).then(
-        window.location.reload(true),
-      );
+      Promise.all([joinClass(classId), updateUserClassesField(classId)])
     } else {
       setErrorMessage("Class ID or password incorrect, contact your tutor");
     }
