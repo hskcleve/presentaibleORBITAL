@@ -68,9 +68,9 @@ const SubmitSubmission = (props) => {
             .put(file)
             .then(() => {
               console.log("" + file.name + " has been uploaded.");
+              window.location.reload(true);
             })
             .catch((error) => console.log("failed to upload", error));
-          window.location.reload(true);
         });
     } else {
       db.collection("submissions")
@@ -93,8 +93,7 @@ const SubmitSubmission = (props) => {
             .doc(userUID)
             .update({
               posts: firebase.firestore.FieldValue.arrayUnion(docRef.id),
-            });
-          window.location.reload(true);
+            }).then(()=>{window.location.reload(true)})
         });
     }
     setCurrentSubmission("");

@@ -5,9 +5,7 @@ import firebase from "firebase";
 const SubmitComment = (props) => {
   const user = firebase.auth().currentUser;
   const [comment, setComment] = useState("");
-  const postUID = String(
-    window.location.pathname.substring(18, window.location.pathname.length)
-  );
+  const postUID = String(window.location.pathname.substring(18, window.location.pathname.length));
   const [updated, setUpdated] = useState(false);
   const requestOptions = {
     method: "POST",
@@ -30,17 +28,20 @@ const SubmitComment = (props) => {
           updatePostWeightage(postUID, data);
           //cause a reload of the page
           console.log(data);
+          //add comment to db
+          db.collection("comments").add({
+            PostUID: postUID,
+            author: user.displayName,
+            content: comment,
+            rating: data.message,
+          }).then(()=>{
+            setUpdated(false);
+            setComment("");
+            window.location.reload(true);
+          });
+          
         });
       console.log("updated has a value of ", updated);
-      //add comment to db
-      db.collection("comments").add({
-        PostUID: postUID,
-        author: user.displayName,
-        content: comment,
-        rating: currentFeedback
-      });
-      setUpdated(false);
-      setComment("");
       //update post weightage
     }
     //add rating of this comment to submissions db
@@ -110,11 +111,7 @@ const SubmitComment = (props) => {
           }}
         />
         <div className="center">
-          <button
-            style={{ backgroundColor: "goldenrod" }}
-            onClick={onSubmit}
-            className="btn"
-          >
+          <button style={{ backgroundColor: "goldenrod" }} onClick={onSubmit} className="btn">
             Feedback
           </button>
         </div>
