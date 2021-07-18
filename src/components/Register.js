@@ -19,7 +19,6 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(roleRef.current.value);
-
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
@@ -34,11 +33,13 @@ const Register = () => {
         schoolRef.current.value,
         roleRef.current.value
       );
+      console.log("history pushed");
       history.push("/login");
-    } catch (error) {
-      console.error(error);
+    } catch {
+      console.log("error in signup");
       setError("Failed to create an account");
     }
+
   }
 
   return (
@@ -47,7 +48,7 @@ const Register = () => {
       style={{ textAlign: "center", maxWidth: 500 }}
     >
       <h1 className="header">Sign Up</h1>
-      {error && <Alert variant="danger">{error}</Alert>}
+      <div style={{color:"darkred"}}>{error && <Alert variant="danger">{error}</Alert>}</div>
       <div style={{ textAlign: "left", marginTop: 30 }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group id="displayName">
