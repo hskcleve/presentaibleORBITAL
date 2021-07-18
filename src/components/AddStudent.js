@@ -42,10 +42,8 @@ const AddStudent = (props) => {
           setErrorMessage("Invalid ID, check with school coordinator");
         } else {
           handleHide();
-          Promise.all(
-            addStudentToClass(studentId, name, classInfo.classId),
-            updateStudentData(studentId, classInfo),
-          ).then(window.location.reload(true));
+          addStudentToClass(studentId, name, classInfo.classId);
+          updateStudentData(studentId, classInfo);
         }
       });
     }
@@ -87,6 +85,7 @@ const AddStudent = (props) => {
       })
       .then((doc) => {
         console.log("studentData updated");
+        window.location.reload(true);
       })
       .catch((error) => console.log(error));
   }
@@ -141,7 +140,11 @@ const AddStudent = (props) => {
             <br></br>
             <Form.Group>
               <Form.Label>Class to add to</Form.Label>
-              <Form.Control placeholder="Choose your class" ref={classRef} as="select">
+              <Form.Control
+                placeholder="Choose your class"
+                ref={classRef}
+                as="select"
+              >
                 {showOptions(props.modules)}
               </Form.Control>
             </Form.Group>
