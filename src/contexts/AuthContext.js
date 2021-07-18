@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
           .catch((error) => console.log("failed to update profile", error));
         addUser(uid, email, displayName, school, role);
       })
-      .catch((error) => console.log("failed to register user" + error));
   }
 
   function addUser(uid, email, displayName, school, role) {
