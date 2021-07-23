@@ -1,10 +1,10 @@
-const brain = require("brain.js");
+const brain = require("brain.js")
 const fs = require("fs");
-let rawdata = fs.readFileSync("trainedBraindata.json");
+let rawdata = fs.readFileSync("pleaseWork.json");
 let data = JSON.parse(rawdata);
 
-console.log((start = new Date().getTime()));
+
 var net = new brain.recurrent.LSTM();
 net.fromJSON(data);
-console.log("output = ", net.run("I like fried chicken"));
-console.log((end = new Date().getTime()), (end - start) / 1000);
+console.log("output = ", net.run("The experience was heavenly as I was served a meal fit for God himself. After my meal, I was knocked into a food coma."));
+
