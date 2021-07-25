@@ -22,7 +22,7 @@ const Login = () => {
       history.push("/loggedin");
       console.log("moving to login");
     } catch {
-      setError("Failed to log in");
+      setError("Incorrect email or password");
       console.log(error);
     }
 
